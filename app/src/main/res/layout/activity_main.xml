@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTintMode="add"
     tools:context=".MainActivity">
 
     <!-- Background -->
@@ -15,76 +15,77 @@
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         android:src="@drawable/singinbackground"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- White Card -->
     <LinearLayout
         android:id="@+id/cardLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_margin="32dp"
         android:background="@drawable/rounded_white_bg"
-        android:orientation="vertical"
-        android:padding="24dp"
         android:elevation="8dp"
         android:gravity="center_horizontal"
-        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical"
+        android:padding="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="32dp">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <!-- Logo -->
         <ImageView
             android:layout_width="120dp"
             android:layout_height="80dp"
-            android:src="@drawable/logomain"
+            android:layout_gravity="left"
             android:layout_marginLeft="-25dp"
-            android:contentDescription="App Logo"
             android:adjustViewBounds="true"
-            android:layout_gravity="left"/>
+            android:contentDescription="App Logo"
+            android:src="@drawable/logomain" />
 
         <!-- App Name -->
         <TextView
             android:id="@+id/appName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="PAHELUKADAM"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:layout_marginTop="4dp"
             android:layout_gravity="left"
-            android:fontFamily="@font/major_mono_display" />
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/major_mono_display"
+            android:text="PAHELUKADAM"
+            android:textColor="#000000"
+            android:textSize="22sp"
+            android:textStyle="bold" />
 
         <!-- Sign In Title -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign in"
-            android:textStyle="bold"
-            android:textSize="22sp"
-            android:layout_marginTop="24dp"
             android:layout_gravity="left"
-            android:textColor="#000000"/>
+            android:layout_marginTop="24dp"
+            android:text="Sign in"
+            android:textColor="#000000"
+            android:textSize="22sp"
+            android:textStyle="bold" />
 
         <!-- Email Label -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Email or Phone Number"
-            android:textStyle="bold"
-            android:textSize="14sp"
+            android:layout_gravity="left"
             android:layout_marginTop="16dp"
+            android:text="Email or Phone Number"
             android:textColor="#000000"
-            android:layout_gravity="left"/>
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
         <!-- Email Field -->
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             app:boxStrokeColor="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -93,28 +94,27 @@
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:textColor="#000000"
-                android:textColorHint="#808080" />   <!-- placeholder gray -->
+                android:textColorHint="#808080" />
         </com.google.android.material.textfield.TextInputLayout>
-
 
         <!-- Password Label -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Password"
-            android:textStyle="bold"
-            android:textSize="14sp"
+            android:layout_gravity="left"
             android:layout_marginTop="16dp"
+            android:text="Password"
             android:textColor="#000000"
-            android:layout_gravity="left"/>
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
         <!-- Password Field -->
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:passwordToggleEnabled="true"
-            app:boxStrokeColor="@color/black">
+            app:boxStrokeColor="@color/black"
+            app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/passwordField"
@@ -122,7 +122,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:textColor="#000000"
-                android:textColorHint="#808080"/>   <!-- placeholder gray -->
+                android:textColorHint="#808080" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Sign In Button -->
@@ -130,36 +130,42 @@
             android:id="@+id/signInBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sign in"
-            android:backgroundTint="#000000"
-            android:textColor="#FFFFFF"
             android:layout_marginTop="16dp"
+            android:backgroundTint="#000000"
             android:padding="12dp"
-            android:textAllCaps="false"/>
+            android:text="Sign in"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF" />
 
-        <!-- Sign Up Text -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Don't have an account?"
+                android:text="Don't have an account ? "
                 android:textColor="#000000"
-                android:textSize="14sp"/>
+                android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/signUpLink"
+            <Button
+                android:id="@+id/signUpBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" Sign Up"
+                android:background="@android:color/transparent"
+                android:text="Sign Up"
+                android:textColor="#000000"
+                android:textSize="14sp"
                 android:textStyle="bold"
-                android:textColor="#000000"
-                android:textSize="14sp"/>
+                android:padding="0dp"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:elevation="0dp" />
         </LinearLayout>
+
+
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PAHELUKADAM">
-
+        <activity
+            android:name=".SignUpActivity"
+            android:exported="false" />
         <!-- SplashActivity is the first screen -->
         <activity
             android:name=".SplashActivity"
@@ -19,15 +21,17 @@
             android:theme="@style/Theme.PAHELUKADAM.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- MainActivity (opens after splash) -->
+        </activity> <!-- MainActivity (opens after splash) -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:theme="@style/Theme.PAHELUKADAM" />
 
+
+
     </application>
+
 </manifest>
