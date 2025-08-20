@@ -1,13 +1,14 @@
 package com.example.pahelukadam
 
 import android.content.Intent
-import android.graphics.LinearGradient
-import android.graphics.Shader
 import android.os.Bundle
+import android.util.Patterns
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
+import com.google.android.material.textfield.TextInputEditText
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,31 +18,51 @@ class MainActivity : AppCompatActivity() {
         val appNameText: TextView = findViewById(R.id.appName)
         val signInBtn: Button = findViewById(R.id.signInBtn)
         val signUpBtn: Button = findViewById(R.id.signUpBtn)
+        val emailField: TextInputEditText = findViewById(R.id.emailField)
+        val passwordField: TextInputEditText = findViewById(R.id.passwordField)
 
         // Apply custom font
         val typeface = ResourcesCompat.getFont(this, R.font.major_mono_display)
         appNameText.typeface = typeface
 
-        // Dark Gradient text effect (applied after layout)
-        appNameText.viewTreeObserver.addOnGlobalLayoutListener {
-            val textWidth = appNameText.paint.measureText(appNameText.text.toString())
-            val textShader = LinearGradient(
-                0f, 0f, textWidth, appNameText.textSize,   // horizontal gradient
-                intArrayOf(
-                    android.graphics.Color.parseColor("#F48C06"), // Dark Red
-                    android.graphics.Color.parseColor("#DC2F02"), // Orange Red
-                   // android.graphics.Color.parseColor("#000000")  // Black
-                ),
-                null,
-                Shader.TileMode.CLAMP
-            )
-            appNameText.paint.shader = textShader
-            appNameText.invalidate()
-        }
-
-        // Sign In Button click
+        // ✅ Sign In Button Click with Validation
         signInBtn.setOnClickListener {
-            // TODO: Implement login logic
+            val emailOrPhone = emailField.text.toString().trim()
+            val password = passwordField.text.toString().trim()
+
+            if (emailOrPhone.isEmpty()) {
+                emailField.error = "Please enter Email or Phone"
+                emailField.requestFocus()
+                return@setOnClickListener
+            }
+
+            // Check if input is valid Email OR Phone Number
+            if (!Patterns.EMAIL_ADDRESS.matcher(emailOrPhone).matches() &&
+                !Patterns.PHONE.matcher(emailOrPhone).matches()
+            ) {
+                emailField.error = "Enter valid Email or Phone"
+                emailField.requestFocus()
+                return@setOnClickListener
+            }
+
+            if (password.isEmpty()) {
+                passwordField.error = "Password required"
+                passwordField.requestFocus()
+                return@setOnClickListener
+            }
+
+            if (password.length < 6) {
+                passwordField.error = "Password must be at least 6 characters"
+                passwordField.requestFocus()
+                return@setOnClickListener
+            }
+
+            // ✅ If valid, proceed with login logic (API / Database check)
+            Toast.makeText(this, "Validation Passed ✅", Toast.LENGTH_SHORT).show()
+
+            // Example: move to HomeActivity after login success
+            // val intent = Intent(this, HomeActivity::class.java)
+            // startActivity(intent)
         }
 
         // Sign Up Button click -> Open SignUpActivity
