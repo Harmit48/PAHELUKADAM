@@ -11,26 +11,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PAHELUKADAM">
+
+        <!-- HubActivity (Main container for Bottom Navigation + Fragments) -->
+        <activity
+            android:name=".ui.HubActivity"
+            android:exported="false" />
+
+        <!-- SignUp Screen -->
         <activity
             android:name=".SignUpActivity"
             android:exported="false" />
-        <!-- SplashActivity is the first screen -->
+
+        <!-- Splash Screen (Launcher) -->
         <activity
             android:name=".SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.PAHELUKADAM.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- MainActivity (opens after splash) -->
+        </activity>
+
+        <!-- MainActivity (optional entry after splash/login) -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:theme="@style/Theme.PAHELUKADAM" />
-
-
 
     </application>
 

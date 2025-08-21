@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PAHELUKADAM</string>
+    <string name="hint_search">Search business ideas, categories…</string>
 </resources>

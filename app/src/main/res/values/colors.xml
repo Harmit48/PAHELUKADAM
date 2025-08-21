@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- App Colors -->
+    <color name="app_bg">#FFFFFFFF</color>
+    <color name="dark_card">#0D1416</color>
+    <color name="white">#FFFFFF</color>
+    <color name="white_70">#B3FFFFFF</color>
+    <color name="black">#111111</color>
+    <color name="chip">#101517</color>
+
+    <!-- Default Material Colors -->
     <color name="purple_500">#6200EE</color>
     <color name="purple_700">#3700B3</color>
     <color name="teal_200">#03DAC5</color>
-
-    <!-- You can also define your own brand colors -->
-    <color name="black">#000000</color>
-    <color name="white">#FFFFFF</color>
 </resources>
