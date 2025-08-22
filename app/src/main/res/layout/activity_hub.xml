@@ -18,10 +18,12 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
-        android:layout_height="88dp"
+        android:layout_height="77dp"
         android:layout_gravity="bottom"
         android:background="@color/white"
-        app:itemIconSize="28dp"
+        app:itemIconSize="31dp"
+        app:itemIconTint="@color/nav_item_color"
+        app:itemTextColor="@color/nav_item_color"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/menu_bottom_nav" />
 

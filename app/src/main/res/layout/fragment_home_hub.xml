@@ -15,7 +15,7 @@
         <!-- Logo row -->
         <ImageView
             android:id="@+id/logo"
-            android:src="@drawable/logomain"
+            android:src="@drawable/logotext"
             android:contentDescription="@string/app_name"
             android:layout_width="160dp"
             android:layout_height="36dp"
@@ -27,13 +27,24 @@
             android:layout_height="wrap_content"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             app:startIconDrawable="@drawable/ic_search_24"
-            android:hint="@string/hint_search">
+            app:startIconTint="@android:color/black"
+            app:boxStrokeColor="@android:color/black"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp"
+            app:hintEnabled="false">   <!-- disables floating label -->
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/searchEdit"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"/>
+                android:layout_height="53dp"
+                android:hint="Search business ideas, categories..."
+                android:textColor="@android:color/black"
+                android:textColorHint="@android:color/darker_gray"
+                android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
+
 
         <!-- Categories -->
         <LinearLayout
@@ -53,7 +64,9 @@
                         android:layout_height="48dp"/>
                     <TextView
                         android:text="Manufacturing"
-                        style="@style/CategoryLabel"/>
+                        style="@style/CategoryLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -70,7 +83,9 @@
                         android:layout_height="48dp"/>
                     <TextView
                         android:text="Food &amp; Beverage"
-                        style="@style/CategoryLabel"/>
+                        style="@style/CategoryLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -85,7 +100,9 @@
                         android:layout_height="48dp"/>
                     <TextView
                         android:text="Tech"
-                        style="@style/CategoryLabel"/>
+                        style="@style/CategoryLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
