@@ -14,27 +14,35 @@ import com.example.pahelukadam.databinding.FragmentHomeHubBinding
 
 class HomeHubFragment : Fragment() {
 
+    // ✅ FIX: Binding class must start with uppercase (matches XML file name fragment_home_hub.xml → FragmentHomeHubBinding)
     private var _binding: FragmentHomeHubBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var sliderAdapter: SliderAdapter
     private val handler = Handler(Looper.getMainLooper())
+
     private val sliderRunnable = object : Runnable {
         override fun run() {
             val vp = binding.imageSlider
-            val next = (vp.currentItem + 1) % (sliderAdapter.itemCount.takeIf { it > 0 } ?: 1)
-            vp.setCurrentItem(next, true)
-            handler.postDelayed(this, 3000L)
+            if (sliderAdapter.itemCount > 0) {
+                val next = (vp.currentItem + 1) % sliderAdapter.itemCount
+                vp.setCurrentItem(next, true)
+                handler.postDelayed(this, 3000L)
+            }
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         _binding = FragmentHomeHubBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        // Search hint already set in XML
+        super.onViewCreated(view, savedInstanceState)
 
         // Category clicks
         binding.cardManufacturing.setOnClickListener { /* TODO open list */ }
@@ -47,12 +55,14 @@ class HomeHubFragment : Fragment() {
             R.drawable.sample_slider_2,
             R.drawable.sample_slider_3
         )
+
         sliderAdapter = SliderAdapter(images) { imageView, resId ->
             Glide.with(imageView).load(resId).into(imageView)
         }
+
         binding.imageSlider.adapter = sliderAdapter
         binding.imageSlider.offscreenPageLimit = 1
-        binding.imageSlider.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){})
+        binding.imageSlider.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {})
 
         // Smart suggestion button
         binding.btnStartNow.setOnClickListener {

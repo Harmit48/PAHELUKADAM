@@ -5,10 +5,10 @@ import android.os.Bundle
 import android.util.Patterns
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import com.google.android.material.textfield.TextInputEditText
+import com.example.pahelukadam.ui.HubActivity // ⬅️ Added import
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +36,6 @@ class MainActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Check if input is valid Email OR Phone Number
             if (!Patterns.EMAIL_ADDRESS.matcher(emailOrPhone).matches() &&
                 !Patterns.PHONE.matcher(emailOrPhone).matches()
             ) {
@@ -57,12 +56,10 @@ class MainActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // ✅ If valid, proceed with login logic (API / Database check)
-            Toast.makeText(this, "Validation Passed ✅", Toast.LENGTH_SHORT).show()
-
-            // Example: move to HomeActivity after login success
-            // val intent = Intent(this, HomeActivity::class.java)
-            // startActivity(intent)
+            // ✅ If valid, redirect to HubActivity
+            val intent = Intent(this, HubActivity::class.java)
+            startActivity(intent)
+            finish()
         }
 
         // Sign Up Button click -> Open SignUpActivity

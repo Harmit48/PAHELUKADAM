@@ -15,7 +15,7 @@
         <!-- HubActivity (Main container for Bottom Navigation + Fragments) -->
         <activity
             android:name=".ui.HubActivity"
-            android:exported="false" />
+            android:exported="true" />
 
         <!-- SignUp Screen -->
         <activity
@@ -38,6 +38,7 @@
             android:name=".MainActivity"
             android:exported="true"
             android:theme="@style/Theme.PAHELUKADAM" />
+
 
     </application>
 
