@@ -1,4 +1,4 @@
-package com.example.pahelukadam
+package com.pahelukadam.pahelukadam
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import com.google.android.material.textfield.TextInputEditText
-import com.example.pahelukadam.ui.HubActivity // ⬅️ Added import
+import com.pahelukadam.pahelukadam.ui.HubActivity // ⬅️ HubActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         val typeface = ResourcesCompat.getFont(this, R.font.major_mono_display)
         appNameText.typeface = typeface
 
-        // ✅ Sign In Button Click with Validation
+        // ✅ Sign In Button Click with Validation + Save to SharedPreferences
         signInBtn.setOnClickListener {
             val emailOrPhone = emailField.text.toString().trim()
             val password = passwordField.text.toString().trim()
@@ -55,6 +55,13 @@ class MainActivity : AppCompatActivity() {
                 passwordField.requestFocus()
                 return@setOnClickListener
             }
+
+            // ✅ Save user data into SharedPreferences
+            val sharedPref = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+            sharedPref.edit()
+                .putString("USER_EMAIL", emailOrPhone)
+                .putString("USER_PASSWORD", password) // ⚠️ Not secure, just demo
+                .apply()
 
             // ✅ If valid, redirect to HubActivity
             val intent = Intent(this, HubActivity::class.java)

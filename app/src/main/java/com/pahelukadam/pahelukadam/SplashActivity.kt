@@ -1,4 +1,4 @@
-package com.example.pahelukadam
+package com.pahelukadam.pahelukadam
 
 import android.content.Intent
 import android.graphics.Color

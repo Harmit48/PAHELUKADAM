@@ -1,4 +1,4 @@
-package com.example.pahelukadam
+package com.pahelukadam.pahelukadam
 
 import org.junit.Test
 

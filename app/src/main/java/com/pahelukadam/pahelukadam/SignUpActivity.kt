@@ -1,4 +1,4 @@
-package com.example.pahelukadam
+package com.pahelukadam.pahelukadam
 
 import android.content.Intent
 import android.graphics.LinearGradient
@@ -75,7 +75,15 @@ class SignUpActivity : AppCompatActivity() {
                     // ✅ Passed all validations
                     Toast.makeText(this, "Sign Up Successful!", Toast.LENGTH_SHORT).show()
 
-                    // Example: redirect to login (MainActivity)
+                    // ✅ Save user data into SharedPreferences
+                    val sharedPref = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+                    val editor = sharedPref.edit()
+                    editor.putString("name", "$firstName $lastName")
+                    editor.putString("email", email)
+                    editor.putString("password", password) // ⚠️ Not secure, just for demo
+                    editor.apply()
+
+                    // ✅ Redirect to login (MainActivity)
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()

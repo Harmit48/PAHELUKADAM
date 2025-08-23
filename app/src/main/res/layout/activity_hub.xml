@@ -12,7 +12,7 @@
         android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="88dp" />  <!-- leaves space for bottom nav -->
+        android:layout_marginBottom="88dp" />  <!-- space for bottom nav -->
 
     <!-- Bottom Navigation -->
     <com.google.android.material.bottomnavigation.BottomNavigationView

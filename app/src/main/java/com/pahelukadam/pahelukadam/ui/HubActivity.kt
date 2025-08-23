@@ -1,25 +1,28 @@
-package com.example.pahelukadam.ui
+package com.pahelukadam.pahelukadam.ui
 
-import android.os.Bundle
 import androidx.fragment.app.Fragment
-import com.example.pahelukadam.R
-import com.example.pahelukadam.base.BaseScreen
-import com.example.pahelukadam.databinding.ActivityHubBinding
-import com.example.pahelukadam.ui.home.HomeHubFragment
+import com.pahelukadam.pahelukadam.R
+import com.pahelukadam.pahelukadam.base.BaseScreen
+import com.pahelukadam.pahelukadam.databinding.ActivityHubBinding
+import com.pahelukadam.pahelukadam.ui.home.HomeHubFragment
+import com.pahelukadam.pahelukadam.ui.account.AccountFragment
 
 class HubActivity : BaseScreen<ActivityHubBinding>() {
 
     override fun inflateBinding() = ActivityHubBinding.inflate(layoutInflater)
 
     override fun onReady() {
-        // default tab
+        // ✅ Default tab = Home
         switchTo(HomeHubFragment(), "home")
 
         binding.bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> switchTo(HomeHubFragment(), "home")
-                R.id.nav_explore -> switchTo(PlaceholderFragment.new("Explore coming soon"), "explore")
-                R.id.nav_account -> switchTo(PlaceholderFragment.new("Account coming soon"), "account")
+                R.id.nav_explore -> switchTo(
+                    PlaceholderFragment.new("Explore coming soon"),
+                    "explore"
+                )
+                R.id.nav_account -> switchTo(AccountFragment(), "account") // ✅ now real AccountFragment
             }
             true
         }

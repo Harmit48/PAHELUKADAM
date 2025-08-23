@@ -1,10 +1,10 @@
-package com.example.pahelukadam.ui.home
+package com.pahelukadam.pahelukadam.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.pahelukadam.databinding.ItemSliderBinding
+import com.pahelukadam.pahelukadam.databinding.ItemSliderBinding
 
 class SliderAdapter(
     private val items: List<Int>,
