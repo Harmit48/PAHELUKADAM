@@ -1,6 +1,7 @@
 package com.example.pahelukadam
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.LinearGradient
 import android.graphics.Shader
 import android.os.Bundle
@@ -31,7 +32,7 @@ class SignUpActivity : AppCompatActivity() {
         )
         appName.paint.shader = textShader
 
-        // Input fields (linked with your XML IDs)
+        // Input fields
         val firstNameEt: TextInputEditText = findViewById(R.id.firstName)
         val lastNameEt: TextInputEditText = findViewById(R.id.lastName)
         val emailEt: TextInputEditText = findViewById(R.id.email)
@@ -75,7 +76,15 @@ class SignUpActivity : AppCompatActivity() {
                     // ✅ Passed all validations
                     Toast.makeText(this, "Sign Up Successful!", Toast.LENGTH_SHORT).show()
 
-                    // Example: redirect to login (MainActivity)
+                    // ✅ Save user data in SharedPreferences
+                    val sharedPref: SharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+                    val editor = sharedPref.edit()
+                    editor.putString("name", "$firstName $lastName")
+                    editor.putString("email", email)
+                    editor.putString("password", password)
+                    editor.apply()
+
+                    // Redirect to login (MainActivity)
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()
@@ -83,7 +92,7 @@ class SignUpActivity : AppCompatActivity() {
             }
         }
 
-        // Redirect to Sign In (MainActivity)
+        // Redirect to Sign In
         signInBtn.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)

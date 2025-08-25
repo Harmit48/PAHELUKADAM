@@ -55,6 +55,7 @@ dependencies {
 
     // ✅ Glide (with compiler for annotations)
     implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation(libs.androidx.activity)
     kapt("com.github.bumptech.glide:compiler:4.16.0")
 
     // Testing

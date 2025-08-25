@@ -6,6 +6,7 @@ import com.example.pahelukadam.R
 import com.example.pahelukadam.base.BaseScreen
 import com.example.pahelukadam.databinding.ActivityHubBinding
 import com.example.pahelukadam.ui.home.HomeHubFragment
+import com.example.pahelukadam.ui.account.AccountFragment // ✅ Import your AccountFragment
 
 class HubActivity : BaseScreen<ActivityHubBinding>() {
 
@@ -18,8 +19,11 @@ class HubActivity : BaseScreen<ActivityHubBinding>() {
         binding.bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> switchTo(HomeHubFragment(), "home")
-                R.id.nav_explore -> switchTo(PlaceholderFragment.new("Explore coming soon"), "explore")
-                R.id.nav_account -> switchTo(PlaceholderFragment.new("Account coming soon"), "account")
+                R.id.nav_explore -> switchTo(
+                    PlaceholderFragment.new("Explore coming soon"),
+                    "explore"
+                )
+                R.id.nav_account -> switchTo(AccountFragment(), "account") // ✅ Redirect to AccountFragment
             }
             true
         }
