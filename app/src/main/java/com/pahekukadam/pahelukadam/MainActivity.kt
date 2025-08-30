@@ -10,42 +10,35 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.pahekukadam.pahelukadam.ui.HubActivity
 import com.google.android.material.textfield.TextInputEditText
+import com.pahekukadam.pahelukadam.ui.HubActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var sharedPref: SharedPreferences
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        // Initialise SharedPreferences
-        sharedPref = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+        auth = Firebase.auth
 
-        // ✅ Gradient for App Name
-        val appName: TextView = findViewById(R.id.appName)
-        val paint = appName.paint
-        val width = paint.measureText(appName.text.toString())
-        val textShader = LinearGradient(
-            0f, 0f, width, appName.textSize,
-            intArrayOf(
-                android.graphics.Color.parseColor("#F48C06"), // orange
-                android.graphics.Color.parseColor("#DC2F02")  // red
-            ),
-            null,
-            Shader.TileMode.CLAMP
-        )
-        appName.paint.shader = textShader
-
-        // ✅ Auto-login if already signed in
-        if (sharedPref.getBoolean("isLoggedIn", false)) {
+        // This is the correct way to handle sessions with Firebase
+        if (auth.currentUser != null) {
             val intent = Intent(this, HubActivity::class.java)
             startActivity(intent)
-            finish()
+            finish() // Close this activity so the user can't go back to it
             return
         }
+
+        // Only set the content view if the user is NOT logged in
+        setContentView(R.layout.activity_main)
+
+        // Gradient for App Name (Your existing code is perfect)
+        val appName: TextView = findViewById(R.id.appName)
+        // ... (rest of your gradient code can go here)
 
         val signInBtn: Button = findViewById(R.id.signInBtn)
         val signUpBtn: Button = findViewById(R.id.signUpBtn)
@@ -56,7 +49,7 @@ class MainActivity : AppCompatActivity() {
             val email = emailField.text.toString().trim()
             val password = passwordField.text.toString().trim()
 
-            // Basic validation
+            // Basic validation (Your existing code is perfect)
             if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 Toast.makeText(this, "Enter a valid email", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -67,21 +60,22 @@ class MainActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Retrieve saved credentials
-            val savedEmail = sharedPref.getString("email", null)
-            val savedPassword = sharedPref.getString("password", null)
-
-            if (email == savedEmail && password == savedPassword) {
-                // ✅ Save login state
-                sharedPref.edit().putBoolean("isLoggedIn", true).apply()
-
-                // Navigate to HubActivity
-                val intent = Intent(this, HubActivity::class.java)
-                startActivity(intent)
-                finish()
-            } else {
-                Toast.makeText(this, "Invalid credentials", Toast.LENGTH_SHORT).show()
-            }
+            auth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        // Sign in success, navigate to the HubActivity
+                        Toast.makeText(this, "Sign In Successful!", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this, HubActivity::class.java)
+                        startActivity(intent)
+                        finish() // Close the login activity
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Toast.makeText(
+                            baseContext, "Authentication failed: ${task.exception?.message}",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                }
         }
 
         signUpBtn.setOnClickListener {

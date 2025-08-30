@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">PAHELUKADAM</string>
     <string name="hint_search">Search business ideas, categories…</string>
+    <string name="firebase_test_success">Firebase connection test successful.</string>
+    <string name="firebase_test_failed">Firebase connection failed: %1$s</string>
+    <string name="firebase_init_error">Firebase initialisation error: %1$s</string>
+    <string name="error_invalid_email">Enter a valid email</string>
+    <string name="error_empty_password">Enter password</string>
+    <string name="error_invalid_credentials">Invalid credentials</string>
 </resources>

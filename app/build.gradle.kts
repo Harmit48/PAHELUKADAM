@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.kapt")
     id("kotlin-kapt")// ✅ Needed for Glide compiler
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -52,7 +53,9 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.2.0")
     implementation("androidx.fragment:fragment-ktx:1.8.3")
     implementation("androidx.viewpager2:viewpager2:1.0.0")
-
+    implementation(platform("com.google.firebase:firebase-bom:33.1.1"))
+    implementation("com.google.firebase:firebase-firestore-ktx")
+    implementation("com.google.firebase:firebase-auth-ktx")
     // ✅ Glide (with compiler for annotations)
     implementation("com.github.bumptech.glide:glide:4.16.0")
     implementation(libs.androidx.activity)

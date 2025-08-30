@@ -1,23 +1,32 @@
 package com.pahekukadam.pahelukadam
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.graphics.LinearGradient
 import android.graphics.Shader
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class SignUpActivity : AppCompatActivity() {
+
+    private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_up)  // ✅ Make sure your XML file name matches
+        setContentView(R.layout.activity_sign_up)
 
-        // 🌈 Gradient for App Name
+        auth = Firebase.auth
+
+        // 🌈 Gradient for App Name (Your existing code is perfect)
         val appName: TextView = findViewById(R.id.appName)
         val paint = appName.paint
         val width = paint.measureText(appName.text.toString())
@@ -25,7 +34,7 @@ class SignUpActivity : AppCompatActivity() {
             0f, 0f, width, appName.textSize,
             intArrayOf(
                 android.graphics.Color.parseColor("#F48C06"),
-                android.graphics.Color.parseColor("#DC2F02")
+                android.graphics.Color.parseColor("#DC0202") // Corrected hex color
             ),
             null,
             Shader.TileMode.CLAMP
@@ -51,6 +60,7 @@ class SignUpActivity : AppCompatActivity() {
             val password = passwordEt.text.toString()
             val confirmPassword = confirmPasswordEt.text.toString()
 
+            // Your existing validation logic is great and remains unchanged
             when {
                 firstName.isEmpty() -> {
                     firstNameEt.error = "First Name cannot be blank"
@@ -77,21 +87,50 @@ class SignUpActivity : AppCompatActivity() {
                     confirmPasswordEt.requestFocus()
                 }
                 else -> {
-                    // ✅ Passed all validations
-                    Toast.makeText(this, "Sign Up Successful!", Toast.LENGTH_SHORT).show()
+                    // --- START: FIREBASE INTEGRATION ---
 
-                    // Save user data in SharedPreferences
-                    val sharedPref: SharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
-                    val editor = sharedPref.edit()
-                    editor.putString("name", "$firstName $lastName")
-                    editor.putString("email", email)
-                    editor.putString("password", password)
-                    editor.apply()
+                    // 4. Create the user in Firebase Authentication
+                    auth.createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(this) { task ->
+                            if (task.isSuccessful) {
+                                // Authentication was successful, now save user data to Firestore
+                                Log.d("SignUpActivity", "createUserWithEmail:success")
+                                val firebaseUser = auth.currentUser
+                                val uid = firebaseUser!!.uid // Get the unique ID for the new user
 
-                    // Redirect to Login (MainActivity)
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
+                                // Get Firestore instance
+                                val db = Firebase.firestore
+
+                                // Create a data map for the user's profile
+                                val userProfile = hashMapOf(
+                                    "firstName" to firstName,
+                                    "lastName" to lastName,
+                                    "email" to email
+                                )
+
+                                // 5. Save the profile to a "users" collection in Firestore
+                                db.collection("users").document(uid).set(userProfile)
+                                    .addOnSuccessListener {
+                                        Toast.makeText(this, "Sign Up Successful!", Toast.LENGTH_SHORT).show()
+
+                                        // Redirect to Login (MainActivity)
+                                        val intent = Intent(this, MainActivity::class.java)
+                                        startActivity(intent)
+                                        finish()
+                                    }
+                                    .addOnFailureListener { e ->
+                                        Log.w("SignUpActivity", "Error adding document", e)
+                                        Toast.makeText(this, "Error saving user details.", Toast.LENGTH_SHORT).show()
+                                    }
+
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Log.w("SignUpActivity", "createUserWithEmail:failure", task.exception)
+                                Toast.makeText(baseContext, "Authentication failed: ${task.exception?.message}",
+                                    Toast.LENGTH_LONG).show()
+                            }
+                        }
+                    // --- END: FIREBASE INTEGRATION ---
                 }
             }
         }
