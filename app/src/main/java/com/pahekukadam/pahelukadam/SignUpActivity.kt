@@ -1,4 +1,4 @@
-package com.example.pahelukadam
+package com.pahekukadam.pahelukadam
 
 import android.content.Intent
 import android.content.SharedPreferences

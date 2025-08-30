@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.pahelukadam">
+    package="com.pahekukadam.pahelukadam">
 
     <application
         android:allowBackup="true"
@@ -12,34 +12,34 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PAHELUKADAM">
         <activity
-            android:name="com.pahelukadam.pahelukadam.ui.account.AccountFragment"
+            android:name="com.pahekukadam.pahelukadam.ui.account.AccountFragment"
             android:exported="false" />
         <activity
-            android:name=".ui.home.TechFragment"
+            android:name="com.pahekukadam.pahelukadam.ui.home.TechFragment"
             android:exported="false" />
         <activity
-            android:name=".ui.home.FoodBeverageFragment"
+            android:name="com.pahekukadam.pahelukadam.ui.home.FoodBeverageFragment"
             android:exported="false" />
         <activity
-            android:name=".ui.home.ManufacturingFragment"
+            android:name="com.pahekukadam.pahelukadam.ui.home.ManufacturingFragment"
             android:exported="false" />
         <activity
             android:name=".ui.account.AccountnewFragment"
             android:exported="false" />
         <activity
-            android:name=".ui.account.AddMobileActivity"
+            android:name="com.pahekukadam.pahelukadam.ui.account.AddMobileActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.account.EditProfileActivity"
+            android:name="com.pahekukadam.pahelukadam.ui.account.EditProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.HubActivity"
+            android:name="com.pahekukadam.pahelukadam.ui.HubActivity"
             android:exported="false" />
         <activity
-            android:name=".SignUpActivity"
+            android:name="com.pahekukadam.pahelukadam.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashActivity"
+            android:name="com.pahekukadam.pahelukadam.SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.PAHELUKADAM.NoActionBar">
             <intent-filter>
@@ -49,7 +49,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.pahekukadam.pahelukadam.MainActivity"
             android:exported="false"
             android:theme="@style/Theme.PAHELUKADAM" />
     </application>

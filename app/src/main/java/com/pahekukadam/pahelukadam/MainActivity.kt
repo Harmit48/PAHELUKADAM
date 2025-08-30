@@ -1,4 +1,4 @@
-package com.example.pahelukadam
+package com.pahekukadam.pahelukadam
 
 import android.content.Intent
 import android.content.SharedPreferences
@@ -10,7 +10,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.pahelukadam.ui.HubActivity
+import com.pahekukadam.pahelukadam.ui.HubActivity
 import com.google.android.material.textfield.TextInputEditText
 
 class MainActivity : AppCompatActivity() {

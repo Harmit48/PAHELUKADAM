@@ -1,4 +1,4 @@
-package com.example.pahelukadam.ui.account
+package com.pahekukadam.pahelukadam.ui.account
 
 import android.app.Dialog
 import android.content.Context
@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.view.Window
 import android.widget.Button
 import android.widget.RadioButton
-import com.example.pahelukadam.R
+import com.pahekukadam.pahelukadam.R
 
 class ThemeDialog(context: Context) : Dialog(context) {
 

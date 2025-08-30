@@ -1,4 +1,4 @@
-package com.example.pahelukadam.base
+package com.pahekukadam.pahelukadam.base
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

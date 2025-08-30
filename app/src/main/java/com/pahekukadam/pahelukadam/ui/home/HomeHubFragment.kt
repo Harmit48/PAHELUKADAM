@@ -1,4 +1,4 @@
-package com.example.pahelukadam.ui.home
+package com.pahekukadam.pahelukadam.ui.home
 
 import android.os.Bundle
 import android.os.Handler
@@ -9,8 +9,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
-import com.example.pahelukadam.R
-import com.example.pahelukadam.databinding.FragmentHomeHubBinding
+import com.pahekukadam.pahelukadam.R
+import com.pahekukadam.pahelukadam.databinding.FragmentHomeHubBinding
 
 class HomeHubFragment : Fragment() {
 

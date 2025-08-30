@@ -1,13 +1,12 @@
-package com.example.pahelukadam.ui
+package com.pahekukadam.pahelukadam.ui
 
-import android.os.Bundle
 import androidx.fragment.app.Fragment
-import com.example.pahelukadam.R
-import com.example.pahelukadam.base.BaseScreen
-import com.example.pahelukadam.databinding.ActivityHubBinding
-import com.example.pahelukadam.ui.home.HomeHubFragment
-import com.example.pahelukadam.ui.home.ExploreFragment
-import com.example.pahelukadam.ui.account.AccountFragment  // ✅ Import your new fragment
+import com.pahekukadam.pahelukadam.R
+import com.pahekukadam.pahelukadam.base.BaseScreen
+import com.pahekukadam.pahelukadam.databinding.ActivityHubBinding
+import com.pahekukadam.pahelukadam.ui.home.HomeHubFragment
+import com.pahekukadam.pahelukadam.ui.home.ExploreFragment
+import com.pahekukadam.pahelukadam.ui.account.AccountFragment  // ✅ Import your new fragment
 
 class HubActivity : BaseScreen<ActivityHubBinding>() {
 

@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.pahelukadam"
+    namespace = "com.pahekukadam.pahelukadam"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.example.pahelukadam"
+        applicationId = "com.pahelukadam.pahelukadam"
         minSdk = 24
         targetSdk = 36
         versionCode = 1

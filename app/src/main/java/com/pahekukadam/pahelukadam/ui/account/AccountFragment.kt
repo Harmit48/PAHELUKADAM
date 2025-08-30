@@ -1,4 +1,4 @@
-package com.example.pahelukadam.ui.account
+package com.pahekukadam.pahelukadam.ui.account
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,10 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.pahelukadam.databinding.FragmentAccountBinding
-import com.example.pahelukadam.ui.account.AddMobileActivity
-import com.example.pahelukadam.ui.account.EditProfileActivity
-import com.example.pahelukadam.MainActivity
+import com.pahekukadam.pahelukadam.databinding.FragmentAccountBinding
+import com.pahekukadam.pahelukadam.MainActivity
 
 class AccountFragment : Fragment() {
 

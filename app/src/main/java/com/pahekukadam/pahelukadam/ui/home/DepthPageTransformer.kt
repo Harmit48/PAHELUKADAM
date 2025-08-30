@@ -1,4 +1,4 @@
-package com.example.pahelukadam.ui.home
+package com.pahekukadam.pahelukadam.ui.home
 
 import android.view.View
 import androidx.viewpager2.widget.ViewPager2

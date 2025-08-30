@@ -1,22 +1,22 @@
-package com.example.pahelukadam.ui.home
+package com.pahekukadam.pahelukadam.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.pahelukadam.databinding.FragmentManufacturingBinding
+import com.pahekukadam.pahelukadam.databinding.FragmentTechBinding
 
-class ManufacturingFragment : Fragment() {
+class TechFragment : Fragment() {
 
-    private var _binding: FragmentManufacturingBinding? = null
+    private var _binding: FragmentTechBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentManufacturingBinding.inflate(inflater, container, false)
+        _binding = FragmentTechBinding.inflate(inflater, container, false)
         return binding.root
     }
 

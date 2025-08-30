@@ -1,11 +1,11 @@
-package com.example.pahelukadam.ui.home
+package com.pahekukadam.pahelukadam.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.pahelukadam.databinding.FragmentFoodBeverageBinding
+import com.pahekukadam.pahelukadam.databinding.FragmentFoodBeverageBinding
 
 class FoodBeverageFragment : Fragment() {
 
