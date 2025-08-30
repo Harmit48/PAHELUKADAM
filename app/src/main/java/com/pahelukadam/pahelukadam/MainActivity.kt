@@ -1,78 +1,91 @@
-package com.pahelukadam.pahelukadam
+package com.example.pahelukadam
 
 import android.content.Intent
+import android.content.SharedPreferences
+import android.graphics.LinearGradient
+import android.graphics.Shader
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.res.ResourcesCompat
+import com.example.pahelukadam.ui.HubActivity
 import com.google.android.material.textfield.TextInputEditText
-import com.pahelukadam.pahelukadam.ui.HubActivity // ⬅️ HubActivity
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var sharedPref: SharedPreferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val appNameText: TextView = findViewById(R.id.appName)
+        // Initialise SharedPreferences
+        sharedPref = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+
+        // ✅ Gradient for App Name
+        val appName: TextView = findViewById(R.id.appName)
+        val paint = appName.paint
+        val width = paint.measureText(appName.text.toString())
+        val textShader = LinearGradient(
+            0f, 0f, width, appName.textSize,
+            intArrayOf(
+                android.graphics.Color.parseColor("#F48C06"), // orange
+                android.graphics.Color.parseColor("#DC2F02")  // red
+            ),
+            null,
+            Shader.TileMode.CLAMP
+        )
+        appName.paint.shader = textShader
+
+        // ✅ Auto-login if already signed in
+        if (sharedPref.getBoolean("isLoggedIn", false)) {
+            val intent = Intent(this, HubActivity::class.java)
+            startActivity(intent)
+            finish()
+            return
+        }
+
         val signInBtn: Button = findViewById(R.id.signInBtn)
         val signUpBtn: Button = findViewById(R.id.signUpBtn)
         val emailField: TextInputEditText = findViewById(R.id.emailField)
         val passwordField: TextInputEditText = findViewById(R.id.passwordField)
 
-        // Apply custom font
-        val typeface = ResourcesCompat.getFont(this, R.font.major_mono_display)
-        appNameText.typeface = typeface
-
-        // ✅ Sign In Button Click with Validation + Save to SharedPreferences
         signInBtn.setOnClickListener {
-            val emailOrPhone = emailField.text.toString().trim()
+            val email = emailField.text.toString().trim()
             val password = passwordField.text.toString().trim()
 
-            if (emailOrPhone.isEmpty()) {
-                emailField.error = "Please enter Email or Phone"
-                emailField.requestFocus()
-                return@setOnClickListener
-            }
-
-            if (!Patterns.EMAIL_ADDRESS.matcher(emailOrPhone).matches() &&
-                !Patterns.PHONE.matcher(emailOrPhone).matches()
-            ) {
-                emailField.error = "Enter valid Email or Phone"
-                emailField.requestFocus()
+            // Basic validation
+            if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                Toast.makeText(this, "Enter a valid email", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             if (password.isEmpty()) {
-                passwordField.error = "Password required"
-                passwordField.requestFocus()
+                Toast.makeText(this, "Enter password", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            if (password.length < 6) {
-                passwordField.error = "Password must be at least 6 characters"
-                passwordField.requestFocus()
-                return@setOnClickListener
+            // Retrieve saved credentials
+            val savedEmail = sharedPref.getString("email", null)
+            val savedPassword = sharedPref.getString("password", null)
+
+            if (email == savedEmail && password == savedPassword) {
+                // ✅ Save login state
+                sharedPref.edit().putBoolean("isLoggedIn", true).apply()
+
+                // Navigate to HubActivity
+                val intent = Intent(this, HubActivity::class.java)
+                startActivity(intent)
+                finish()
+            } else {
+                Toast.makeText(this, "Invalid credentials", Toast.LENGTH_SHORT).show()
             }
-
-            // ✅ Save user data into SharedPreferences
-            val sharedPref = getSharedPreferences("UserPrefs", MODE_PRIVATE)
-            sharedPref.edit()
-                .putString("USER_EMAIL", emailOrPhone)
-                .putString("USER_PASSWORD", password) // ⚠️ Not secure, just demo
-                .apply()
-
-            // ✅ If valid, redirect to HubActivity
-            val intent = Intent(this, HubActivity::class.java)
-            startActivity(intent)
-            finish()
         }
 
-        // Sign Up Button click -> Open SignUpActivity
         signUpBtn.setOnClickListener {
-            val intent = Intent(this, SignUpActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, SignUpActivity::class.java))
         }
     }
 }

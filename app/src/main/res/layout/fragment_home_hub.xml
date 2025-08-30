@@ -15,11 +15,12 @@
         <!-- Logo row -->
         <ImageView
             android:id="@+id/logo"
-            android:src="@drawable/logotext"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="12dp"
             android:contentDescription="@string/app_name"
-            android:layout_width="160dp"
-            android:layout_height="36dp"
-            android:layout_marginBottom="12dp" />
+            android:src="@drawable/logotext" />
 
         <!-- Search -->
         <com.google.android.material.textfield.TextInputLayout
@@ -33,7 +34,7 @@
             app:boxCornerRadiusTopEnd="12dp"
             app:boxCornerRadiusBottomStart="12dp"
             app:boxCornerRadiusBottomEnd="12dp"
-            app:hintEnabled="false">   <!-- disables floating label -->
+            app:hintEnabled="false">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/searchEdit"
@@ -41,10 +42,9 @@
                 android:layout_height="53dp"
                 android:hint="Search business ideas, categories..."
                 android:textColor="@android:color/black"
-                android:textColorHint="@android:color/darker_gray"
+                android:textColorHint="@android:color/black"
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
-
 
         <!-- Categories -->
         <LinearLayout
@@ -55,18 +55,24 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardManufacturing"
-                style="@style/CategoryCard">
+                style="@style/CategoryCard"
+                app:cardBackgroundColor="#153d82">
 
                 <LinearLayout style="@style/CategoryContent">
+
                     <ImageView
-                        android:src="@drawable/ic_factory_24"
                         android:layout_width="48dp"
-                        android:layout_height="48dp"/>
+                        android:layout_height="48dp"
+                        android:layout_marginTop="-10dp"
+                        android:src="@drawable/ic_factory_24" />
+
                     <TextView
-                        android:text="Manufacturing"
                         style="@style/CategoryLabel"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:text="Manufacturing"
+                        android:layout_marginTop="10dp"
+                        android:textSize="12dp" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -74,35 +80,44 @@
                 android:id="@+id/cardFood"
                 style="@style/CategoryCard"
                 android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp">
+                android:layout_marginEnd="12dp"
+                app:cardBackgroundColor="#153d82">
 
                 <LinearLayout style="@style/CategoryContent">
                     <ImageView
                         android:src="@drawable/ic_food_24"
                         android:layout_width="48dp"
                         android:layout_height="48dp"/>
+
                     <TextView
-                        android:text="Food &amp; Beverage"
                         style="@style/CategoryLabel"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:text="Food &amp; Beverage"
+                        android:textSize="12dp" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardTech"
-                style="@style/CategoryCard">
+                style="@style/CategoryCard"
+                app:cardBackgroundColor="#153d82">
 
                 <LinearLayout style="@style/CategoryContent">
+
                     <ImageView
-                        android:src="@drawable/ic_laptop_24"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"/>
+                        android:layout_width="118dp"
+                        android:layout_height="81dp"
+                        android:layout_marginTop="-15dp"
+                        android:src="@drawable/ic_laptop_24" />
+
                     <TextView
-                        android:text="Tech"
                         style="@style/CategoryLabel"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="-4dp"
+                        android:text="Tech"
+                        android:textSize="12dp" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
@@ -113,7 +128,7 @@
             android:layout_width="match_parent"
             android:layout_height="220dp"
             app:cardCornerRadius="16dp"
-            app:cardBackgroundColor="@color/dark_card">
+            app:cardBackgroundColor="#153d82">
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/imageSlider"
@@ -126,7 +141,7 @@
             android:layout_marginTop="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardBackgroundColor="@color/dark_card"
+            app:cardBackgroundColor="#153d82"
             app:cardCornerRadius="16dp">
 
             <LinearLayout
@@ -157,7 +172,10 @@
                     style="@style/Widget.MaterialComponents.Button"
                     app:cornerRadius="12dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="48dp"/>
+                    android:layout_height="48dp"
+                    android:backgroundTint="#ffffff"
+                    android:textColor="#153d82"/>
+
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -193,18 +211,24 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnViewDetails"
+                    android:layout_width="wrap_content"
+                    android:layout_height="44dp"
                     android:layout_marginTop="10dp"
                     android:text="View Details"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="44dp"/>
+                    android:textColor="#153d82"
+                    app:cornerRadius="12dp"
+                    app:strokeColor="@android:color/black"
+                    app:strokeWidth="2dp"
+                    app:backgroundTint="@android:color/transparent"
+                    android:elevation="0dp"
+                    android:stateListAnimator="@null"/>
             </LinearLayout>
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="150dp"
                 android:layout_height="120dp"
                 app:cardCornerRadius="16dp"
-                app:cardBackgroundColor="@color/dark_card">
+                app:cardBackgroundColor="#153d82">
 
                 <ImageView
                     android:id="@+id/featuredImage"

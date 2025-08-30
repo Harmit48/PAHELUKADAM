@@ -1,6 +1,7 @@
-package com.pahelukadam.pahelukadam
+package com.example.pahelukadam
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.LinearGradient
 import android.graphics.Shader
 import android.os.Bundle
@@ -14,9 +15,9 @@ import com.google.android.material.textfield.TextInputEditText
 class SignUpActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_up)
+        setContentView(R.layout.activity_sign_up)  // ✅ Make sure your XML file name matches
 
-        // Gradient for App Name
+        // 🌈 Gradient for App Name
         val appName: TextView = findViewById(R.id.appName)
         val paint = appName.paint
         val width = paint.measureText(appName.text.toString())
@@ -31,18 +32,18 @@ class SignUpActivity : AppCompatActivity() {
         )
         appName.paint.shader = textShader
 
-        // Input fields (linked with your XML IDs)
+        // 📝 Input fields
         val firstNameEt: TextInputEditText = findViewById(R.id.firstName)
         val lastNameEt: TextInputEditText = findViewById(R.id.lastName)
         val emailEt: TextInputEditText = findViewById(R.id.email)
         val passwordEt: TextInputEditText = findViewById(R.id.password)
         val confirmPasswordEt: TextInputEditText = findViewById(R.id.confirmPassword)
 
-        // Buttons
+        // 🔘 Buttons
         val registerBtn: Button = findViewById(R.id.registerBtn)
         val signInBtn: TextView = findViewById(R.id.signInBtn)
 
-        // Sign Up Validation
+        // ✅ Register Button Logic
         registerBtn.setOnClickListener {
             val firstName = firstNameEt.text.toString().trim()
             val lastName = lastNameEt.text.toString().trim()
@@ -67,6 +68,10 @@ class SignUpActivity : AppCompatActivity() {
                     passwordEt.error = "Password cannot be blank"
                     passwordEt.requestFocus()
                 }
+                password.length < 6 -> {
+                    passwordEt.error = "Password must be at least 6 characters"
+                    passwordEt.requestFocus()
+                }
                 password != confirmPassword -> {
                     confirmPasswordEt.error = "Passwords do not match"
                     confirmPasswordEt.requestFocus()
@@ -75,15 +80,15 @@ class SignUpActivity : AppCompatActivity() {
                     // ✅ Passed all validations
                     Toast.makeText(this, "Sign Up Successful!", Toast.LENGTH_SHORT).show()
 
-                    // ✅ Save user data into SharedPreferences
-                    val sharedPref = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+                    // Save user data in SharedPreferences
+                    val sharedPref: SharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
                     val editor = sharedPref.edit()
                     editor.putString("name", "$firstName $lastName")
                     editor.putString("email", email)
-                    editor.putString("password", password) // ⚠️ Not secure, just for demo
+                    editor.putString("password", password)
                     editor.apply()
 
-                    // ✅ Redirect to login (MainActivity)
+                    // Redirect to Login (MainActivity)
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()
@@ -91,7 +96,7 @@ class SignUpActivity : AppCompatActivity() {
             }
         }
 
-        // Redirect to Sign In (MainActivity)
+        // 🔄 Already have an account → go to Sign In
         signInBtn.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)

@@ -1,11 +1,11 @@
-package com.pahelukadam.pahelukadam.ui
+package com.example.pahelukadam.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.pahelukadam.pahelukadam.databinding.FragmentPlaceholderBinding
+import com.example.pahelukadam.databinding.FragmentPlaceholderBinding
 
 class PlaceholderFragment : Fragment() {
     private var _binding: FragmentPlaceholderBinding? = null

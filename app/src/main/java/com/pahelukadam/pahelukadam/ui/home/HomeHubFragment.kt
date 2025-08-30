@@ -1,4 +1,4 @@
-package com.pahelukadam.pahelukadam.ui.home
+package com.example.pahelukadam.ui.home
 
 import android.os.Bundle
 import android.os.Handler
@@ -9,27 +9,19 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
-import com.pahelukadam.pahelukadam.R
-import com.pahelukadam.pahelukadam.databinding.FragmentHomeHubBinding
+import com.example.pahelukadam.R
+import com.example.pahelukadam.databinding.FragmentHomeHubBinding
 
 class HomeHubFragment : Fragment() {
 
-    // ✅ FIX: Binding class must start with uppercase (matches XML file name fragment_home_hub.xml → FragmentHomeHubBinding)
     private var _binding: FragmentHomeHubBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var sliderAdapter: SliderAdapter
     private val handler = Handler(Looper.getMainLooper())
 
-    private val sliderRunnable = object : Runnable {
-        override fun run() {
-            val vp = binding.imageSlider
-            if (sliderAdapter.itemCount > 0) {
-                val next = (vp.currentItem + 1) % sliderAdapter.itemCount
-                vp.setCurrentItem(next, true)
-                handler.postDelayed(this, 3000L)
-            }
-        }
+    private val sliderRunnable = Runnable {
+        binding.imageSlider.currentItem++
     }
 
     override fun onCreateView(
@@ -44,35 +36,72 @@ class HomeHubFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Category clicks
-        binding.cardManufacturing.setOnClickListener { /* TODO open list */ }
-        binding.cardFood.setOnClickListener { /* TODO open list */ }
-        binding.cardTech.setOnClickListener { /* TODO open list */ }
+        // ✅ Category card clicks navigation
+        binding.cardManufacturing.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainer, ManufacturingFragment())
+                .addToBackStack(null)
+                .commit()
+        }
 
-        // Image slider
+        binding.cardFood.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainer, FoodBeverageFragment())
+                .addToBackStack(null)
+                .commit()
+        }
+
+        binding.cardTech.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainer, TechFragment())
+                .addToBackStack(null)
+                .commit()
+        }
+
+        // --- Image Slider Setup ---
         val images = listOf(
-            R.drawable.sample_slider_1,
-            R.drawable.sample_slider_2,
-            R.drawable.sample_slider_3
+            R.drawable.t12,
+            R.drawable.t5,
+            R.drawable.t6,
+            R.drawable.t15,
+            R.drawable.t16
         )
 
         sliderAdapter = SliderAdapter(images) { imageView, resId ->
-            Glide.with(imageView).load(resId).into(imageView)
+            Glide.with(this).load(resId).into(imageView)
         }
 
         binding.imageSlider.adapter = sliderAdapter
-        binding.imageSlider.offscreenPageLimit = 1
-        binding.imageSlider.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {})
 
-        // Smart suggestion button
+        // Apply the smooth fade animation
+        binding.imageSlider.setPageTransformer(DepthPageTransformer())
+
+        // Start the slider in the middle of the "infinite" list for a seamless loop
+        binding.imageSlider.setCurrentItem(Int.MAX_VALUE / 2, false)
+
+        // Restart auto-scroll after swipe
+        binding.imageSlider.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageScrollStateChanged(state: Int) {
+                super.onPageScrollStateChanged(state)
+                if (state == ViewPager2.SCROLL_STATE_DRAGGING) {
+                    handler.removeCallbacks(sliderRunnable)
+                } else if (state == ViewPager2.SCROLL_STATE_IDLE) {
+                    handler.postDelayed(sliderRunnable, 3000L)
+                }
+            }
+        })
+
+        // ✅ Start Now button (no navigation, only UI placeholder)
         binding.btnStartNow.setOnClickListener {
-            // TODO: navigate to budget/category screen
+            // Nothing happens for now
         }
 
-        // Featured business
+        // ✅ Featured business image
         Glide.with(this).load(R.drawable.sample_featured).into(binding.featuredImage)
+
+        // ✅ View Details button (no navigation, only UI placeholder)
         binding.btnViewDetails.setOnClickListener {
-            // TODO: open details
+            // Nothing happens for now
         }
     }
 

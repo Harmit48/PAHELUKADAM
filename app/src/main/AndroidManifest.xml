@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.pahelukadam.pahelukadam">
+    package="com.example.pahelukadam">
 
     <application
         android:allowBackup="true"
@@ -14,15 +14,32 @@
         <activity
             android:name="com.pahelukadam.pahelukadam.ui.account.AccountFragment"
             android:exported="false" />
-        <!-- HubActivity (Main container for Bottom Navigation + Fragments) -->
         <activity
-            android:name="com.pahelukadam.pahelukadam.ui.HubActivity"
-            android:exported="true" /> <!-- SignUp Screen -->
+            android:name=".ui.home.TechFragment"
+            android:exported="false" />
         <activity
-            android:name="com.pahelukadam.pahelukadam.SignUpActivity"
-            android:exported="false" /> <!-- Splash Screen (Launcher) -->
+            android:name=".ui.home.FoodBeverageFragment"
+            android:exported="false" />
         <activity
-            android:name="com.pahelukadam.pahelukadam.SplashActivity"
+            android:name=".ui.home.ManufacturingFragment"
+            android:exported="false" />
+        <activity
+            android:name=".ui.account.AccountnewFragment"
+            android:exported="false" />
+        <activity
+            android:name=".ui.account.AddMobileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.account.EditProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.HubActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.PAHELUKADAM.NoActionBar">
             <intent-filter>
@@ -30,10 +47,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- MainActivity (optional entry after splash/login) -->
+        </activity>
         <activity
-            android:name="com.pahelukadam.pahelukadam.MainActivity"
-            android:exported="true"
+            android:name=".MainActivity"
+            android:exported="false"
             android:theme="@style/Theme.PAHELUKADAM" />
     </application>
 

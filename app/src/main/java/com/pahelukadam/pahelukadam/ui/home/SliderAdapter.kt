@@ -1,25 +1,38 @@
-package com.pahelukadam.pahelukadam.ui.home
+package com.example.pahelukadam.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.pahelukadam.pahelukadam.databinding.ItemSliderBinding
+import com.example.pahelukadam.databinding.SliderItemBinding
 
 class SliderAdapter(
-    private val items: List<Int>,
-    private val loader: (ImageView, Int) -> Unit
-) : RecyclerView.Adapter<SliderAdapter.SVH>() {
+    private val imageList: List<Int>,
+    private val onImageLoad: (imageView: ImageView, resId: Int) -> Unit
+) : RecyclerView.Adapter<SliderAdapter.SliderViewHolder>() {
 
-    inner class SVH(val vb: ItemSliderBinding) : RecyclerView.ViewHolder(vb.root)
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SVH {
-        return SVH(ItemSliderBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+    inner class SliderViewHolder(private val binding: SliderItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(imageResId: Int) {
+            onImageLoad(binding.sliderImageView, imageResId)
+        }
     }
 
-    override fun getItemCount() = items.size
-
-    override fun onBindViewHolder(holder: SVH, position: Int) {
-        loader(holder.vb.slideImage, items[position])
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SliderViewHolder {
+        val binding = SliderItemBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
+        return SliderViewHolder(binding)
     }
+
+    override fun onBindViewHolder(holder: SliderViewHolder, position: Int) {
+        // Use the modulo operator to loop through the image list
+        val realPosition = position % imageList.size
+        holder.bind(imageList[realPosition])
+    }
+
+    // Return a huge number to simulate infinity
+    override fun getItemCount(): Int = if (imageList.isNotEmpty()) Int.MAX_VALUE else 0
 }

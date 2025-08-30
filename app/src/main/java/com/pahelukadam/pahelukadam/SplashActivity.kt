@@ -1,6 +1,7 @@
-package com.pahelukadam.pahelukadam
+package com.example.pahelukadam
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.graphics.LinearGradient
 import android.graphics.Shader
@@ -9,6 +10,7 @@ import android.os.Handler
 import android.os.Looper
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.pahelukadam.ui.HubActivity
 
 class SplashActivity : AppCompatActivity() {
 
@@ -21,7 +23,7 @@ class SplashActivity : AppCompatActivity() {
 
         animatedText = findViewById(R.id.animatedText)
 
-        // Show each word with 1s delay
+        // Your animation logic (no changes needed here)
         for (i in words.indices) {
             Handler(Looper.getMainLooper()).postDelayed({
                 animatedText.text = words[i]
@@ -29,14 +31,27 @@ class SplashActivity : AppCompatActivity() {
             }, (i * 1000).toLong())
         }
 
-        // After 3s -> go to MainActivity
+        // ✅ MODIFIED NAVIGATION LOGIC
+        // After 3 seconds, check login status and navigate accordingly
         Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(this, MainActivity::class.java))
-            finish() // Close SplashActivity
+            // Get SharedPreferences
+            val sharedPref: SharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+            val isLoggedIn = sharedPref.getBoolean("isLoggedIn", false)
+
+            // Decide which activity to start based on login status
+            val intent = if (isLoggedIn) {
+                // If logged in, go to the main HubActivity
+                Intent(this, HubActivity::class.java)
+            } else {
+                // If not logged in, go to the MainActivity (login screen)
+                Intent(this, MainActivity::class.java)
+            }
+
+            startActivity(intent)
+            finish() // Close SplashActivity so the user can't navigate back to it
         }, 3000)
     }
 
-    // Apply gradient color to text
     private fun applyGradient(textView: TextView) {
         textView.post {
             val paint = textView.paint
