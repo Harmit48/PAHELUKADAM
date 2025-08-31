@@ -12,6 +12,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.pahekukadam.pahelukadam.MainActivity
+import com.pahekukadam.pahelukadam.admin.Adminsigninpage
 import com.pahekukadam.pahelukadam.databinding.FragmentAccountBinding
 
 class AccountFragment : Fragment() {
@@ -26,23 +27,32 @@ class AccountFragment : Fragment() {
         _binding = FragmentAccountBinding.inflate(inflater, container, false)
         val view = binding.root
 
+        // Edit Profile button
         binding.btnEditProfile.setOnClickListener {
             startActivity(Intent(requireContext(), EditProfileActivity::class.java))
         }
 
+        // Add Mobile button
         binding.btnAddMobile.setOnClickListener {
             startActivity(Intent(requireContext(), AddMobileActivity::class.java))
         }
 
+        // Theme button
         binding.btnTheme.setOnClickListener {
             ThemeDialog(requireContext()).show()
         }
 
+        // Sign Out button
         binding.btnSignOut.setOnClickListener {
             Firebase.auth.signOut()
             val intent = Intent(requireContext(), MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
+        }
+
+        // Admin button
+        binding.AdminBtn.setOnClickListener {
+            startActivity(Intent(requireContext(), Adminsigninpage::class.java))
         }
 
         return view
@@ -63,7 +73,6 @@ class AccountFragment : Fragment() {
                         val firstName = document.getString("firstName") ?: ""
                         val lastName = document.getString("lastName") ?: ""
                         val email = document.getString("email") ?: ""
-                        val mobile = document.getString("mobile") ?: "Not added"
 
                         binding.tvUserName.text = "$firstName $lastName"
                         binding.tvUserEmail.text = email

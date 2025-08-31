@@ -15,7 +15,6 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.pahekukadam.pahelukadam.admin.Adminsigninpage
 import com.pahekukadam.pahelukadam.ui.HubActivity
 
 class MainActivity : AppCompatActivity() {
@@ -24,6 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         val prefs = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
         val theme = prefs.getString("theme", "light")
         when (theme) {
@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 
         auth = Firebase.auth
 
-        // Auto login check
+        // ✅ Auto login check
         if (auth.currentUser != null) {
             val intent = Intent(this, HubActivity::class.java)
             startActivity(intent)
@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        // Gradient text for app name
+        // ✅ Gradient text for app name
         val appName: TextView = findViewById(R.id.appName)
         val paint = appName.paint
         val width = paint.measureText(appName.text.toString())
@@ -58,14 +58,13 @@ class MainActivity : AppCompatActivity() {
         )
         appName.paint.shader = textShader
 
-        // UI References
+        // ✅ UI References
         val signInBtn: Button = findViewById(R.id.signInBtn)
         val signUpBtn: Button = findViewById(R.id.signUpBtn)
-        val adminBtn: Button = findViewById(R.id.AdminBtn) // ✅ Fixed here
         val emailField: TextInputEditText = findViewById(R.id.emailField)
         val passwordField: TextInputEditText = findViewById(R.id.passwordField)
 
-        // Sign in
+        // ✅ Sign in
         signInBtn.setOnClickListener {
             val email = emailField.text.toString().trim()
             val password = passwordField.text.toString().trim()
@@ -89,21 +88,17 @@ class MainActivity : AppCompatActivity() {
                         finish()
                     } else {
                         Toast.makeText(
-                            baseContext, "Authentication failed: ${task.exception?.message}",
+                            baseContext,
+                            "Authentication failed: ${task.exception?.message}",
                             Toast.LENGTH_LONG
                         ).show()
                     }
                 }
         }
 
-        // Sign up
+        // ✅ Sign up
         signUpBtn.setOnClickListener {
             startActivity(Intent(this, SignUpActivity::class.java))
-        }
-
-        // Admin button
-        adminBtn.setOnClickListener {
-            startActivity(Intent(this, Adminsigninpage::class.java))
         }
     }
 }
