@@ -51,9 +51,12 @@ class Adminsigninpage : AppCompatActivity() {
                             .addOnSuccessListener { documents ->
                                 if (!documents.isEmpty) {
                                     Toast.makeText(this, "Admin Sign-In Successful!", Toast.LENGTH_SHORT).show()
-                                    val intent = Intent(this, AdminFragment::class.java)
+
+                                    // ✅ Redirect to AdminActivity (which will show AdminFragment)
+                                    val intent = Intent(this, AdminActivity::class.java)
                                     startActivity(intent)
                                     finish()
+
                                 } else {
                                     Toast.makeText(this, "Access Denied: Not an admin account.", Toast.LENGTH_LONG).show()
                                     auth.signOut()
