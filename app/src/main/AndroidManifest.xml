@@ -11,21 +11,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PAHELUKADAM">
-
         <activity
-            android:name="com.pahekukadam.pahelukadam.ui.account.AddMobileActivity"
+            android:name=".model.BusinessIdea"
             android:exported="false" />
         <activity
-            android:name="com.pahekukadam.pahelukadam.ui.account.EditProfileActivity"
+            android:name=".ui.account.AddMobileActivity"
             android:exported="false" />
         <activity
-            android:name="com.pahekukadam.pahelukadam.ui.HubActivity"
+            android:name=".ui.account.EditProfileActivity"
             android:exported="false" />
         <activity
-            android:name="com.pahekukadam.pahelukadam.SignUpActivity"
+            android:name=".ui.HubActivity"
             android:exported="false" />
         <activity
-            android:name="com.pahekukadam.pahelukadam.SplashActivity"
+            android:name=".SignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.PAHELUKADAM.NoActionBar">
             <intent-filter>
@@ -35,7 +37,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.pahekukadam.pahelukadam.MainActivity"
+            android:name=".MainActivity"
             android:exported="false"
             android:theme="@style/Theme.PAHELUKADAM" />
     </application>
