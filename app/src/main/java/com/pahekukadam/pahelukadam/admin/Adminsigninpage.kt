@@ -1,21 +1,76 @@
 package com.pahekukadam.pahelukadam.admin
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.pahekukadam.pahelukadam.R
 
 class Adminsigninpage : AppCompatActivity() {
+
+    private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_adminsigninpage)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+
+        auth = Firebase.auth
+
+        val signInBtn: Button = findViewById(R.id.adminSignInBtn)
+        val emailField: TextInputEditText = findViewById(R.id.emailField)
+        val passwordField: TextInputEditText = findViewById(R.id.passwordField)
+
+        signInBtn.setOnClickListener {
+            val email = emailField.text.toString().trim()
+            val password = passwordField.text.toString().trim()
+
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Fields cannot be empty", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            signInAsAdmin(email, password)
         }
+    }
+
+    private fun signInAsAdmin(email: String, password: String) {
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    val user = auth.currentUser
+                    if (user != null) {
+                        val db = Firebase.firestore
+                        db.collection("admins")
+                            .whereEqualTo("email", user.email)
+                            .get()
+                            .addOnSuccessListener { documents ->
+                                if (!documents.isEmpty) {
+                                    Toast.makeText(this, "Admin Sign-In Successful!", Toast.LENGTH_SHORT).show()
+                                    val intent = Intent(this, AdminFragment::class.java)
+                                    startActivity(intent)
+                                    finish()
+                                } else {
+                                    Toast.makeText(this, "Access Denied: Not an admin account.", Toast.LENGTH_LONG).show()
+                                    auth.signOut()
+                                }
+                            }
+                            .addOnFailureListener {
+                                Toast.makeText(this, "Failed to check admin status.", Toast.LENGTH_LONG).show()
+                                auth.signOut()
+                            }
+                    }
+                } else {
+                    Toast.makeText(
+                        this,
+                        "Authentication failed: ${task.exception?.message}",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
     }
 }

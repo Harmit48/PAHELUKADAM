@@ -1,4 +1,4 @@
-package com.pahekukadam.pahelukadam.ui.admin
+package com.pahekukadam.pahelukadam.admin
 
 import android.os.Bundle
 import android.view.LayoutInflater

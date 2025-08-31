@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity() {
 
         auth = Firebase.auth
 
+        // Auto login check
         if (auth.currentUser != null) {
             val intent = Intent(this, HubActivity::class.java)
             startActivity(intent)
@@ -42,6 +43,7 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
+        // Gradient text for app name
         val appName: TextView = findViewById(R.id.appName)
         val paint = appName.paint
         val width = paint.measureText(appName.text.toString())
@@ -56,11 +58,14 @@ class MainActivity : AppCompatActivity() {
         )
         appName.paint.shader = textShader
 
+        // UI References
         val signInBtn: Button = findViewById(R.id.signInBtn)
         val signUpBtn: Button = findViewById(R.id.signUpBtn)
+        val adminBtn: Button = findViewById(R.id.AdminBtn) // ✅ Fixed here
         val emailField: TextInputEditText = findViewById(R.id.emailField)
         val passwordField: TextInputEditText = findViewById(R.id.passwordField)
 
+        // Sign in
         signInBtn.setOnClickListener {
             val email = emailField.text.toString().trim()
             val password = passwordField.text.toString().trim()
@@ -91,13 +96,14 @@ class MainActivity : AppCompatActivity() {
                 }
         }
 
+        // Sign up
         signUpBtn.setOnClickListener {
             startActivity(Intent(this, SignUpActivity::class.java))
         }
 
-        AdminBtn.setOnClickListener {
+        // Admin button
+        adminBtn.setOnClickListener {
             startActivity(Intent(this, Adminsigninpage::class.java))
         }
-
     }
 }
