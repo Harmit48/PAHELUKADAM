@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PAHELUKADAM">
         <activity
+            android:name=".adapter.AdminBusinessAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".admin.AdminFragment"
+            android:exported="false" />
+        <activity
             android:name=".model.BusinessIdea"
             android:exported="false" />
         <activity
