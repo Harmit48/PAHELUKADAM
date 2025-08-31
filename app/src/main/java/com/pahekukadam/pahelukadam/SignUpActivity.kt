@@ -26,7 +26,6 @@ class SignUpActivity : AppCompatActivity() {
 
         auth = Firebase.auth
 
-        // 🌈 Gradient for App Name (Your existing code is perfect)
         val appName: TextView = findViewById(R.id.appName)
         val paint = appName.paint
         val width = paint.measureText(appName.text.toString())
@@ -34,25 +33,21 @@ class SignUpActivity : AppCompatActivity() {
             0f, 0f, width, appName.textSize,
             intArrayOf(
                 android.graphics.Color.parseColor("#F48C06"),
-                android.graphics.Color.parseColor("#DC0202") // Corrected hex color
+                android.graphics.Color.parseColor("#DC0202")
             ),
             null,
             Shader.TileMode.CLAMP
         )
         appName.paint.shader = textShader
 
-        // 📝 Input fields
         val firstNameEt: TextInputEditText = findViewById(R.id.firstName)
         val lastNameEt: TextInputEditText = findViewById(R.id.lastName)
         val emailEt: TextInputEditText = findViewById(R.id.email)
         val passwordEt: TextInputEditText = findViewById(R.id.password)
         val confirmPasswordEt: TextInputEditText = findViewById(R.id.confirmPassword)
-
-        // 🔘 Buttons
         val registerBtn: Button = findViewById(R.id.registerBtn)
         val signInBtn: TextView = findViewById(R.id.signInBtn)
 
-        // ✅ Register Button Logic
         registerBtn.setOnClickListener {
             val firstName = firstNameEt.text.toString().trim()
             val lastName = lastNameEt.text.toString().trim()
@@ -60,7 +55,6 @@ class SignUpActivity : AppCompatActivity() {
             val password = passwordEt.text.toString()
             val confirmPassword = confirmPasswordEt.text.toString()
 
-            // Your existing validation logic is great and remains unchanged
             when {
                 firstName.isEmpty() -> {
                     firstNameEt.error = "First Name cannot be blank"
@@ -87,33 +81,24 @@ class SignUpActivity : AppCompatActivity() {
                     confirmPasswordEt.requestFocus()
                 }
                 else -> {
-                    // --- START: FIREBASE INTEGRATION ---
-
-                    // 4. Create the user in Firebase Authentication
                     auth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(this) { task ->
                             if (task.isSuccessful) {
-                                // Authentication was successful, now save user data to Firestore
-                                Log.d("SignUpActivity", "createUserWithEmail:success")
                                 val firebaseUser = auth.currentUser
-                                val uid = firebaseUser!!.uid // Get the unique ID for the new user
-
-                                // Get Firestore instance
+                                val uid = firebaseUser!!.uid
                                 val db = Firebase.firestore
 
                                 // Create a data map for the user's profile
                                 val userProfile = hashMapOf(
                                     "firstName" to firstName,
                                     "lastName" to lastName,
-                                    "email" to email
+                                    "email" to email,
+                                    "mobile" to ""
                                 )
 
-                                // 5. Save the profile to a "users" collection in Firestore
                                 db.collection("users").document(uid).set(userProfile)
                                     .addOnSuccessListener {
                                         Toast.makeText(this, "Sign Up Successful!", Toast.LENGTH_SHORT).show()
-
-                                        // Redirect to Login (MainActivity)
                                         val intent = Intent(this, MainActivity::class.java)
                                         startActivity(intent)
                                         finish()
@@ -124,18 +109,15 @@ class SignUpActivity : AppCompatActivity() {
                                     }
 
                             } else {
-                                // If sign in fails, display a message to the user.
                                 Log.w("SignUpActivity", "createUserWithEmail:failure", task.exception)
                                 Toast.makeText(baseContext, "Authentication failed: ${task.exception?.message}",
                                     Toast.LENGTH_LONG).show()
                             }
                         }
-                    // --- END: FIREBASE INTEGRATION ---
                 }
             }
         }
 
-        // 🔄 Already have an account → go to Sign In
         signInBtn.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
