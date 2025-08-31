@@ -15,6 +15,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.pahekukadam.pahelukadam.admin.Adminsigninpage
 import com.pahekukadam.pahelukadam.ui.HubActivity
 
 class MainActivity : AppCompatActivity() {
@@ -92,6 +93,10 @@ class MainActivity : AppCompatActivity() {
 
         signUpBtn.setOnClickListener {
             startActivity(Intent(this, SignUpActivity::class.java))
+        }
+
+        AdminBtn.setOnClickListener {
+            startActivity(Intent(this, Adminsigninpage::class.java))
         }
 
     }
