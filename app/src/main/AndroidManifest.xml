@@ -11,21 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PAHELUKADAM">
-        <activity
-            android:name="com.pahekukadam.pahelukadam.ui.account.AccountFragment"
-            android:exported="false" />
-        <activity
-            android:name="com.pahekukadam.pahelukadam.ui.home.TechFragment"
-            android:exported="false" />
-        <activity
-            android:name="com.pahekukadam.pahelukadam.ui.home.FoodBeverageFragment"
-            android:exported="false" />
-        <activity
-            android:name="com.pahekukadam.pahelukadam.ui.home.ManufacturingFragment"
-            android:exported="false" />
-        <activity
-            android:name=".ui.account.AccountnewFragment"
-            android:exported="false" />
+
         <activity
             android:name="com.pahekukadam.pahelukadam.ui.account.AddMobileActivity"
             android:exported="false" />
