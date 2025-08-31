@@ -21,6 +21,9 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
+        // CALL THE CONNECTION TEST WHEN THE APP OPENS
+        FirebaseTestUtil.testConnection(this)
+
         animatedText = findViewById(R.id.animatedText)
 
         // Your animation logic (no changes needed here)
