@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PAHELUKADAM">
         <activity
+            android:name=".admin.Adminsigninpage"
+            android:exported="false" />
+        <activity
             android:name=".adapter.AdminBusinessAdapter"
             android:exported="false" />
         <activity

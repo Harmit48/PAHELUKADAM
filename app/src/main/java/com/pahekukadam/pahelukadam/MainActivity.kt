@@ -93,5 +93,6 @@ class MainActivity : AppCompatActivity() {
         signUpBtn.setOnClickListener {
             startActivity(Intent(this, SignUpActivity::class.java))
         }
+
     }
 }
