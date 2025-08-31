@@ -51,8 +51,7 @@
         android:id="@+id/ivEdit"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:src="@drawable/ic_edit"
-        android:tint="@android:color/white"
+        android:src="@drawable/ic_edit_white"
         android:contentDescription="Edit" />
 
 </LinearLayout>
