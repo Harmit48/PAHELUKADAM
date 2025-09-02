@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pahekukadam.pahelukadam.databinding.FragmentAdminBinding
-import com.pahekukadam.pahelukadam.adapter.BusinessAdapter
-import com.pahekukadam.pahelukadam.model.BusinessIdea
+import com.pahekukadam.pahelukadam.adapter.AdminBusinessAdapter
+import com.pahekukadam.pahelukadam.model.Adminbusinessidea
 import com.google.firebase.firestore.FirebaseFirestore
 
 class AdminFragment : Fragment() {
@@ -16,9 +16,9 @@ class AdminFragment : Fragment() {
     private var _binding: FragmentAdminBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var adapter: BusinessAdapter
+    private lateinit var adapter: AdminBusinessAdapter
     private val db = FirebaseFirestore.getInstance()
-    private val businessList = mutableListOf<BusinessIdea>()
+    private val businessList = mutableListOf<Adminbusinessidea>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,15 +31,14 @@ class AdminFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = BusinessAdapter(businessList)
+        adapter = AdminBusinessAdapter(businessList)
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter
 
         loadBusinessIdeas()
 
-        // Floating Add Button
         binding.fabAdd.setOnClickListener {
-            // TODO: open AddBusinessActivity or Dialog
+            // TODO: Open AddBusinessActivity or Dialog
         }
     }
 
@@ -49,7 +48,7 @@ class AdminFragment : Fragment() {
             .addOnSuccessListener { result ->
                 businessList.clear()
                 for (doc in result) {
-                    val idea = doc.toObject(BusinessIdea::class.java)
+                    val idea = doc.toObject(Adminbusinessidea::class.java)
                     businessList.add(idea)
                 }
                 adapter.notifyDataSetChanged()

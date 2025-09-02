@@ -2,56 +2,56 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="16dp"
-    android:layout_margin="8dp"
-    android:background="@drawable/rounded_black_bg"
-    android:elevation="4dp">
+    android:orientation="vertical"
+    android:padding="8dp">
 
-    <!-- Left section (title, budget, category) -->
+    <!-- Card background -->
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        android:background="@drawable/rounded_black_bg"
+        android:padding="16dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
 
-        <!-- Title with numbering -->
-        <TextView
-            android:id="@+id/tvAdminTitle"
-            android:layout_width="wrap_content"
+        <!-- Left side: Text info -->
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="1. Business Title"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:textColor="@android:color/white" />
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-        <!-- Budget -->
-        <TextView
-            android:id="@+id/tvAdminBudget"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Budget: ₹50,000 – ₹2,00,000"
-            android:textSize="14sp"
-            android:textColor="@android:color/holo_green_light"
-            android:layout_marginTop="2dp" />
+            <TextView
+                android:id="@+id/tvBusinessName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Business Name"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="@android:color/white" />
 
-        <!-- Category -->
-        <TextView
-            android:id="@+id/tvAdminCategory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Category: Food"
-            android:textSize="14sp"
-            android:textColor="@android:color/white"
-            android:layout_marginTop="2dp" />
+            <TextView
+                android:id="@+id/tvBudget"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Budget: ₹0 – ₹0"
+                android:textColor="@android:color/white"
+                android:layout_marginTop="4dp"/>
+
+            <TextView
+                android:id="@+id/tvCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Category: ---"
+                android:textColor="@android:color/white"
+                android:layout_marginTop="2dp"/>
+        </LinearLayout>
+
+        <!-- Right side: Edit icon -->
+        <ImageView
+            android:id="@+id/ivEdit"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_edit_white"/>
     </LinearLayout>
-
-    <!-- Right section (edit icon) -->
-    <ImageView
-        android:id="@+id/ivEdit"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:src="@drawable/ic_edit_white"
-        android:contentDescription="Edit" />
-
 </LinearLayout>

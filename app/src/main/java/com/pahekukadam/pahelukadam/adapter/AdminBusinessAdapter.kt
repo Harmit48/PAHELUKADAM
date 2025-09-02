@@ -3,52 +3,33 @@ package com.pahekukadam.pahelukadam.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.pahekukadam.pahelukadam.R
-import com.pahekukadam.pahelukadam.model.BusinessIdea
-import java.text.NumberFormat
-import java.util.Locale
+import com.pahekukadam.pahelukadam.model.Adminbusinessidea
 
 class AdminBusinessAdapter(
-    private val ideas: List<BusinessIdea>,
-    private val onEditClick: (BusinessIdea) -> Unit // callback for edit
-) : RecyclerView.Adapter<AdminBusinessAdapter.AdminBusinessViewHolder>() {
+    private val businessList: List<Adminbusinessidea>
+) : RecyclerView.Adapter<AdminBusinessAdapter.BusinessViewHolder>() {
 
-    inner class AdminBusinessViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val title: TextView = itemView.findViewById(R.id.tvAdminTitle)
-        val category: TextView = itemView.findViewById(R.id.tvAdminCategory)
-        val budget: TextView = itemView.findViewById(R.id.tvAdminBudget)
-        val editIcon: ImageView = itemView.findViewById(R.id.ivEdit)
+    class BusinessViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val tvBusinessName: TextView = itemView.findViewById(R.id.tvBusinessName)
+        val tvBudget: TextView = itemView.findViewById(R.id.tvBudget)
+        val tvCategory: TextView = itemView.findViewById(R.id.tvCategory)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdminBusinessViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BusinessViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_admin_business, parent, false)
-        return AdminBusinessViewHolder(view)
+        return BusinessViewHolder(view)
     }
 
-    override fun getItemCount(): Int = ideas.size
-
-    override fun onBindViewHolder(holder: AdminBusinessViewHolder, position: Int) {
-        val currentIdea = ideas[position]
-
-        // Numbered title
-        holder.title.text = "${position + 1}. ${currentIdea.title}"
-
-        // Format budget
-        val formatter = NumberFormat.getCurrencyInstance(Locale("en", "IN"))
-        val minBudget = formatter.format(currentIdea.budget["min"] ?: 0)
-        val maxBudget = formatter.format(currentIdea.budget["max"] ?: 0)
-        holder.budget.text = "Budget: $minBudget – $maxBudget"
-
-        // Category
-        holder.category.text = "Category: ${currentIdea.category}"
-
-        // Edit button click
-        holder.editIcon.setOnClickListener {
-            onEditClick(currentIdea)
-        }
+    override fun onBindViewHolder(holder: BusinessViewHolder, position: Int) {
+        val item = businessList[position]
+        holder.tvBusinessName.text = "${position + 1}. ${item.businessName ?: "---"}"
+        holder.tvBudget.text = "Budget: ${item.budgetID ?: "N/A"}"
+        holder.tvCategory.text = "Category: ${item.categoryID ?: "N/A"}"
     }
+
+    override fun getItemCount(): Int = businessList.size
 }
