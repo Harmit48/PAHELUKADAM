@@ -7,24 +7,41 @@
 
     <!-- Logo -->
     <ImageView
+        android:id="@+id/logoImage"
         android:layout_width="200dp"
         android:layout_height="60dp"
-        android:layout_gravity="left"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="10dp"
         android:contentDescription="Logo"
         android:src="@drawable/logotext" />
 
+    <!-- Home Page Title -->
+    <TextView
+        android:id="@+id/homePageTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logoImage"
+        android:layout_marginStart="16dp"
+        android:text="Home Page"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Recycler View -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/homePageTitle"
         android:padding="12dp"
-        android:layout_marginTop="80dp"
         android:clipToPadding="false"
-        android:layout_above="@id/fabAdd"/>
+        android:layout_above="@id/fabAdd" />
 
+    <!-- Floating Action Button -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAdd"
         android:layout_width="wrap_content"
@@ -35,6 +52,6 @@
         android:src="@drawable/ic_add"
         android:contentDescription="Add Business"
         android:backgroundTint="@color/white"
-        android:tint="@color/black"/>
+        android:tint="@color/black" />
 
 </RelativeLayout>

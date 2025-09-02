@@ -1,8 +1,11 @@
 package com.pahekukadam.pahelukadam.admin
 
 import android.content.Intent
+import android.graphics.LinearGradient
+import android.graphics.Shader
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
@@ -21,6 +24,21 @@ class Adminsigninpage : AppCompatActivity() {
         setContentView(R.layout.activity_adminsigninpage)
 
         auth = Firebase.auth
+
+        // ✅ Apply Gradient to App Name TextView
+        val appName: TextView = findViewById(R.id.appName)
+        val paint = appName.paint
+        val width = paint.measureText(appName.text.toString())
+        val textShader = LinearGradient(
+            0f, 0f, width, appName.textSize,
+            intArrayOf(
+                android.graphics.Color.parseColor("#F48C06"), // Orange
+                android.graphics.Color.parseColor("#DC0202")  // Red
+            ),
+            null,
+            Shader.TileMode.CLAMP
+        )
+        appName.paint.shader = textShader
 
         val signInBtn: Button = findViewById(R.id.adminSignInBtn)
         val emailField: TextInputEditText = findViewById(R.id.emailField)
@@ -51,12 +69,9 @@ class Adminsigninpage : AppCompatActivity() {
                             .addOnSuccessListener { documents ->
                                 if (!documents.isEmpty) {
                                     Toast.makeText(this, "Admin Sign-In Successful!", Toast.LENGTH_SHORT).show()
-
-                                    // ✅ Redirect to AdminActivity (which will show AdminFragment)
                                     val intent = Intent(this, AdminActivity::class.java)
                                     startActivity(intent)
                                     finish()
-
                                 } else {
                                     Toast.makeText(this, "Access Denied: Not an admin account.", Toast.LENGTH_LONG).show()
                                     auth.signOut()

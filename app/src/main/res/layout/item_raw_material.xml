@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:layout_marginTop="12dp"
+    android:background="@drawable/edittext_bg">
+
+    <!-- Enter Title -->
+    <EditText
+        android:id="@+id/etRawTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter The Title (String)"
+        android:padding="12dp"
+        android:textSize="16sp"
+        android:background="@drawable/edittext_bg" />
+
+    <!-- Enter Price -->
+    <EditText
+        android:id="@+id/etRawPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Price (Number)"
+        android:inputType="number"
+        android:padding="12dp"
+        android:layout_marginTop="8dp"
+        android:textSize="16sp"
+        android:background="@drawable/edittext_bg" />
+
+</LinearLayout>
