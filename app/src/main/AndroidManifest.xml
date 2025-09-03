@@ -14,9 +14,6 @@
 
         <!-- Admin Activities -->
         <activity
-            android:name=".admin.AdminAddideaActivity"
-            android:exported="false" />
-        <activity
             android:name=".admin.AdminEditActivity"
             android:exported="false" />
         <activity
