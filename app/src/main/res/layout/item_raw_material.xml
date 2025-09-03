@@ -1,32 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:padding="12dp"
     android:layout_marginTop="12dp"
     android:background="@drawable/edittext_bg">
 
-    <!-- Enter Title -->
-    <EditText
-        android:id="@+id/etRawTitle"
+    <ImageButton
+        android:id="@+id/btnRemoveRawMaterial"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/ic_close"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:contentDescription="Remove Raw Material" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter The Title (String)"
-        android:padding="12dp"
-        android:textSize="16sp"
-        android:background="@drawable/edittext_bg" />
+        android:orientation="vertical"
+        android:layout_toStartOf="@id/btnRemoveRawMaterial"
+        android:layout_marginEnd="8dp">
 
-    <!-- Enter Price -->
-    <EditText
-        android:id="@+id/etRawPrice"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter Price (Number)"
-        android:inputType="number"
-        android:padding="12dp"
-        android:layout_marginTop="8dp"
-        android:textSize="16sp"
-        android:background="@drawable/edittext_bg" />
+        <EditText
+            android:id="@+id/etRawTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter The Title (String)"
+            android:padding="12dp"
+            android:textSize="16sp"
+            android:background="@drawable/edittext_bg" />
 
-</LinearLayout>
+        <EditText
+            android:id="@+id/etRawPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Price (Number)"
+            android:inputType="numberDecimal"
+            android:padding="12dp"
+            android:layout_marginTop="8dp"
+            android:textSize="16sp"
+            android:background="@drawable/edittext_bg" />
+
+    </LinearLayout>
+
+</RelativeLayout>

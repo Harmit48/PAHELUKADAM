@@ -8,8 +8,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.pahelukadam.pahelukadam.R
-import com.pahelukadam.pahelukadam.model.Adminbusinessidea
 import com.pahelukadam.pahelukadam.admin.AdminEditActivity
+import com.pahelukadam.pahelukadam.model.Adminbusinessidea
 
 class AdminBusinessAdapter(
     private val businessList: List<Adminbusinessidea>
@@ -39,14 +39,21 @@ class AdminBusinessAdapter(
         holder.ivEdit.setOnClickListener {
             val context = holder.itemView.context
             val intent = Intent(context, AdminEditActivity::class.java)
-            intent.putExtra("docId", item.budget_range) // Firestore doc ID if available
+
+            // **FIXED**: Pass the actual document ID from the model
+            intent.putExtra("docId", item.id)
             intent.putExtra("businessName", item.businessName)
             intent.putExtra("description", item.description)
-            intent.putExtra("categoryID", item.category_name)
+            // **FIXED**: Use a clear key for the category name
+            intent.putExtra("categoryName", item.category_name)
 
-            // TODO: Replace with real budget split (if budget stored as string)
-            intent.putExtra("budgetMin", "200000")
-            intent.putExtra("budgetMax", "300000")
+            // **FIXED**: Dynamically split the budget range string
+            val budgetParts = item.budget_range?.split(" - ") ?: listOf()
+            val minBudget = budgetParts.getOrNull(0) ?: ""
+            val maxBudget = budgetParts.getOrNull(1) ?: ""
+
+            intent.putExtra("budgetMin", minBudget)
+            intent.putExtra("budgetMax", maxBudget)
 
             context.startActivity(intent)
         }
