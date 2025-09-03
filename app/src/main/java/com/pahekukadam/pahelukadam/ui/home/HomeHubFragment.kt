@@ -62,7 +62,7 @@ class HomeHubFragment : Fragment() {
         val images = listOf(
             R.drawable.t12,
             R.drawable.t5,
-            R.drawable.t6,
+            R.drawable.t16,
             R.drawable.t15,
             R.drawable.t16
         )
