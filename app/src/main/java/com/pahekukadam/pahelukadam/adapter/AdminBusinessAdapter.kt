@@ -32,17 +32,17 @@ class AdminBusinessAdapter(
         val item = businessList[position]
 
         holder.tvBusinessName.text = "${position + 1}. ${item.businessName ?: "---"}"
-        holder.tvBudget.text = "Budget: ${item.budgetID ?: "N/A"}"
-        holder.tvCategory.text = "Category: ${item.categoryID ?: "N/A"}"
+        holder.tvBudget.text = "Budget: ${item.budget_range ?: "N/A"}"
+        holder.tvCategory.text = "Category: ${item.category_name ?: "N/A"}"
 
         // Edit button click
         holder.ivEdit.setOnClickListener {
             val context = holder.itemView.context
             val intent = Intent(context, AdminEditActivity::class.java)
-            intent.putExtra("docId", item.budgetID) // Firestore doc ID if available
+            intent.putExtra("docId", item.budget_range) // Firestore doc ID if available
             intent.putExtra("businessName", item.businessName)
             intent.putExtra("description", item.description)
-            intent.putExtra("categoryID", item.categoryID)
+            intent.putExtra("categoryID", item.category_name)
 
             // TODO: Replace with real budget split (if budget stored as string)
             intent.putExtra("budgetMin", "200000")
