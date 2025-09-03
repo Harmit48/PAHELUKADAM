@@ -1,5 +1,6 @@
 package com.pahelukadam.pahelukadam.admin
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -31,14 +32,17 @@ class AdminFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Setup RecyclerView
         adapter = AdminBusinessAdapter(businessList)
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter
 
         loadBusinessIdeas()
 
+        // ✅ Floating Action Button Click → Open AddIdea Activity
         binding.fabAdd.setOnClickListener {
-            // TODO: Open AddBusinessActivity or Dialog
+            val intent = Intent(requireContext(), AdminAddideaActivity::class.java)
+            startActivity(intent)
         }
     }
 
@@ -53,9 +57,15 @@ class AdminFragment : Fragment() {
                 }
                 adapter.notifyDataSetChanged()
             }
-            .addOnFailureListener {
-                // handle error
+            .addOnFailureListener { e ->
+                e.printStackTrace()
             }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // 🔄 Refresh list when returning from AddIdea screen
+        loadBusinessIdeas()
     }
 
     override fun onDestroyView() {

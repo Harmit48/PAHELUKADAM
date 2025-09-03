@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Logo -->
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:layout_gravity="left"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            android:contentDescription="Logo"
+            android:src="@drawable/logotext" />
+
+        <!-- Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Page"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Name -->
+        <EditText
+            android:id="@+id/etName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Name : T-Shirt Printing &amp; Making Unit"
+            android:padding="12dp"
+            android:background="@android:drawable/editbox_background"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Description -->
+        <EditText
+            android:id="@+id/etDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Description"
+            android:padding="12dp"
+            android:background="@android:drawable/editbox_background"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Category -->
+        <EditText
+            android:id="@+id/etCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Category : Textile"
+            android:padding="12dp"
+            android:background="@android:drawable/editbox_background"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Budget -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_marginBottom="16dp">
+
+            <EditText
+                android:id="@+id/etMinBudget"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Budget : Minimum"
+                android:padding="12dp"
+                android:inputType="number"
+                android:background="@android:drawable/editbox_background"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:layout_marginEnd="8dp"/>
+
+            <EditText
+                android:id="@+id/etMaxBudget"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Budget : Maximum"
+                android:padding="12dp"
+                android:inputType="number"
+                android:background="@android:drawable/editbox_background"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"/>
+        </LinearLayout>
+
+        <!-- Manage Raw Materials -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+
+            android:padding="12dp"
+            android:layout_marginBottom="16dp">
+
+            <!-- Title + Add Button -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="left">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Manage Raw Materials"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"/>
+
+                <ImageButton
+                    android:id="@+id/btnAddRaw"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_add"
+                    android:background="@drawable/plus_button_border"
+                    android:scaleType="centerInside"
+                    android:layout_marginLeft="70dp"
+                    android:contentDescription="Add Raw Material"
+                    android:padding="10dp" />
+            </LinearLayout>
+
+            <!-- Dynamic Container for Raw Materials -->
+            <LinearLayout
+                android:id="@+id/rawMaterialsContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="12dp"/>
+        </LinearLayout>
+
+        <!-- Add Idea Button -->
+        <Button
+            android:id="@+id/btnAddIdea"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Idea"
+            android:backgroundTint="#153d82"
+            android:textColor="@android:color/white"/>
+    </LinearLayout>
+</ScrollView>

@@ -11,50 +11,48 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PAHELUKADAM">
+
+        <!-- Admin Activities -->
         <activity
-            android:name="com.pahelukadam.pahelukadam.admin.AdminEditActivity"
+            android:name=".admin.AdminAddideaActivity"
             android:exported="false" />
         <activity
-            android:name="com.pahelukadam.pahelukadam.admin.AdminActivity"
+            android:name=".admin.AdminEditActivity"
             android:exported="false" />
         <activity
-            android:name="com.pahelukadam.pahelukadam.admin.Adminsigninpage"
+            android:name=".admin.AdminActivity"
             android:exported="false" />
         <activity
-            android:name="com.pahelukadam.pahelukadam.adapter.AdminBusinessAdapter"
+            android:name=".admin.Adminsigninpage"
+            android:exported="false" />
+
+        <!-- UI Activities -->
+        <activity
+            android:name=".ui.account.AddMobileActivity"
             android:exported="false" />
         <activity
-            android:name="com.pahelukadam.pahelukadam.admin.AdminFragment"
+            android:name=".ui.account.EditProfileActivity"
             android:exported="false" />
         <activity
-            android:name="com.pahelukadam.pahelukadam.model.BusinessIdea"
+            android:name=".ui.HubActivity"
+            android:exported="false" />
+
+        <!-- Auth + Main -->
+        <activity
+            android:name=".SignUpActivity"
             android:exported="false" />
         <activity
-            android:name="com.pahelukadam.pahelukadam.ui.account.AddMobileActivity"
-            android:exported="false" />
-        <activity
-            android:name="com.pahelukadam.pahelukadam.ui.account.EditProfileActivity"
-            android:exported="false" />
-        <activity
-            android:name="com.pahelukadam.pahelukadam.ui.HubActivity"
-            android:exported="false" />
-        <activity
-            android:name="com.pahelukadam.pahelukadam.SignUpActivity"
-            android:exported="false" />
-        <activity
-            android:name="com.pahelukadam.pahelukadam.SplashActivity"
+            android:name=".SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.PAHELUKADAM.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.pahelukadam.pahelukadam.MainActivity"
+            android:name=".MainActivity"
             android:exported="false"
             android:theme="@style/Theme.PAHELUKADAM" />
     </application>
-
 </manifest>
