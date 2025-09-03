@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.pahekukadam.pahelukadam"
+    namespace = "com.pahelukadam.pahelukadam"
     compileSdk = 36
 
     defaultConfig {
