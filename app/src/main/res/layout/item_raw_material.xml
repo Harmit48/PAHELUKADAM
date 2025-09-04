@@ -11,9 +11,11 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:src="@drawable/ic_close"
-        android:background="?attr/selectableItemBackgroundBorderless"
+        android:background="@null"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
+        android:scaleType="centerInside"
+        android:adjustViewBounds="true"
         android:contentDescription="Remove Raw Material" />
 
     <LinearLayout
