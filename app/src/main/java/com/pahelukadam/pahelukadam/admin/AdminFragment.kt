@@ -1,5 +1,6 @@
 package com.pahelukadam.pahelukadam.admin
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.Query
@@ -28,30 +30,29 @@ class AdminFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_admin, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // **FIXED**: Changed R.id.adminRecyclerView to R.id.recyclerView to match your XML
         recyclerView = view.findViewById(R.id.recyclerView)
         setupRecyclerView()
         listenForDataChanges()
+
+        // ✅ JUST LINK THE FAB TO AddIdeaActivity
+        val fabAdd: FloatingActionButton = view.findViewById(R.id.fabAdd)
+        fabAdd.setOnClickListener {
+            startActivity(Intent(requireContext(), AddIdeaActivity::class.java))
+        }
     }
 
     private fun setupRecyclerView() {
-        // We need to use 'requireContext()' in Fragments for the context
         adapter = AdminBusinessAdapter(businessIdeasList)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapter
     }
 
-    /**
-     * Attaches a listener that automatically updates the list
-     * when data changes in Firestore.
-     */
     private fun listenForDataChanges() {
         val collectionRef = db.collection("business_ideas").orderBy("businessName", Query.Direction.ASCENDING)
 
@@ -63,14 +64,12 @@ class AdminFragment : Fragment() {
 
             if (snapshot != null && !snapshot.isEmpty) {
                 businessIdeasList.clear()
-                // Convert all documents to our Adminbusinessidea object
                 for (document in snapshot.documents) {
                     val idea = document.toObject(Adminbusinessidea::class.java)
                     if (idea != null) {
                         businessIdeasList.add(idea)
                     }
                 }
-                // Notify the adapter that the data has changed to refresh the UI
                 adapter.notifyDataSetChanged()
             } else {
                 Log.d("AdminFragment", "Current data: null")
@@ -80,9 +79,6 @@ class AdminFragment : Fragment() {
         }
     }
 
-    /**
-     * Removes the listener when the fragment is destroyed to prevent memory leaks.
-     */
     override fun onDestroyView() {
         super.onDestroyView()
         listenerRegistration?.remove()
