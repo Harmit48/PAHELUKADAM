@@ -23,7 +23,6 @@ class AddIdeaActivity : AppCompatActivity() {
         val btnAddRawMaterial: ImageButton = findViewById(R.id.btnAddRawMaterial)
         val btnAddIdea = findViewById<android.widget.Button>(R.id.btnAddIdea)
 
-        // Add one raw material field initially
         addRawMaterialView()
 
         btnAddRawMaterial.setOnClickListener { addRawMaterialView() }
@@ -35,9 +34,7 @@ class AddIdeaActivity : AppCompatActivity() {
             .inflate(R.layout.item_raw_material, containerRawMaterials, false)
 
         val btnRemove = view.findViewById<ImageButton>(R.id.btnRemoveRawMaterial)
-        btnRemove.setOnClickListener {
-            containerRawMaterials.removeView(view)
-        }
+        btnRemove.setOnClickListener { containerRawMaterials.removeView(view) }
 
         containerRawMaterials.addView(view)
     }
@@ -52,8 +49,8 @@ class AddIdeaActivity : AppCompatActivity() {
         val name = etName.text.toString().trim()
         val desc = etDescription.text.toString().trim()
         val category = etCategory.text.toString().trim()
-        val minBudget = etBudgetMin.text.toString().toDoubleOrNull() ?: 0.0
-        val maxBudget = etBudgetMax.text.toString().toDoubleOrNull() ?: 0.0
+        val minBudget = etBudgetMin.text.toString().trim()
+        val maxBudget = etBudgetMax.text.toString().trim()
 
         if (name.isEmpty()) {
             etName.error = "Name is required"
@@ -72,20 +69,18 @@ class AddIdeaActivity : AppCompatActivity() {
         }
 
         val ideaData = hashMapOf(
-            "name" to name,
+            "businessName" to name,
             "description" to desc,
-            "category" to category,
-            "budget_min" to minBudget,
-            "budget_max" to maxBudget,
-            "raw_materials" to materials,
-            "timestamp" to System.currentTimeMillis()
+            "category_name" to category,
+            "budget_range" to "$minBudget - $maxBudget",
+            "rawMaterials" to materials
         )
 
         firestore.collection("business_ideas")
             .add(ideaData)
             .addOnSuccessListener {
                 Toast.makeText(this, "Idea saved successfully", Toast.LENGTH_SHORT).show()
-                finish()
+                finish() // ✅ closes and Home auto-refreshes
             }
             .addOnFailureListener { e ->
                 Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_SHORT).show()

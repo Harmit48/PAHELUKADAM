@@ -35,26 +35,11 @@ class AdminBusinessAdapter(
         holder.tvBudget.text = "Budget: ${item.budget_range ?: "N/A"}"
         holder.tvCategory.text = "Category: ${item.category_name ?: "N/A"}"
 
-        // Edit button click
         holder.ivEdit.setOnClickListener {
             val context = holder.itemView.context
             val intent = Intent(context, AdminEditActivity::class.java)
 
-            // **FIXED**: Pass the actual document ID from the model
             intent.putExtra("docId", item.id)
-            intent.putExtra("businessName", item.businessName)
-            intent.putExtra("description", item.description)
-            // **FIXED**: Use a clear key for the category name
-            intent.putExtra("categoryName", item.category_name)
-
-            // **FIXED**: Dynamically split the budget range string
-            val budgetParts = item.budget_range?.split(" - ") ?: listOf()
-            val minBudget = budgetParts.getOrNull(0) ?: ""
-            val maxBudget = budgetParts.getOrNull(1) ?: ""
-
-            intent.putExtra("budgetMin", minBudget)
-            intent.putExtra("budgetMax", maxBudget)
-
             context.startActivity(intent)
         }
     }

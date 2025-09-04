@@ -40,7 +40,6 @@ class AdminFragment : Fragment() {
         setupRecyclerView()
         listenForDataChanges()
 
-        // ✅ JUST LINK THE FAB TO AddIdeaActivity
         val fabAdd: FloatingActionButton = view.findViewById(R.id.fabAdd)
         fabAdd.setOnClickListener {
             startActivity(Intent(requireContext(), AddIdeaActivity::class.java))
@@ -54,7 +53,8 @@ class AdminFragment : Fragment() {
     }
 
     private fun listenForDataChanges() {
-        val collectionRef = db.collection("business_ideas").orderBy("businessName", Query.Direction.ASCENDING)
+        val collectionRef = db.collection("business_ideas")
+            .orderBy("businessName", Query.Direction.ASCENDING)
 
         listenerRegistration = collectionRef.addSnapshotListener { snapshot, error ->
             if (error != null) {
@@ -62,18 +62,16 @@ class AdminFragment : Fragment() {
                 return@addSnapshotListener
             }
 
-            if (snapshot != null && !snapshot.isEmpty) {
+            if (snapshot != null) {
                 businessIdeasList.clear()
                 for (document in snapshot.documents) {
-                    val idea = document.toObject(Adminbusinessidea::class.java)
-                    if (idea != null) {
+                    val ideaObj = document.toObject(Adminbusinessidea::class.java)
+                    if (ideaObj != null) {
+                        // ✅ Create new object with ID included
+                        val idea = ideaObj.copy(id = document.id)
                         businessIdeasList.add(idea)
                     }
                 }
-                adapter.notifyDataSetChanged()
-            } else {
-                Log.d("AdminFragment", "Current data: null")
-                businessIdeasList.clear()
                 adapter.notifyDataSetChanged()
             }
         }
