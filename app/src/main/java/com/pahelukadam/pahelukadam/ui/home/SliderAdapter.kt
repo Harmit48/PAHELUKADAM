@@ -28,11 +28,15 @@ class SliderAdapter(
     }
 
     override fun onBindViewHolder(holder: SliderViewHolder, position: Int) {
-        // Use the modulo operator to loop through the image list
-        val realPosition = position % imageList.size
-        holder.bind(imageList[realPosition])
+        if (imageList.isNotEmpty()) {
+            // ✅ Proper infinite looping
+            val realPosition = position % imageList.size
+            holder.bind(imageList[realPosition])
+        }
     }
 
-    // Return a huge number to simulate infinity
-    override fun getItemCount(): Int = if (imageList.isNotEmpty()) Int.MAX_VALUE else 0
+    override fun getItemCount(): Int {
+        // ✅ Simulate infinite scroll only if list has images
+        return if (imageList.isNotEmpty()) Int.MAX_VALUE else 0
+    }
 }

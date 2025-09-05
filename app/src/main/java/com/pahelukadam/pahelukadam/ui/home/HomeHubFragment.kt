@@ -60,11 +60,15 @@ class HomeHubFragment : Fragment() {
 
         // --- Image Slider Setup ---
         val images = listOf(
+            R.drawable.t1,
+            R.drawable.t10,
             R.drawable.t12,
-            R.drawable.t5,
-            R.drawable.t16,
             R.drawable.t15,
-            R.drawable.t16
+            R.drawable.t16,
+            R.drawable.t3,
+
+            R.drawable.t6,
+            R.drawable.t9,
         )
 
         sliderAdapter = SliderAdapter(images) { imageView, resId ->
