@@ -31,38 +31,65 @@
             android:textStyle="bold"
             android:textColor="@android:color/black" />
 
-        <!-- Description -->
+        <!-- Description with Existing Border -->
         <TextView
             android:id="@+id/tvDescription"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:padding="12dp"
+            android:background="@drawable/rounded_border"
             android:text="Business Description"
             android:textSize="16sp"
             android:textColor="@android:color/black" />
 
-        <!-- Budget -->
+        <!-- Budget with Existing Border -->
         <TextView
             android:id="@+id/tvBudget"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:padding="12dp"
+            android:background="@drawable/rounded_border"
             android:text="Budget: "
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@android:color/black" />
+
+        <!-- Image BELOW Budget and ABOVE Raw Materials Container -->
+        <ImageView
+            android:id="@+id/imgBusinessBanner"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="16dp"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
+            android:src="@drawable/sample_raw_material"
+            android:contentDescription="@string/app_name"
+            android:background="@drawable/bg_raw_materials"
+            android:clipToOutline="true"/>
 
         <!-- Raw Materials Container -->
         <LinearLayout
             android:id="@+id/layoutRawMaterials"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:background="@drawable/bg_raw_materials"
             android:orientation="vertical"
             android:padding="16dp"
             android:clipToPadding="false"
-            android:gravity="center_horizontal" />
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/tvRawMaterials"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="List of raw materials will appear here"
+                android:textSize="16sp"
+                android:textColor="@android:color/white"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
 
     </LinearLayout>
 </ScrollView>
