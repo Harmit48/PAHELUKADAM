@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PAHELUKADAM">
         <activity
+            android:name=".ui.home.BusinessDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".admin.AddIdeaActivity"
             android:exported="false" />
         <activity

@@ -1,5 +1,6 @@
 package com.pahelukadam.pahelukadam.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -36,7 +37,7 @@ class HomeHubFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // ✅ Category card clicks navigation
+        // ✅ Category card clicks
         binding.cardManufacturing.setOnClickListener {
             parentFragmentManager.beginTransaction()
                 .replace(R.id.fragmentContainer, ManufacturingFragment())
@@ -66,7 +67,6 @@ class HomeHubFragment : Fragment() {
             R.drawable.t15,
             R.drawable.t16,
             R.drawable.t3,
-
             R.drawable.t6,
             R.drawable.t9,
         )
@@ -76,14 +76,9 @@ class HomeHubFragment : Fragment() {
         }
 
         binding.imageSlider.adapter = sliderAdapter
-
-        // Apply the smooth fade animation
         binding.imageSlider.setPageTransformer(DepthPageTransformer())
-
-        // Start the slider in the middle of the "infinite" list for a seamless loop
         binding.imageSlider.setCurrentItem(Int.MAX_VALUE / 2, false)
 
-        // Restart auto-scroll after swipe
         binding.imageSlider.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageScrollStateChanged(state: Int) {
                 super.onPageScrollStateChanged(state)
@@ -95,17 +90,16 @@ class HomeHubFragment : Fragment() {
             }
         })
 
-        // ✅ Start Now button (no navigation, only UI placeholder)
-        binding.btnStartNow.setOnClickListener {
-            // Nothing happens for now
-        }
+        // ✅ Start Now button (UI placeholder)
+        binding.btnStartNow.setOnClickListener { }
 
-        // ✅ Featured business image
+        // ✅ Featured image
         Glide.with(this).load(R.drawable.sample_featured).into(binding.featuredImage)
 
-        // ✅ View Details button (no navigation, only UI placeholder)
+        // ✅ View Details -> Launch BusinessDetailsActivity
         binding.btnViewDetails.setOnClickListener {
-            // Nothing happens for now
+            val intent = Intent(requireContext(), BusinessDetailsActivity::class.java)
+            startActivity(intent)
         }
     }
 

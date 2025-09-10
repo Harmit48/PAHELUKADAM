@@ -76,7 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:layout_marginTop="16dp"
-            android:text="Email or Phone Number"
+            android:text="Email ID"
             android:textColor="#000000"
             android:textSize="14sp"
             android:textStyle="bold" />
