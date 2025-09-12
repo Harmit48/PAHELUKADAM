@@ -94,7 +94,7 @@ class HomeHubFragment : Fragment() {
         binding.btnStartNow.setOnClickListener { }
 
         // ✅ Featured image
-        Glide.with(this).load(R.drawable.sample_featured).into(binding.featuredImage)
+        Glide.with(this).load(R.drawable.sample_raw_material).into(binding.featuredImage)
 
         // ✅ View Details -> Launch BusinessDetailsActivity
         binding.btnViewDetails.setOnClickListener {

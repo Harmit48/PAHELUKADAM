@@ -55,7 +55,7 @@ class BusinessDetailsActivity : AppCompatActivity() {
                         val textView = TextView(this).apply {
                             text = "${index + 1}. $itemTitle\nPrice: ₹$itemPrice"
                             setTextColor(resources.getColor(android.R.color.white))
-                            textSize = 16f
+                            textSize = 20f
                             setPadding(8, 8, 8, 8)
                         }
                         layoutRawMaterials.addView(textView)

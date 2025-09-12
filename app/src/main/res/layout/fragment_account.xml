@@ -122,9 +122,9 @@
             android:background="@android:color/black"
             android:layout_marginBottom="12dp" />
 
-        <!-- Theme -->
+        <!-- Save Section -->
         <LinearLayout
-            android:id="@+id/btnTheme"
+            android:id="@+id/btnSave"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -134,15 +134,15 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/ic_theme"
-                android:contentDescription="Theme" />
+                android:src="@drawable/ic_save"
+                android:contentDescription="Save" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:textColor="@color/black"
-                android:text="Theme\nBlue, Black-white, Green"
+                android:text="Save\nSave The Business Idea"
                 android:textSize="14sp" />
         </LinearLayout>
 

@@ -37,9 +37,10 @@ class AccountFragment : Fragment() {
             startActivity(Intent(requireContext(), AddMobileActivity::class.java))
         }
 
-        // Theme button
-        binding.btnTheme.setOnClickListener {
-            ThemeDialog(requireContext()).show()
+        // Save button
+        binding.btnSave.setOnClickListener {
+            Toast.makeText(requireContext(), "Account details saved!", Toast.LENGTH_SHORT).show()
+            // TODO: Add your save logic here (e.g., update Firestore or SharedPreferences)
         }
 
         // Sign Out button
