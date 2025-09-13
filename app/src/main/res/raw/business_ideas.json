@@ -1,0 +1,488 @@
+[
+  {
+    "businessName": "Cafe Shop",
+    "description": "A cafe shop is a retail establishment that primarily serves coffee, tea, pastries, sandwiches, and other light meals. The focus is on creating a relaxing and inviting atmosphere for customers to work, socialize, or take a break.\n\nTarget Customers\nStudents and young professionals.\nFreelancers and remote workers.\nLocal residents and shoppers.\nTourists (depending on location).\n\nKey Financial Metrics\nGross Profit Margin: 55-70% (Beverages offer high margins).\nNet Profit Margin: 10-20% (Highly dependent on rent, labor costs, and footfall).",
+    "budget_range": "700000 - 1000000",
+    "category_name": "Food & Beverage",
+    "rawMaterials": [
+      { "title": "Interior Fit-out & Ambiance (Decor, lighting, painting)", "price": 250000 },
+      { "title": "Kitchen & Bar Equipment (Espresso machine, ovens, refrigerators)", "price": 350000 },
+      { "title": "Furniture & Fixtures (Tables, chairs, counter)", "price": 150000 },
+      { "title": "Rent Deposit (for a good location)", "price": 100000 },
+      { "title": "Initial Inventory & Supplies", "price": 50000 },
+      { "title": "POS System & Licensing (FSSAI, Shop Act)", "price": 50000 }
+    ]
+  },
+  {
+    "businessName": "Casual Dining Restaurant (Regional Food)",
+    "description": "This business is a full-service restaurant that offers a menu focused on specific regional cuisine (e.g., Gujarati, Punjabi, South Indian). It provides a comfortable and moderately priced dining experience for families and groups.\n\nTarget Customers\nFamilies and local residents.\nCorporate employees for lunch and dinner.\nTourists seeking authentic local food.\nSmall parties and gatherings.\n\nKey Financial Metrics\nGross Profit Margin: 45-60%\nNet Profit Margin: 12-22%",
+    "budget_range": "500000 - 700000",
+    "category_name": "Food & Beverage",
+    "rawMaterials": [
+      { "title": "Kitchen Setup (Stoves, ovens, utensils, ventilation)", "price": 200000 },
+      { "title": "Restaurant Interior & Furniture", "price": 150000 },
+      { "title": "Rent Deposit & Advance", "price": 100000 },
+      { "title": "Initial Inventory (Groceries, spices, meats, vegetables)", "price": 75000 },
+      { "title": "Licenses & Permits (FSSAI, Health, Fire, GST)", "price": 50000 },
+      { "title": "POS System & Initial Marketing", "price": 25000 }
+    ]
+  },
+  {
+    "businessName": "Cold Storage",
+    "description": "A cold storage facility offers temperature-controlled warehousing services. This is crucial for preserving perishable goods like fruits, vegetables, dairy products, and pharmaceuticals, extending their shelf life and maintaining their quality.\n\nTarget Customers\nFarmers and agricultural cooperatives.\nFood processing companies.\nPharmaceutical distributors.\nWholesalers and traders of perishable goods.\nImporters and exporters.\n\nKey Financial Metrics\nGross Profit Margin: 50-70% (After electricity costs).\nNet Profit Margin: 20-35% (Capital intensive but high operational margin).",
+    "budget_range": "700000 - 1000000",
+    "category_name": "Services",
+    "rawMaterials": [
+      { "title": "Prefabricated Cold Room/Chamber (Small size)", "price": 500000 },
+      { "title": "Land Lease/Rental Advance", "price": 100000 },
+      { "title": "Power Backup (Generator Set)", "price": 150000 },
+      { "title": "Material Handling Equipment (Pallet jacks, crates)", "price": 50000 },
+      { "title": "Licenses & Insurance", "price": 50000 },
+      { "title": "Working Capital", "price": 50000 }
+    ]
+  },
+  {
+    "businessName": "Ice Cream Manufacturing",
+    "description": "A small-scale ice cream manufacturing unit produces a variety of ice creams, kulfis, and frozen desserts. The business can supply to other businesses (B2B) or open its own retail parlor (B2C).\n\nTarget Customers\nRetail parlors and ice cream shops.\nRestaurants and hotels.\nCaterers and event organizers.\nDirect consumers via a factory outlet.\n\nKey Financial Metrics\nGross Profit Margin: 40-60%\nNet Profit Margin: 15-25%",
+    "budget_range": "500000 - 700000",
+    "category_name": "Manufacturing",
+    "rawMaterials": [
+      { "title": "Manufacturing Machinery (Batch freezer, pasteurizer, homogenizer)", "price": 300000 },
+      { "title": "Deep Freezers & Cold Storage", "price": 150000 },
+      { "title": "Initial Raw Materials & Packaging", "price": 75000 },
+      { "title": "Workspace Setup & Rent Deposit", "price": 75000 },
+      { "title": "FSSAI License & Other Registrations", "price": 25000 },
+      { "title": "Local Marketing & Distribution", "price": 25000 }
+    ]
+  },
+  {
+    "businessName": "PVC Pipe Manufacturing",
+    "description": "This business involves the manufacturing of Polyvinyl Chloride (PVC) pipes used extensively in agriculture for irrigation, as well as in construction for plumbing and drainage.\n\nTarget Customers\nHardware stores and plumbing suppliers.\nConstruction companies and real estate developers.\nFarmers and agricultural suppliers.\nGovernment contracts for infrastructure projects.\n\nKey Financial Metrics\nGross Profit Margin: 20-35% (Volume-driven business).\nNet Profit Margin: 8-15%",
+    "budget_range": "500000 - 700000",
+    "category_name": "Manufacturing",
+    "rawMaterials": [
+      { "title": "Extrusion Machine (Used or basic model)", "price": 350000 },
+      { "title": "Dies, Mixer, and other auxiliary equipment", "price": 150000 },
+      { "title": "Workspace Rent Deposit & Setup", "price": 75000 },
+      { "title": "Initial Raw Material (PVC resin, additives)", "price": 75000 },
+      { "title": "Licenses & Registrations", "price": 25000 },
+      { "title": "Working Capital", "price": 25000 }
+    ]
+  },
+  {
+    "businessName": "Fast Food Franchise (Local Brand)",
+    "description": "This involves acquiring the rights to operate a franchise of an established local or regional fast-food brand. The franchisee gets access to the brand name, menu, operating procedures, and supply chain in exchange for a franchise fee and ongoing royalties.\n\nTarget Customers\nStudents and young adults.\nFamilies looking for quick and affordable meals.\nShoppers in high-traffic areas.\n\nKey Financial Metrics\nGross Profit Margin: 50-65%\nNet Profit Margin: 10-18% (Royalty fees impact net margin).",
+    "budget_range": "500000 - 700000",
+    "category_name": "Food & Beverage",
+    "rawMaterials": [
+      { "title": "Franchise Fee", "price": 150000 },
+      { "title": "Outlet Interior & Setup (As per brand standards)", "price": 200000 },
+      { "title": "Kitchen Equipment (Provided or specified by franchisor)", "price": 150000 },
+      { "title": "Rent Deposit", "price": 75000 },
+      { "title": "Initial Inventory & Working Capital", "price": 50000 }
+    ]
+  },
+  {
+    "businessName": "Cyber Cafe",
+    "description": "A cyber cafe provides public access to computers and the internet for a fee. Modern cyber cafes often diversify their services to include printing, scanning, online form filling, gaming, and sometimes a small snack counter.\n\nTarget Customers\nStudents for research, projects, and exam form submissions.\nIndividuals without personal computers or internet access.\nGamers looking for a high-speed gaming environment.\nJob seekers for online applications.\nTourists and travelers.\n\nKey Financial Metrics\nGross Profit Margin: 70-85% (Main cost is internet and electricity).\nNet Profit Margin: 25-40% (Depends on rent and system maintenance).",
+    "budget_range": "50000 - 100000",
+    "category_name": "Services",
+    "rawMaterials": [
+      { "title": "Computers (Refurbished desktops, 5-8 units)", "price": 40000 },
+      { "title": "Networking & Internet Setup (Router, switches, initial plan)", "price": 10000 },
+      { "title": "Furniture (Tables, chairs)", "price": 15000 },
+      { "title": "Printer & Scanner (All-in-one)", "price": 15000 },
+      { "title": "Software Licenses & Basic Setup", "price": 5000 },
+      { "title": "Shop Rental Advance & Signage", "price": 15000 }
+    ]
+  },
+  {
+    "businessName": "Organic Fruits & Vegetables Store",
+    "description": "This retail business focuses on selling certified organic fruits and vegetables. The key is to build a reliable supply chain by sourcing directly from organic farms and educating customers about the benefits of organic produce.\n\nTarget Customers\nHealth-conscious individuals and families.\nHigh-income households.\nFitness enthusiasts and yoga practitioners.\nRestaurants and cafes focusing on healthy menus.\n\nKey Financial Metrics\nGross Profit Margin: 30-50% (Higher than conventional produce but also higher sourcing cost).\nNet Profit Margin: 10-20% (Perishability and spoilage are key factors).",
+    "budget_range": "150000 - 300000",
+    "category_name": "Retail",
+    "rawMaterials": [
+      { "title": "Shop Rental Deposit & Interior (Racks, bins)", "price": 75000 },
+      { "title": "Refrigeration & Cooling Units", "price": 50000 },
+      { "title": "Initial Stock of Produce", "price": 50000 },
+      { "title": "Weighing Scales & POS System", "price": 20000 },
+      { "title": "Marketing & Local Promotion (Pamphlets, social media)", "price": 15000 },
+      { "title": "Licenses & Registrations (Shop Act, FSSAI)", "price": 10000 },
+      { "title": "Working Capital (for daily procurement)", "price": 30000 }
+    ]
+  },
+  {
+    "businessName": "Health Drinks (Juice & Smoothie Bar)",
+    "description": "This business involves setting up a kiosk or small shop that prepares and sells fresh, healthy drinks like fruit juices, vegetable juices, smoothies, and protein shakes. The focus is on using natural ingredients without artificial additives.\n\nTarget Customers\nGym-goers and fitness enthusiasts.\nOffice workers looking for a healthy lunch alternative.\nShoppers in malls and high-street areas.\nStudents in college areas.\n\nKey Financial Metrics\nGross Profit Margin: 50-70%\nNet Profit Margin: 20-35%",
+    "budget_range": "300000 - 500000",
+    "category_name": "Food & Beverage",
+    "rawMaterials": [
+      { "title": "Kiosk/Shop Fit-out & Branding", "price": 100000 },
+      { "title": "Equipment (Commercial juicers, blenders, refrigeration, ice machine)", "price": 150000 },
+      { "title": "Rent Deposit for a good location", "price": 75000 },
+      { "title": "Initial Inventory (Fruits, vegetables, protein powders, packaging)", "price": 40000 },
+      { "title": "POS System & Software", "price": 20000 },
+      { "title": "Licenses & Permits (FSSAI, etc.)", "price": 15000 }
+    ]
+  },
+  {
+    "businessName": "Small Garment Unit (T-Shirts)",
+    "description": "Unlike just printing, this unit focuses on the complete manufacturing of T-shirts. The process involves sourcing fabric, cutting it into patterns, stitching the pieces together, and then finishing the garments. It can also include an in-house printing or embroidery section.\n\nTarget Customers\nClothing brands and startups needing manufacturing partners.\nCorporate clients for bulk uniform orders.\nExporters and wholesale garment traders.\n\nKey Financial Metrics\nGross Profit Margin: 25-40%\nNet Profit Margin: 10-20% (Volume-dependent).",
+    "budget_range": "300000 - 500000",
+    "category_name": "Manufacturing",
+    "rawMaterials": [
+      { "title": "Sewing & Stitching Machines (Industrial grade, 5-7 units)", "price": 150000 },
+      { "title": "Fabric Cutting Machine & Tables", "price": 50000 },
+      { "title": "Initial Fabric & Thread Stock", "price": 100000 },
+      { "title": "Workspace Rental Deposit & Setup", "price": 75000 },
+      { "title": "Initial Labor Costs (Salaries for cutters, tailors)", "price": 50000 },
+      { "title": "Licenses & Registrations", "price": 25000 }
+    ]
+  },
+  {
+    "businessName": "Stationery & Printing Shop",
+    "description": "This is a retail shop that sells office and school supplies, along with offering services like photocopying, printing, lamination, and binding. It's a high-demand business, especially if located near schools, colleges, or business districts.\n\nTarget Customers\nStudents and teachers.\nLocal offices and small businesses.\nGeneral public for daily needs.\n\nKey Financial Metrics\nGross Profit Margin: 25-40% on products, 60-80% on services.\nNet Profit Margin: 15-25%",
+    "budget_range": "100000 - 200000",
+    "category_name": "Retail",
+    "rawMaterials": [
+      { "title": "Initial Inventory (Pens, paper, notebooks, etc.)", "price": 75000 },
+      { "title": "Photocopier & Printer (Heavy-duty multifunction machine)", "price": 60000 },
+      { "title": "Shop Rental Deposit & Racks/Shelving", "price": 40000 },
+      { "title": "Computer & Basic Software", "price": 20000 },
+      { "title": "Lamination & Binding Machines", "price": 10000 }
+    ]
+  },
+  {
+    "businessName": "Drone Photography",
+    "description": "This service-based business uses drones (UAVs) to capture high-quality aerial photos and videos. It's a rapidly growing field with diverse applications.\n\nTarget Customers\nReal estate agents and developers for property showcases.\nWedding and event planners for aerial shots.\nConstruction companies for site monitoring and inspection.\nMedia and film production houses.\nTourism and hospitality sector for promotional videos.\n\nKey Financial Metrics\nGross Profit Margin: 70-90% (Service-based).\nNet Profit Margin: 40-60%",
+    "budget_range": "300000 - 500000",
+    "category_name": "Services",
+    "rawMaterials": [
+      { "title": "Professional Drones (2 high-quality units with extra batteries)", "price": 250000 },
+      { "title": "Camera Gear & Gimbals", "price": 50000 },
+      { "title": "Editing Software & High-Performance Computer", "price": 75000 },
+      { "title": "Licenses & Pilot Certification (DGCA compliance)", "price": 30000 },
+      { "title": "Marketing (Website, portfolio, social media ads)", "price": 45000 }
+    ]
+  },
+  {
+    "businessName": "Freelance Web Development Services",
+    "description": "This is a service business started by an individual or a very small team, offering website design and development services. It requires minimal initial investment and can be run from home.\n\nTarget Customers\nSmall businesses and startups needing an online presence.\nRestaurants, cafes, and local shops.\nIndividual professionals (doctors, lawyers, consultants) for personal branding sites.\nNGOs and educational institutions.\n\nKey Financial Metrics\nGross Profit Margin: 85-95%\nNet Profit Margin: 60-80% (Very low overhead).",
+    "budget_range": "50000 - 100000",
+    "category_name": "Services",
+    "rawMaterials": [
+      { "title": "High-Performance Laptop", "price": 60000 },
+      { "title": "Software Subscriptions (Adobe Suite, development tools, themes/plugins)", "price": 15000 },
+      { "title": "Marketing & Portfolio Website (Domain, hosting, ads)", "price": 10000 },
+      { "title": "Co-working Space Membership (Optional, for meetings)", "price": 10000 },
+      { "title": "Business Registration", "price": 5000 }
+    ]
+  },
+  {
+    "businessName": "Paper Bag / Eco-friendly Packaging Unit",
+    "description": "This business focuses on manufacturing paper bags and other simple, eco-friendly packaging solutions. With the ban on single-use plastics, the demand for these products is consistently high.\n\nTarget Customers\nRetail stores (grocery, apparel, pharmacy).\nRestaurants and food delivery services for takeaway packaging.\nBakeries and sweet shops.\n\nKey Financial Metrics\nGross Profit Margin: 25-40%\nNet Profit Margin: 10-20%",
+    "budget_range": "100000 - 200000",
+    "category_name": "Manufacturing",
+    "rawMaterials": [
+      { "title": "Paper Bag Making Machine (Semi-automatic or manual)", "price": 75000 },
+      { "title": "Raw Materials (Paper rolls, glue, printing ink)", "price": 50000 },
+      { "title": "Workspace Rental Deposit & Setup", "price": 30000 },
+      { "title": "Printing Block/Screen Setup", "price": 15000 },
+      { "title": "Licenses & Registration", "price": 10000 }
+    ]
+  },
+  {
+    "businessName": "CCTV & Security Solutions Business",
+    "description": "This business involves the sale, installation, and maintenance of security systems like CCTV cameras, access control systems, and alarm systems for both residential and commercial clients.\n\nTarget Customers\nHomeowners and residential societies.\nRetail shops and offices.\nWarehouses and factories.\nSchools and hospitals.\n\nKey Financial Metrics\nGross Profit Margin: 20-35% on products, 50-70% on installation/maintenance services.\nNet Profit Margin: 15-30%",
+    "budget_range": "100000 - 300000",
+    "category_name": "Services",
+    "rawMaterials": [
+      { "title": "Initial Stock (Cameras, DVRs, cables, accessories)", "price": 150000 },
+      { "title": "Installation Tools & Equipment (Drills, ladders, testers)", "price": 40000 },
+      { "title": "Small Office/Shop Rental Deposit", "price": 40000 },
+      { "title": "Marketing (Local ads, website, vehicle branding)", "price": 30000 },
+      { "title": "Licenses & Registrations", "price": 15000 },
+      { "title": "Demo Unit Setup", "price": 25000 }
+    ]
+  },
+  {
+    "businessName": "Toy Manufacturing",
+    "description": "A small-scale toy manufacturing business that can focus on a specific niche, such as wooden toys, educational toys, or soft toys. The emphasis can be on safety, local craftsmanship, and unique designs.\n\nTarget Customers\nToy retailers and wholesalers.\nSchools and playschools (for educational toys).\nDirect-to-consumer via online stores (like Amazon, Flipkart) and local fairs.\n\nKey Financial Metrics\nGross Profit Margin: 35-50%\nNet Profit Margin: 15-25%",
+    "budget_range": "300000 - 500000",
+    "category_name": "Manufacturing",
+    "rawMaterials": [
+      { "title": "Molds & Machinery (Depending on toy type, e.g., injection molding for plastic, woodworking tools for wooden)", "price": 200000 },
+      { "title": "Raw Materials (Plastic granules, wood, non-toxic paints, fabric)", "price": 100000 },
+      { "title": "Workspace Rental Deposit & Setup", "price": 75000 },
+      { "title": "Safety Certifications (BIS compliance is mandatory)", "price": 40000 },
+      { "title": "Packaging Design & Initial Stock", "price": 35000 }
+    ]
+  },
+  {
+    "businessName": "Fresh Juice & Smoothie Stall",
+    "description": "This is a small-scale, mobile, or fixed stall business model focused on serving fresh juices and smoothies on the go. It requires a smaller investment than a full cafe and thrives in high-footfall areas.\n\nTarget Customers\nCommuters near bus or train stations.\nMorning walkers and joggers in parks.\nShoppers in local markets.\nEmployees near corporate parks.\n\nKey Financial Metrics\nGross Profit Margin: 60-75%\nNet Profit Margin: 30-45% (Lower overheads compared to a shop).",
+    "budget_range": "50000 - 100000",
+    "category_name": "Food & Beverage",
+    "rawMaterials": [
+      { "title": "Stall/Kiosk Fabrication & Branding", "price": 30000 },
+      { "title": "Equipment (Juicers, blenders, small refrigerator/ice box)", "price": 35000 },
+      { "title": "Initial Inventory (Fruits, vegetables, disposables)", "price": 15000 },
+      { "title": "Licenses & Permits (Local municipal permission, FSSAI)", "price": 10000 },
+      { "title": "Working Capital", "price": 10000 }
+    ]
+  },
+  {
+    "businessName": "Tech Gadget Rental Service",
+    "description": "This business rents out tech gadgets like high-end cameras, drones, projectors, gaming consoles, and virtual reality (VR) headsets for short periods. It caters to customers who need specific gadgets for a project, event, or trial but don't want to purchase them.\n\nTarget Customers\nPhotographers and videographers for specific projects.\nEvent organizers for conferences and parties.\nCorporates for presentations and short-term needs.\nIndividuals for travel, parties, or trying out new technology.\n\nKey Financial Metrics\nGross Profit Margin: 80-90% (Revenue per rental vs. depreciation of the asset).\nNet Profit Margin: 30-50% (Depends on asset utilization and maintenance).",
+    "budget_range": "300000 - 500000",
+    "category_name": "Services",
+    "rawMaterials": [
+      { "title": "Initial Gadget Inventory (DSLRs, lenses, drones, projectors, etc.)", "price": 350000 },
+      { "title": "Website & Online Booking Platform", "price": 40000 },
+      { "title": "Insurance for Equipment", "price": 30000 },
+      { "title": "Small Office/Storage Space Deposit", "price": 30000 },
+      { "title": "Marketing & Promotion", "price": 30000 },
+      { "title": "Legal (Rental agreements, business registration)", "price": 20000 }
+    ]
+  },
+  {
+    "businessName": "Ready-to-Eat Snacks (Chips & Namkeen) Manufacturing",
+    "description": "This is a manufacturing business focused on producing and packaging popular Indian snacks like potato chips, banana chips, and various types of namkeen (savory mixtures).\n\nTarget Customers\nLocal distributors and wholesalers.\nSupermarkets, hypermarkets, and local kirana stores.\nHotels, canteens, and tea stalls.\n\nKey Financial Metrics\nGross Profit Margin: 30-45%\nNet Profit Margin: 10-20% (A volume-driven business).",
+    "budget_range": "700000 - 1000000",
+    "category_name": "Manufacturing",
+    "rawMaterials": [
+      { "title": "Machinery (Slicer, fryer, spice mixer, packaging machine)", "price": 500000 },
+      { "title": "Initial Raw Materials (Potatoes, gram flour, spices, oil, packaging film)", "price": 150000 },
+      { "title": "Workspace Rental Deposit & Setup", "price": 150000 },
+      { "title": "Licenses (FSSAI, GST, Factory License) & Lab Testing", "price": 75000 },
+      { "title": "Working Capital & Distribution Logistics", "price": 125000 }
+    ]
+  },
+  {
+    "businessName": "Robotics Training & Workshop Center",
+    "description": "This business provides hands-on training in robotics, coding, and STEM (Science, Technology, Engineering, and Mathematics) concepts, primarily for school students. It involves creating a curriculum and conducting regular classes, workshops, and competitions.\n\nTarget Customers\nSchool students (Ages 8-18).\nEngineering students looking for practical skills.\nSchools looking to outsource their robotics curriculum.\nHobbyists and tech enthusiasts.\n\nKey Financial Metrics\nGross Profit Margin: 60-75%\nNet Profit Margin: 25-40%",
+    "budget_range": "500000 - 700000",
+    "category_name": "Education",
+    "rawMaterials": [
+      { "title": "Robotics Kits & Components (Arduino, Raspberry Pi, sensors, motors)", "price": 250000 },
+      { "title": "Computers & Software", "price": 100000 },
+      { "title": "Classroom/Lab Setup (Furniture, projectors, tools)", "price": 100000 },
+      { "title": "Rental Deposit for Commercial Space", "price": 75000 },
+      { "title": "Curriculum Development & Marketing", "price": 50000 },
+      { "title": "Business Registration", "price": 25000 }
+    ]
+  },
+  {
+    "businessName": "Paper Bag Making",
+    "description": "This is a small-scale manufacturing unit focused solely on making paper bags. Given the low budget, the focus would be on manual or semi-automatic processes to cater to local businesses.\n\nTarget Customers\nLocal boutiques, bakeries, and pharmacies.\nGrocery and sweet shops.\nSmall businesses needing custom-branded bags.\n\nKey Financial Metrics\nGross Profit Margin: 30-45%\nNet Profit Margin: 15-25%",
+    "budget_range": "50000 - 100000",
+    "category_name": "Manufacturing",
+    "rawMaterials": [
+      { "title": "Manual Paper Bag Making Machine & Tools", "price": 25000 },
+      { "title": "Initial Raw Material (Paper sheets/rolls, glue, handles)", "price": 30000 },
+      { "title": "Workspace Rental Deposit (Small room or shed)", "price": 20000 },
+      { "title": "Screen Printing Setup (for simple branding)", "price": 15000 },
+      { "title": "Working Capital", "price": 10000 }
+    ]
+  },
+  {
+    "businessName": "Herbal Cosmetics",
+    "description": "This business involves manufacturing and selling cosmetic products made from natural and herbal ingredients. The product line can include face creams, soaps, hair oils, and face packs, tapping into the growing demand for chemical-free products.\n\nTarget Customers\nHealth-conscious consumers.\nCustomers in local markets and through online platforms.\nBeauty salons and spas looking for natural product lines.\n\nKey Financial Metrics\nGross Profit Margin: 40-60%\nNet Profit Margin: 20-35%",
+    "budget_range": "100000 - 300000",
+    "category_name": "Manufacturing",
+    "rawMaterials": [
+      { "title": "Basic Lab & Mixing Equipment (Beakers, mixers, weighing scales)", "price": 50000 },
+      { "title": "Initial Raw Materials (Herbs, oils, waxes, extracts)", "price": 75000 },
+      { "title": "Packaging (Bottles, jars, labels)", "price": 50000 },
+      { "title": "Licenses (Ayurveda/Cosmetic license, GMP) & Testing", "price": 50000 },
+      { "title": "Workspace Rental & Setup", "price": 40000 },
+      { "title": "Branding & Marketing", "price": 35000 }
+    ]
+  },
+  {
+    "businessName": "Digital Marketing Agency",
+    "description": "This is a lean, service-based agency providing digital marketing solutions like social media management (SMM), search engine optimization (SEO), content creation, and online advertising for small businesses.\n\nTarget Customers\nLocal businesses (restaurants, clinics, shops) wanting to build an online presence.\nStartups on a tight marketing budget.\nIndividual professionals (doctors, lawyers).\n\nKey Financial Metrics\nGross Profit Margin: 80-90%\nNet Profit Margin: 50-70% (Low overheads, can be run from home).",
+    "budget_range": "50000 - 100000",
+    "category_name": "Services",
+    "rawMaterials": [
+      { "title": "Laptop & High-Speed Internet", "price": 50000 },
+      { "title": "Subscription to Marketing Tools (Canva, Buffer, SEMrush - basic plans)", "price": 15000 },
+      { "title": "Website & Portfolio Development", "price": 10000 },
+      { "title": "Online Advertising (for the agency itself)", "price": 15000 },
+      { "title": "Business Registration", "price": 10000 }
+    ]
+  },
+  {
+    "businessName": "Small Bakery (Cookies & Cake)",
+    "description": "A small bakery, often run from a commercial kitchen or a small retail space, focusing on a niche menu of cookies, cakes, cupcakes, and brownies. It can operate on a pre-order basis or have a small display for walk-in customers.\n\nTarget Customers\nLocal residents for birthdays, anniversaries, and special occasions.\nCorporate offices for events.\nCafes and restaurants to supply desserts.\n\nKey Financial Metrics\nGross Profit Margin: 50-70%\nNet Profit Margin: 20-35%",
+    "budget_range": "100000 - 300000",
+    "category_name": "Food & Beverage",
+    "rawMaterials": [
+      { "title": "Baking Equipment (Oven, planetary mixer, work tables)", "price": 125000 },
+      { "title": "Refrigeration & Display Case", "price": 50000 },
+      { "title": "Shop/Kitchen Rental Deposit & Basic Setup", "price": 50000 },
+      { "title": "Initial Inventory (Flour, sugar, butter, chocolate, packaging)", "price": 40000 },
+      { "title": "Licenses (FSSAI, GST, Shop Act)", "price": 20000 },
+      { "title": "POS & Marketing", "price": 15000 }
+    ]
+  },
+  {
+    "businessName": "LED Bulb Assembly Unit",
+    "description": "This business involves assembling LED bulbs by sourcing components like the housing, driver, PCB with LEDs, and diffuser. It's a relatively simple assembly process that can be done with minimal heavy machinery.\n\nTarget Customers\nElectrical hardware wholesalers and retailers.\nCorporate clients for bulk orders.\nGovernment tenders for lighting projects.\n\nKey Financial Metrics\nGross Profit Margin: 15-25%\nNet Profit Margin: 8-15% (High volume is key).",
+    "budget_range": "700000 - 1000000",
+    "category_name": "Manufacturing",
+    "rawMaterials": [
+      { "title": "Assembly & Testing Machinery (Soldering machines, testers, sealing machine)", "price": 250000 },
+      { "title": "Initial Stock of Components (SKD kits)", "price": 500000 },
+      { "title": "Workspace Rental Deposit & Setup (Assembly line tables)", "price": 100000 },
+      { "title": "Licenses & BIS Certification (Mandatory)", "price": 100000 },
+      { "title": "Working Capital", "price": 50000 }
+    ]
+  },
+  {
+    "businessName": "Mobile Repair & Accessories Shop",
+    "description": "A retail shop that offers on-the-spot mobile phone repair services (like screen or battery replacement) and also sells mobile accessories like chargers, covers, screen guards, and earphones.\n\nTarget Customers\nGeneral public/smartphone users in the local area.\nStudents and young professionals.\n\nKey Financial Metrics\nGross Profit Margin: 60-80% on repair services, 25-40% on accessories.\nNet Profit Margin: 25-40%",
+    "budget_range": "80000 - 150000",
+    "category_name": "Services",
+    "rawMaterials": [
+      { "title": "Repair Tools & Equipment (Soldering iron, hot air blower, multimeter)", "price": 30000 },
+      { "title": "Initial Stock of Accessories & Spare Parts", "price": 60000 },
+      { "title": "Shop Rental Deposit & Counter/Display Setup", "price": 40000 },
+      { "title": "Marketing (Local signage, pamphlets)", "price": 10000 },
+      { "title": "Shop Act & GST Registration", "price": 10000 }
+    ]
+  },
+  {
+    "businessName": "Fitness Studio / Yoga Center",
+    "description": "A small studio dedicated to group fitness classes like Yoga, Zumba, or Aerobics. Unlike a large gym, it focuses on specialized classes and community building, requiring less space and equipment.\n\nTarget Customers\nHealth-conscious individuals in the local neighborhood.\nWorking professionals seeking stress relief.\nWomen and senior citizens (for specialized batches).\n\nKey Financial Metrics\nGross Profit Margin: 70-85% (Service-based, primary cost is rent and instructor fees).\nNet Profit Margin: 25-40%",
+    "budget_range": "150000 - 300000",
+    "category_name": "Health & Wellness",
+    "rawMaterials": [
+      { "title": "Studio Rental Deposit & Interior (Mirrors, flooring, lighting)", "price": 100000 },
+      { "title": "Basic Equipment (Yoga mats, speakers, dumbbells, resistance bands)", "price": 50000 },
+      { "title": "Booking Software & Website", "price": 20000 },
+      { "title": "Marketing & Launch Promotion", "price": 20000 },
+      { "title": "Licenses & Registration", "price": 10000 },
+      { "title": "Working Capital (Instructor fees, utilities)", "price": 50000 }
+    ]
+  },
+  {
+    "businessName": "Disposable Plates & Cups",
+    "description": "This manufacturing business produces disposable plates, cups, and bowls from materials like paper, areca leaf (supari), or sugarcane bagasse. It's an in-demand industry, especially with the move away from plastic disposables.\n\nTarget Customers\nWholesalers and distributors of catering supplies.\nEvent management companies and caterers.\nRestaurants, street food vendors, and tea stalls.\nTemples and organizers of community feasts.\n\nKey Financial Metrics\nGross Profit Margin: 25-40%\nNet Profit Margin: 10-20% (Highly dependent on raw material cost and production volume).",
+    "budget_range": "100000 - 300000",
+    "category_name": "Manufacturing",
+    "rawMaterials": [
+      { "title": "Plate/Cup Making Machine (Semi-automatic hydraulic machine)", "price": 150000 },
+      { "title": "Dies for various shapes and sizes", "price": 30000 },
+      { "title": "Initial Raw Material Stock (Paper sheets, film)", "price": 50000 },
+      { "title": "Workspace Rental Deposit & Electrical Setup", "price": 40000 },
+      { "title": "Packaging Materials & Working Capital", "price": 30000 }
+    ]
+  },
+  {
+    "businessName": "Candle & Soap Making",
+    "description": "This is a creative, home-based or small workshop business that produces artisanal and decorative candles and soaps. The focus is on unique fragrances, designs, and natural ingredients, which allows for premium pricing.\n\nTarget Customers\nGift shops and home decor stores.\nOnline customers via social media (Instagram, Facebook) and e-commerce sites.\nCorporate clients for customized gift hampers.\nSpas, hotels, and boutiques.\n\nKey Financial Metrics\nGross Profit Margin: 50-70% (Value is in the design and branding).\nNet Profit Margin: 25-40%",
+    "budget_range": "50000 - 150000",
+    "category_name": "Manufacturing",
+    "rawMaterials": [
+      { "title": "Raw Materials (Wax, wicks, essential oils, soap base, molds, herbs)", "price": 50000 },
+      { "title": "Melting & Mixing Equipment (Wax melters, boilers, mixers)", "price": 25000 },
+      { "title": "Packaging & Branding (Labels, boxes, ribbons)", "price": 25000 },
+      { "title": "Online Store & Social Media Marketing", "price": 15000 },
+      { "title": "FSSAI/Cosmetic Licenses & GST Registration", "price": 15000 },
+      { "title": "Workspace Setup (Tables, shelves)", "price": 20000 }
+    ]
+  },
+  {
+    "businessName": "Homemade Pickles & Snacks Production",
+    "description": "A food business focusing on producing traditional, homemade pickles, papads, and snacks. The key selling point is the authentic taste and use of quality, natural ingredients, free from artificial preservatives.\n\nTarget Customers\nLocal grocery stores and supermarkets.\nDirect consumers in residential communities.\nOnline customers through platforms like Amazon or a dedicated website.\nRestaurants and canteens.\n\nKey Financial Metrics\nGross Profit Margin: 40-60%\nNet Profit Margin: 20-35%",
+    "budget_range": "50000 - 100000",
+    "category_name": "Food & Beverage",
+    "rawMaterials": [
+      { "title": "Kitchen Equipment (Large vessels, cutters, grinders, gas stove)", "price": 25000 },
+      { "title": "Initial Raw Materials (Vegetables, fruits, spices, oil)", "price": 30000 },
+      { "title": "Packaging (Glass jars, pouches, labels)", "price": 20000 },
+      { "title": "FSSAI License & Registration", "price": 10000 },
+      { "title": "Local Marketing (Pamphlets, food stalls)", "price": 15000 }
+    ]
+  },
+  {
+    "businessName": "Coaching Classes / Tuition Center",
+    "description": "An educational business offering academic tutoring to school students. It can be for specific subjects like Math and Science or for specific grades. The business can be run from a small commercial space or even a dedicated room at home.\n\nTarget Customers\nSchool students (from primary to high school).\nStudents preparing for board exams (10th and 12th).\nStudents needing extra help in specific subjects.\n\nKey Financial Metrics\nGross Profit Margin: 80-90% (Service-based).\nNet Profit Margin: 50-70% (Low overheads if the founder is the primary tutor).",
+    "budget_range": "50000 - 100000",
+    "category_name": "Education",
+    "rawMaterials": [
+      { "title": "Classroom Setup (Whiteboard, desks, chairs)", "price": 30000 },
+      { "title": "Rental Deposit for a small space", "price": 25000 },
+      { "title": "Study Materials & Printing", "price": 15000 },
+      { "title": "Local Advertising (Banners, pamphlets in the neighborhood)", "price": 15000 },
+      { "title": "Business Registration", "price": 10000 }
+    ]
+  },
+  {
+    "businessName": "Small Digital Marketing Agency",
+    "description": "This is a more structured version of a digital marketing agency compared to the freelance model. The budget allows for a small office, hiring one or two team members, and subscribing to premium marketing tools to serve a larger number of clients.\n\nTarget Customers\nSmall to medium-sized enterprises (SMEs).\nStartups with funding.\nReal estate, healthcare, and educational institutions.\nE-commerce brands.\n\nKey Financial Metrics\nGross Profit Margin: 65-80%\nNet Profit Margin: 30-45% (Higher costs due to salaries and office space).",
+    "budget_range": "100000 - 300000",
+    "category_name": "Services",
+    "rawMaterials": [
+      { "title": "Office Rental Deposit & Basic Interior", "price": 75000 },
+      { "title": "Laptops & Computers for a small team", "price": 90000 },
+      { "title": "Premium Software Subscriptions (SEMrush, Ahrefs, Adobe Suite)", "price": 40000 },
+      { "title": "Initial Salaries (for 1-2 employees)", "price": 60000 },
+      { "title": "Company Website & Digital Advertising", "price": 20000 },
+      { "title": "Company Registration & Legal", "price": 15000 }
+    ]
+  },
+  {
+    "businessName": "E-learning Platform",
+    "description": "This business involves creating and managing an online platform (website or app) that offers courses on various subjects. This could be academic courses, professional skill development, or hobby classes. Revenue is generated through course fees or subscriptions.\n\nTarget Customers\nStudents seeking supplementary education.\nProfessionals looking to upskill.\nIndividuals pursuing hobbies like music, art, or coding.\nCompetitive exam aspirants.\n\nKey Financial Metrics\nGross Profit Margin: 70-90% (Digital product with low replication cost).\nNet Profit Margin: 25-50% (High initial investment in platform and content).",
+    "budget_range": "700000 - 1000000",
+    "category_name": "Education",
+    "rawMaterials": [
+      { "title": "Platform Development (Website & App)", "price": 400000 },
+      { "title": "Content Creation (Studio setup, camera, instructor fees)", "price": 250000 },
+      { "title": "Learning Management System (LMS) Software & Hosting", "price": 100000 },
+      { "title": "Digital Marketing & Launch Campaign", "price": 150000 },
+      { "title": "Company Registration & Legal", "price": 50000 }
+    ]
+  },
+  {
+    "businessName": "Candle Manufacturing",
+    "description": "This is a focused, small-scale manufacturing unit for producing basic candles like plain white, spiral, or pillar candles in bulk. Unlike artisanal candle making, the focus here is on production volume and efficiency for the mass market.\n\nTarget Customers\nWholesalers and general stores.\nSupermarkets and retail chains.\nReligious institutions.\nRestaurants and hotels for decor.\n\nKey Financial Metrics\nGross Profit Margin: 25-40%\nNet Profit Margin: 10-20%",
+    "budget_range": "50000 - 100000",
+    "category_name": "Manufacturing",
+    "rawMaterials": [
+      { "title": "Candle Making Machine (Manual or semi-automatic)", "price": 40000 },
+      { "title": "Raw Materials in Bulk (Paraffin wax, wicks, molds)", "price": 35000 },
+      { "title": "Workspace Rental Deposit", "price": 15000 },
+      { "title": "Packaging Materials (Cartons, wrappers)", "price": 10000 }
+    ]
+  },
+  {
+    "businessName": "Fresh Bread & Bun Manufacturing",
+    "description": "A small-scale bakery unit (B2B focused) that bakes and supplies fresh bread, pav, and buns to other businesses on a daily basis.\n\nTarget Customers\nLocal bakeries and cafes.\nRestaurants and fast-food stalls (for burgers and sandwiches).\nTea stalls and snack vendors (for pav bhaji, vada pav).\nKirana stores and local retailers.\n\nKey Financial Metrics\nGross Profit Margin: 35-50%\nNet Profit Margin: 15-25%",
+    "budget_range": "100000 - 300000",
+    "category_name": "Manufacturing",
+    "rawMaterials": [
+      { "title": "Bakery Oven (Deck Oven)", "price": 100000 },
+      { "title": "Dough Mixer (Spiral Mixer)", "price": 70000 },
+      { "title": "Work Tables, Racks, and Molds", "price": 40000 },
+      { "title": "Initial Raw Materials (Flour, yeast, sugar, etc.)", "price": 30000 },
+      { "title": "Workspace Rental & FSSAI License", "price": 40000 },
+      { "title": "Delivery Vehicle (Down payment for a small van/rickshaw)", "price": 20000 }
+    ]
+  },
+  {
+    "businessName": "Tea Stall",
+    "description": "A classic and highly viable small business in India. A modern tea stall can offer a variety of teas (like ginger, masala, lemon), coffee, and complementary snacks like biscuits, samosas, or puffs. Location is the most critical factor for success.\n\nTarget Customers\nOffice goers and employees in business areas.\nStudents near colleges.\nCommuters near transport hubs.\nGeneral public in markets and residential areas.\n\nKey Financial Metrics\nGross Profit Margin: 60-80% (Tea has very high margins).\nNet Profit Margin: 35-50%",
+    "budget_range": "50000 - 100000",
+    "category_name": "Food & Beverage",
+    "rawMaterials": [
+      { "title": "Kiosk/Cart & Basic Setup", "price": 35000 },
+      { "title": "Equipment (Gas stove, utensils, storage containers)", "price": 15000 },
+      { "title": "Initial Inventory (Tea, sugar, milk, spices, snacks, cups)", "price": 15000 },
+      { "title": "Licenses & Permits (Local municipal, FSSAI)", "price": 10000 },
+      { "title": "Working Capital & Miscellaneous", "price": 25000 }
+    ]
+  }
+]

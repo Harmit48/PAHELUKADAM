@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.pahelukadam.pahelukadam.ui.HubActivity
+import com.pahelukadam.pahelukadam.utils.FirestoreSeeder   // ✅ Added Seeder import
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // ✅ Theme preference
         val prefs = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
         val theme = prefs.getString("theme", "light")
         when (theme) {
@@ -34,6 +36,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         auth = Firebase.auth
+
+        // ✅ First-time Firestore seeding
+        FirestoreSeeder.seedDatabase(this)
 
         // ✅ Auto login check
         if (auth.currentUser != null) {
