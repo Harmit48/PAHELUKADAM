@@ -91,7 +91,12 @@ class HomeHubFragment : Fragment() {
         })
 
         // ✅ Start Now button (UI placeholder)
-        binding.btnStartNow.setOnClickListener { }
+        binding.btnStartNow.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainer, FindIdeaFragment())
+                .addToBackStack(null)
+                .commit()
+        }
 
         // ✅ Featured image
         Glide.with(this).load(R.drawable.sample_raw_material).into(binding.featuredImage)

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@android:color/white"
+    tools:context=".ui.home.FindIdeaFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="24dp"
+        android:paddingBottom="32dp">
+
+        <!-- Top brand/logo (replace with your actual logo) -->
+        <ImageView
+            android:id="@+id/ivLogo"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:contentDescription="@string/app_name"
+            android:scaleType="fitStart"
+            android:src="@drawable/logotext"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Find The Best Idea"
+            android:textColor="#143D80"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <!-- Spacer -->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="120dp" />
+
+        <!-- Select Budget (Outlined + Exposed Dropdown) -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilBudget"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            app:boxCornerRadiusTopStart="28dp"
+            app:boxCornerRadiusTopEnd="28dp"
+            app:boxCornerRadiusBottomStart="28dp"
+            app:boxCornerRadiusBottomEnd="28dp"
+            app:boxStrokeColor="#17386E"
+            app:endIconMode="dropdown_menu"
+            app:endIconDrawable="@drawable/ic_arrow_drop_down">
+
+            <AutoCompleteTextView
+                android:id="@+id/acBudget"
+                style="@style/Widget.MaterialComponents.AutoCompleteTextView.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:hint="Select Budget"
+                android:paddingStart="20dp"
+                android:textColor="#17386E"
+                android:textSize="18sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Select Category (Outlined + Exposed Dropdown) -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilCategory"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="28dp"
+            app:boxCornerRadiusTopStart="28dp"
+            app:boxCornerRadiusTopEnd="28dp"
+            app:boxCornerRadiusBottomStart="28dp"
+            app:boxCornerRadiusBottomEnd="28dp"
+            app:boxStrokeColor="#17386E"
+            app:endIconMode="dropdown_menu"
+            app:endIconDrawable="@drawable/ic_arrow_drop_down">
+
+            <AutoCompleteTextView
+                android:id="@+id/acCategory"
+                style="@style/Widget.MaterialComponents.AutoCompleteTextView.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:hint="Select Category"
+                android:paddingStart="20dp"
+                android:textColor="#17386E"
+                android:textSize="18sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Show Idea Button (Material) -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnShowIdea"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Show Idea"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            app:cornerRadius="28dp"
+            app:backgroundTint="#17386E"
+            android:textColor="@android:color/white" />
+
+        <!-- (Optional) space for bottom nav area shown in your mock -->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="160dp" />
+
+    </LinearLayout>
+</ScrollView>

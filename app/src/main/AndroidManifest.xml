@@ -12,6 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PAHELUKADAM">
         <activity
+            android:name=".ui.home.SelectIdeaFragment"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.IdeaAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.FindIdeaFragment"
+            android:exported="false" />
+        <activity
             android:name=".ui.home.BusinessDetailsActivity"
             android:exported="false" />
         <activity
