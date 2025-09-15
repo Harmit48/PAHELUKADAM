@@ -1,6 +1,6 @@
 [versions]
 #region Plugin Versions
-agp = "8.12.2" # Updated to a plausible stable version for mid-2025
+agp = "8.12.3" # Updated to a plausible stable version for mid-2025
 kotlin = "1.9.23" # Updated to a plausible stable version for mid-2025
 googleServices = "4.4.3"
 #endregion

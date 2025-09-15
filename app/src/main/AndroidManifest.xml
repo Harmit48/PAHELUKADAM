@@ -15,6 +15,9 @@
             android:name=".ui.home.SelectIdeaFragment"
             android:exported="false" />
         <activity
+            android:name=".model.selectIdea"
+            android:exported="false" />
+        <activity
             android:name=".ui.home.IdeaAdapter"
             android:exported="false" />
         <activity

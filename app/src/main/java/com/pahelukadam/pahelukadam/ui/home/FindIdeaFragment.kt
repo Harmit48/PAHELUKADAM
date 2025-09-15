@@ -37,8 +37,20 @@ class FindIdeaFragment : Fragment(R.layout.fragment_findidea) {
             "Logistics & Storage"
         )
 
-        acBudget.setAdapter(ArrayAdapter(requireContext(), R.layout.simple_list_item_dropdown, budgets))
-        acCategory.setAdapter(ArrayAdapter(requireContext(), R.layout.simple_list_item_dropdown, categories))
+        acBudget.setAdapter(
+            ArrayAdapter(
+                requireContext(),
+                R.layout.simple_list_item_dropdown,
+                budgets
+            )
+        )
+        acCategory.setAdapter(
+            ArrayAdapter(
+                requireContext(),
+                R.layout.simple_list_item_dropdown,
+                categories
+            )
+        )
 
         acBudget.setOnClickListener { acBudget.showDropDown() }
         acCategory.setOnClickListener { acCategory.showDropDown() }
@@ -47,9 +59,14 @@ class FindIdeaFragment : Fragment(R.layout.fragment_findidea) {
             val b = acBudget.text.toString()
             val c = acCategory.text.toString()
             if (b.isBlank() || c.isBlank()) {
-                Toast.makeText(requireContext(), "Please select Budget and Category", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    "Please select Budget and Category",
+                    Toast.LENGTH_SHORT
+                ).show()
             } else {
-                Toast.makeText(requireContext(), "Budget: $b\nCategory: $c", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Budget: $b\nCategory: $c", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
     }
