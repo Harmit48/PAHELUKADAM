@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.button.MaterialButton
 import com.pahelukadam.pahelukadam.R
+import com.pahelukadam.pahelukadam.ui.home.BestIdeaFragment
 
 class FindIdeaFragment : Fragment(R.layout.fragment_findidea) {
 
@@ -37,36 +38,32 @@ class FindIdeaFragment : Fragment(R.layout.fragment_findidea) {
             "Logistics & Storage"
         )
 
-        acBudget.setAdapter(
-            ArrayAdapter(
-                requireContext(),
-                R.layout.simple_list_item_dropdown,
-                budgets
-            )
-        )
-        acCategory.setAdapter(
-            ArrayAdapter(
-                requireContext(),
-                R.layout.simple_list_item_dropdown,
-                categories
-            )
-        )
+        // Dropdown setup
+        acBudget.setAdapter(ArrayAdapter(requireContext(), R.layout.simple_list_item_dropdown, budgets))
+        acCategory.setAdapter(ArrayAdapter(requireContext(), R.layout.simple_list_item_dropdown, categories))
 
         acBudget.setOnClickListener { acBudget.showDropDown() }
         acCategory.setOnClickListener { acCategory.showDropDown() }
 
         btnShow.setOnClickListener {
-            val b = acBudget.text.toString()
-            val c = acCategory.text.toString()
-            if (b.isBlank() || c.isBlank()) {
-                Toast.makeText(
-                    requireContext(),
-                    "Please select Budget and Category",
-                    Toast.LENGTH_SHORT
-                ).show()
+            val selectedBudget = acBudget.text.toString()
+            val selectedCategory = acCategory.text.toString()
+
+            if (selectedBudget.isEmpty() || selectedCategory.isEmpty()) {
+                Toast.makeText(requireContext(), "Please select both Budget and Category", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(requireContext(), "Budget: $b\nCategory: $c", Toast.LENGTH_SHORT)
-                    .show()
+                // ✅ Navigate to BestIdeaFragment using your existing container
+                val fragment = BestIdeaFragment()
+
+                val args = Bundle()
+                args.putString("budget", selectedBudget)
+                args.putString("category", selectedCategory)
+                fragment.arguments = args
+
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.fragmentContainer, fragment) // 👈 use the same container as HomeHubFragment
+                    .addToBackStack(null)
+                    .commit()
             }
         }
     }

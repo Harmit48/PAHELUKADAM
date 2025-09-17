@@ -11,18 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PAHELUKADAM">
-        <activity
-            android:name=".ui.home.SelectIdeaFragment"
-            android:exported="false" />
-        <activity
-            android:name=".model.selectIdea"
-            android:exported="false" />
-        <activity
-            android:name=".ui.home.IdeaAdapter"
-            android:exported="false" />
-        <activity
-            android:name=".ui.home.FindIdeaFragment"
-            android:exported="false" />
+
+        <!-- ✅ Only declare actual activities here -->
         <activity
             android:name=".ui.home.BusinessDetailsActivity"
             android:exported="false" />
@@ -37,15 +27,6 @@
             android:exported="false" />
         <activity
             android:name=".admin.Adminsigninpage"
-            android:exported="false" />
-        <activity
-            android:name=".adapter.AdminBusinessAdapter"
-            android:exported="false" />
-        <activity
-            android:name=".admin.AdminFragment"
-            android:exported="false" />
-        <activity
-            android:name=".model.BusinessIdea"
             android:exported="false" />
         <activity
             android:name=".ui.account.AddMobileActivity"
@@ -65,7 +46,6 @@
             android:theme="@style/Theme.PAHELUKADAM.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
