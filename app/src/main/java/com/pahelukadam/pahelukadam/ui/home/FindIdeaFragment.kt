@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.button.MaterialButton
 import com.pahelukadam.pahelukadam.R
-import com.pahelukadam.pahelukadam.ui.home.BestIdeaFragment
 
 class FindIdeaFragment : Fragment(R.layout.fragment_findidea) {
 
@@ -28,14 +27,19 @@ class FindIdeaFragment : Fragment(R.layout.fragment_findidea) {
             "₹7,00,000 - ₹10,00,000"
         )
 
+        // Make sure these category names exactly match the ones in your Firestore database
         val categories = listOf(
-            "Services",
+            "Healthcare & Wellness",
             "Manufacturing",
             "Retail",
             "Food & Beverage",
             "Education",
             "Manufacturing (Food)",
-            "Logistics & Storage"
+            "Logistics & Storage",
+            "Digital Marketing Agency",
+            "Agriculture & Farming",
+            "Services"
+            // Add any other categories you have
         )
 
         // Dropdown setup
@@ -52,16 +56,21 @@ class FindIdeaFragment : Fragment(R.layout.fragment_findidea) {
             if (selectedBudget.isEmpty() || selectedCategory.isEmpty()) {
                 Toast.makeText(requireContext(), "Please select both Budget and Category", Toast.LENGTH_SHORT).show()
             } else {
-                // ✅ Navigate to BestIdeaFragment using your existing container
-                val fragment = BestIdeaFragment()
+                // ✅ **FIX APPLIED HERE**
+                // We remove the overly aggressive .replace(" ", "") to keep the spaces around the hyphen,
+                // so it matches the format saved by your admin panel (e.g., "700000 - 1000000").
+                val formattedBudget = selectedBudget
+                    .replace("₹", "")
+                    .replace(",", "")
 
+                val fragment = BestIdeaFragment()
                 val args = Bundle()
-                args.putString("budget", selectedBudget)
+                args.putString("budget", formattedBudget) // Pass the correctly formatted string
                 args.putString("category", selectedCategory)
                 fragment.arguments = args
 
                 parentFragmentManager.beginTransaction()
-                    .replace(R.id.fragmentContainer, fragment) // 👈 use the same container as HomeHubFragment
+                    .replace(R.id.fragmentContainer, fragment)
                     .addToBackStack(null)
                     .commit()
             }
