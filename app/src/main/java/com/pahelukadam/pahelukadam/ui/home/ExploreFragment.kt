@@ -73,8 +73,8 @@ class ExploreFragment : Fragment() {
                 binding.progressBar.visibility = View.GONE
 
                 // Log the error and show a message to the user
-                Log.e("ExploreFragment", "Error getting documents: ", exception)
-                Toast.makeText(context, "Error fetching ideas.", Toast.LENGTH_SHORT).show()
+               // Log.e("ExploreFragment", "Error getting documents: ", exception)
+               // Toast.makeText(context, "Error fetching ideas.", Toast.LENGTH_SHORT).show()
             }
     }
 

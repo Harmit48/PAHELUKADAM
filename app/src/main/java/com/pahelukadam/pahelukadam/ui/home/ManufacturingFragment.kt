@@ -59,8 +59,8 @@ class ManufacturingFragment : Fragment() {
             }
             .addOnFailureListener { exception ->
                 binding.progressBar.visibility = View.GONE
-                Log.e("ManufacturingFragment", "Error getting documents: ", exception)
-                Toast.makeText(context, "Error fetching ideas.", Toast.LENGTH_SHORT).show()
+               // Log.e("ManufacturingFragment", "Error getting documents: ", exception)
+              //  Toast.makeText(context, "Error fetching ideas.", Toast.LENGTH_SHORT).show()
             }
     }
 

@@ -68,7 +68,7 @@ class Adminsigninpage : AppCompatActivity() {
                             .get()
                             .addOnSuccessListener { documents ->
                                 if (!documents.isEmpty) {
-                                    Toast.makeText(this, "Admin Sign-In Successful!", Toast.LENGTH_SHORT).show()
+                                  //  Toast.makeText(this, "Admin Sign-In Successful!", Toast.LENGTH_SHORT).show()
                                     val intent = Intent(this, AdminActivity::class.java)
                                     startActivity(intent)
                                     finish()

@@ -30,7 +30,7 @@ class AdminDashboardActivity : AppCompatActivity() {
 
         // FAB click action
         fabAdd.setOnClickListener {
-            Toast.makeText(this, "Add Business clicked!", Toast.LENGTH_SHORT).show()
+           // Toast.makeText(this, "Add Business clicked!", Toast.LENGTH_SHORT).show()
 
             // Example: Open new activity
             // val intent = Intent(this, AddBusinessActivity::class.java)

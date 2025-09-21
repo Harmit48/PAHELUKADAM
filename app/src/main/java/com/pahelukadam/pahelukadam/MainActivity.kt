@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.util.Patterns
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.google.android.material.textfield.TextInputEditText
@@ -75,28 +74,28 @@ class MainActivity : AppCompatActivity() {
             val password = passwordField.text.toString().trim()
 
             if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                Toast.makeText(this, "Enter a valid email", Toast.LENGTH_SHORT).show()
+                // Toast.makeText(this, "Enter a valid email", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             if (password.isEmpty()) {
-                Toast.makeText(this, "Enter password", Toast.LENGTH_SHORT).show()
+                // Toast.makeText(this, "Enter password", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-                        Toast.makeText(this, "Sign In Successful!", Toast.LENGTH_SHORT).show()
+                        // Toast.makeText(this, "Sign In Successful!", Toast.LENGTH_SHORT).show()
                         val intent = Intent(this, HubActivity::class.java)
                         startActivity(intent)
                         finish()
                     } else {
-                        Toast.makeText(
-                            baseContext,
-                            "Authentication failed: ${task.exception?.message}",
-                            Toast.LENGTH_LONG
-                        ).show()
+                        // Toast.makeText(
+                        //     baseContext,
+                        //     "Authentication failed: ${task.exception?.message}",
+                        //     Toast.LENGTH_LONG
+                        // ).show()
                     }
                 }
         }

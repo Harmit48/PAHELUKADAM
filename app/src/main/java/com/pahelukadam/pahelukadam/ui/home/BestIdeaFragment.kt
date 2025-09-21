@@ -68,7 +68,7 @@ class BestIdeaFragment : Fragment(R.layout.fragment_best_idea) {
             .addOnFailureListener { exception ->
                 // progressBar.visibility = View.GONE // Hide loading indicator
                 Log.w("BestIdeaFragment", "Error getting documents: ", exception)
-                Toast.makeText(requireContext(), "Failed to load ideas. Please try again.", Toast.LENGTH_SHORT).show()
+              //  Toast.makeText(requireContext(), "Failed to load ideas. Please try again.", Toast.LENGTH_SHORT).show()
             }
     }
 }

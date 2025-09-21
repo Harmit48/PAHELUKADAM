@@ -79,11 +79,11 @@ class AddIdeaActivity : AppCompatActivity() {
         firestore.collection("business_ideas")
             .add(ideaData)
             .addOnSuccessListener {
-                Toast.makeText(this, "Idea saved successfully", Toast.LENGTH_SHORT).show()
+              //  Toast.makeText(this, "Idea saved successfully", Toast.LENGTH_SHORT).show()
                 finish() // ✅ closes and Home auto-refreshes
             }
             .addOnFailureListener { e ->
-                Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+              //  Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
             }
     }
 }

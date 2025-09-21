@@ -2,7 +2,7 @@ package com.pahelukadam.pahelukadam.utils
 
 import android.content.Context
 import android.util.Log
-import android.widget.Toast
+// import android.widget.Toast   // ⛔ Removed unused import
 import com.google.firebase.firestore.FirebaseFirestore
 import com.pahelukadam.pahelukadam.data.InitialBusinessData
 
@@ -36,15 +36,15 @@ object FirestoreSeeder {
                     }
                 }
 
-                Toast.makeText(
-                    context,
-                    "Seeding complete. Added $addedCount new ideas.",
-                    Toast.LENGTH_LONG
-                ).show()
+                // Toast.makeText(
+                //     context,
+                //     "Seeding complete. Added $addedCount new ideas.",
+                //     Toast.LENGTH_LONG
+                // ).show()
             }
             .addOnFailureListener { e ->
                 Log.e("FirestoreSeeder", "Error reading collection", e)
-                Toast.makeText(context, "Firestore error: ${e.message}", Toast.LENGTH_LONG).show()
+                // Toast.makeText(context, "Firestore error: ${e.message}", Toast.LENGTH_LONG).show()
             }
     }
 }
