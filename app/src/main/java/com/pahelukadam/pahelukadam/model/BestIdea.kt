@@ -1,7 +1,8 @@
 package com.pahelukadam.pahelukadam.model
 
-// Add a no-argument constructor for Firestore deserialization
+// Firestore needs default values
 data class BestIdea(
+    var id: String = "",              // ✅ Firestore document ID
     val businessName: String = "",
     val category_name: String = "",
     val budget_range: String = ""

@@ -305,6 +305,105 @@ object InitialBusinessData {
                 mapOf("title" to "Licenses & BIS Certification (Mandatory)", "price" to 100000),
                 mapOf("title" to "Working Capital", "price" to 50000)
             )
+        ),
+        // 1. Mobile Health Checkup Service
+        Adminbusinessidea(
+            businessName = "Mobile Health Checkup Service",
+            description = "A service where you visit homes, housing societies, or corporate offices to perform basic health screenings like blood pressure, blood sugar levels, BMI, and cholesterol checks. This is a convenience-focused service for people who are too busy or unable to visit a clinic.\n\nTarget Customers\n- Elderly individuals living alone.\n- Busy working professionals.\n- Corporate offices for employee wellness programs.\n\nKey Financial Metrics\n- Gross Profit Margin: 80-90% (service-based).\n- Net Profit Margin: 60-70%",
+            budget_range = "50000 - 100000",
+            category_name = "Healthcare & Wellness",
+            rawMaterials = listOf(
+                mapOf("title" to "Laptop/Tablet for record-keeping", "price" to 30000),
+                mapOf("title" to "Digital BP Monitor, Glucometer, Thermometer", "price" to 10000),
+                mapOf("title" to "Portable ECG & Cholesterol Meter", "price" to 20000),
+                mapOf("title" to "Marketing (pamphlets, online ads)", "price" to 15000),
+                mapOf("title" to "Medical Supplies (strips, cotton, sanitisers)", "price" to 10000)
+            )
+        ),
+
+// 2. At-Home Yoga & Meditation Instructor
+        Adminbusinessidea(
+            businessName = "At-Home Yoga & Meditation Instructor",
+            description = "Offer personalized or small-group yoga, meditation, and mindfulness sessions at clients' homes, local parks, or online. This business focuses on providing tailored wellness plans to help clients with stress, flexibility, and overall mental peace.\n\nTarget Customers\n- Individuals seeking stress relief.\n- Fitness enthusiasts.\n- Corporate employees.\n- Residents in apartment complexes.\n\nKey Financial Metrics\n- Gross Profit Margin: 90-95% (service-based).\n- Net Profit Margin: 75-85%",
+            budget_range = "50000 - 100000",
+            category_name = "Healthcare & Wellness",
+            rawMaterials = listOf(
+                mapOf("title" to "Professional Yoga Certification/Training", "price" to 25000),
+                mapOf("title" to "High-Quality Yoga Mats & Props (blocks, straps)", "price" to 15000),
+                mapOf("title" to "Laptop & Good Webcam for online classes", "price" to 25000),
+                mapOf("title" to "Website & Social Media Marketing", "price" to 5000)
+            )
+        ),
+
+// 3. Healthy Tiffin & Meal Prep Service
+        Adminbusinessidea(
+            businessName = "Healthy Tiffin & Meal Prep Service",
+            description = "A home-based kitchen that prepares and delivers nutritious, calorie-counted, and diet-specific meals (like keto, high-protein, or diabetic-friendly) to customers on a subscription basis.\n\nTarget Customers\n- Office employees and students.\n- Gym-goers and fitness enthusiasts.\n- People with specific dietary needs.\n\nKey Financial Metrics\n- Gross Profit Margin: 40-50%\n- Net Profit Margin: 20-25%",
+            budget_range = "50000 - 100000",
+            category_name = "Healthcare & Wellness",
+            rawMaterials = listOf(
+                mapOf("title" to "FSSAI License & Registration", "price" to 5000),
+                mapOf("title" to "Initial Raw Materials (specialty grains, fresh produce)", "price" to 35000),
+                mapOf("title" to "High-Quality Packaging Supplies (containers, bags)", "price" to 20000),
+                mapOf("title" to "Kitchen Equipment Upgrades", "price" to 15000),
+                mapOf("title" to "Local Marketing & Online Platform Listings", "price" to 20000)
+            )
+        ),
+
+// 4. Custom First-Aid Kit Supplier
+        Adminbusinessidea(
+            businessName = "Custom First-Aid Kit Supplier",
+            description = "Assemble and sell specialized first-aid kits tailored for different needs like for home, car, trekking, office, or for families with babies. You can sell these kits online or supply them to local businesses.\n\nTarget Customers\n- Households and car owners.\n- Corporate offices and factories.\n- Schools and adventure/travel groups.\n\nKey Financial Metrics\n- Gross Profit Margin: 35-50%\n- Net Profit Margin: 20-30%",
+            budget_range = "50000 - 100000",
+            category_name = "Healthcare & Wellness",
+            rawMaterials = listOf(
+                mapOf("title" to "Bulk Inventory of Medical Supplies", "price" to 60000),
+                mapOf("title" to "Customized Bags/Boxes & Branding", "price" to 20000),
+                mapOf("title" to "Website with E-commerce functionality", "price" to 15000),
+                mapOf("title" to "Digital Marketing", "price" to 5000)
+            )
+        ),
+
+// 5. Herbal & Wellness Tea Blending
+        Adminbusinessidea(
+            businessName = "Herbal & Wellness Tea Blending",
+            description = "Create unique blends of herbal teas using locally sourced, organic ingredients aimed at specific wellness goals like 'Sleep Well,' 'Immunity Booster,' or 'Stress Relief.' The business involves blending, packaging, and selling online or through local wellness stores.\n\nTarget Customers\n- Health-conscious consumers.\n- Yoga studios and wellness centers.\n- Local cafes and gift shops.\n\nKey Financial Metrics\n- Gross Profit Margin: 50-70%\n- Net Profit Margin: 30-40%",
+            budget_range = "50000 - 100000",
+            category_name = "Healthcare & Wellness",
+            rawMaterials = listOf(
+                mapOf("title" to "Initial Stock of Raw Herbs & Teas", "price" to 40000),
+                mapOf("title" to "Food-grade Packaging & Labeling", "price" to 20000),
+                mapOf("title" to "FSSAI License & Lab Testing", "price" to 10000),
+                mapOf("title" to "Blenders, Sealers & Weighing Scale", "price" to 10000),
+                mapOf("title" to "Online Store Setup & Marketing", "price" to 10000)
+            )
+        ),
+// 6. At-Home Physiotherapy Assistance
+        Adminbusinessidea(
+            businessName = "At-Home Physiotherapy Assistance",
+            description = "Provide non-medical assistance to individuals undergoing physiotherapy. This involves helping patients with their prescribed exercises, providing mobility support, and ensuring they follow their recovery plan at home.\n\nTarget Customers\n- Post-surgery or injury-recovery patients.\n- Elderly individuals with mobility issues.\n- Families needing support for a recovering member.\n\nKey Financial Metrics\n- Gross Profit Margin: 85-95%\n- Net Profit Margin: 70-80%",
+            budget_range = "50000 - 100000",
+            category_name = "Healthcare & Wellness",
+            rawMaterials = listOf(
+                mapOf("title" to "Certification in Physiotherapy Assistance", "price" to 20000),
+                mapOf("title" to "Basic Equipment (resistance bands, exercise balls)", "price" to 15000),
+                mapOf("title" to "Laptop for scheduling & client management", "price" to 25000),
+                mapOf("title" to "Marketing to local clinics & hospitals", "price" to 5000)
+            )
+        ),
+
+// 7. Digital Diet & Nutrition Consulting
+        Adminbusinessidea(
+            businessName = "Digital Diet & Nutrition Consulting",
+            description = "An online service where you provide personalized diet plans, nutrition advice, and regular follow-ups through video calls and chat. This model has low overheads as it's fully remote.\n\nTarget Customers\n- Individuals seeking weight loss/gain.\n- People with lifestyle diseases like diabetes.\n- Anyone looking to improve their eating habits.\n\nKey Financial Metrics\n- Gross Profit Margin: 95%+\n- Net Profit Margin: 80-90%",
+            budget_range = "50000 - 100000",
+            category_name = "Healthcare & Wellness",
+            rawMaterials = listOf(
+                mapOf("title" to "Nutritionist Certification/Course", "price" to 30000),
+                mapOf("title" to "Laptop & High-Speed Internet Setup", "price" to 35000),
+                mapOf("title" to "Website & Appointment Booking Software", "price" to 10000),
+                mapOf("title" to "Social Media Marketing", "price" to 5000)
+            )
         )
     )
 

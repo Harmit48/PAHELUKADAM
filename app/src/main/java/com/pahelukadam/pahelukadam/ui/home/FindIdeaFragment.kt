@@ -11,52 +11,44 @@ import com.pahelukadam.pahelukadam.R
 
 class FindIdeaFragment : Fragment(R.layout.fragment_findidea) {
 
-    private lateinit var acBudget: AutoCompleteTextView
-    private lateinit var acCategory: AutoCompleteTextView
-    private lateinit var btnShow: MaterialButton
-
-    private val budgets = listOf(
-        "₹50,000 - ₹1,00,000",
-        "₹1,00,000 - ₹2,00,000",
-        "₹2,00,000 - ₹3,00,000",
-        "₹3,00,000 - ₹5,00,000",
-        "₹5,00,000 - ₹7,00,000",
-        "₹7,00,000 - ₹10,00,000"
-    )
-
-    private val categories = listOf(
-        "Healthcare & Wellness",
-        "Manufacturing",
-        "Retail",
-        "Food & Beverage",
-        "Education",
-        "Manufacturing (Food)",
-        "Logistics & Storage",
-        "Digital Marketing Agency",
-        "Agriculture & Farming",
-        "Services"
-    )
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        acBudget = view.findViewById(R.id.acBudget)
-        acCategory = view.findViewById(R.id.acCategory)
-        btnShow = view.findViewById(R.id.btnShowIdea)
+        val acBudget = view.findViewById<AutoCompleteTextView>(R.id.acBudget)
+        val acCategory = view.findViewById<AutoCompleteTextView>(R.id.acCategory)
+        val btnShow = view.findViewById<MaterialButton>(R.id.btnShowIdea)
 
-        setupDropdowns()
-        setupButtonClick()
-    }
+        val budgets = listOf(
+            "₹50,000 - ₹1,00,000",
+            "₹1,00,000 - ₹2,00,000",
+            "₹2,00,000 - ₹3,00,000",
+            "₹3,00,000 - ₹5,00,000",
+            "₹5,00,000 - ₹7,00,000",
+            "₹7,00,000 - ₹10,00,000"
+        )
 
-    private fun setupDropdowns() {
+        // Make sure these category names exactly match the ones in your Firestore database
+        val categories = listOf(
+            "Healthcare & Wellness",
+            "Manufacturing",
+            "Retail",
+            "Food & Beverage",
+            "Education",
+            "Manufacturing (Food)",
+            "Logistics & Storage",
+            "Digital Marketing Agency",
+            "Agriculture & Farming",
+            "Services"
+            // Add any other categories you have
+        )
+
+        // Dropdown setup
         acBudget.setAdapter(ArrayAdapter(requireContext(), R.layout.simple_list_item_dropdown, budgets))
         acCategory.setAdapter(ArrayAdapter(requireContext(), R.layout.simple_list_item_dropdown, categories))
 
         acBudget.setOnClickListener { acBudget.showDropDown() }
         acCategory.setOnClickListener { acCategory.showDropDown() }
-    }
 
-    private fun setupButtonClick() {
         btnShow.setOnClickListener {
             val selectedBudget = acBudget.text.toString()
             val selectedCategory = acCategory.text.toString()
@@ -64,13 +56,16 @@ class FindIdeaFragment : Fragment(R.layout.fragment_findidea) {
             if (selectedBudget.isEmpty() || selectedCategory.isEmpty()) {
                 Toast.makeText(requireContext(), "Please select both Budget and Category", Toast.LENGTH_SHORT).show()
             } else {
+                // ✅ **FIX APPLIED HERE**
+                // We remove the overly aggressive .replace(" ", "") to keep the spaces around the hyphen,
+                // so it matches the format saved by your admin panel (e.g., "700000 - 1000000").
                 val formattedBudget = selectedBudget
                     .replace("₹", "")
                     .replace(",", "")
 
                 val fragment = BestIdeaFragment()
                 val args = Bundle()
-                args.putString("budget", formattedBudget)
+                args.putString("budget", formattedBudget) // Pass the correctly formatted string
                 args.putString("category", selectedCategory)
                 fragment.arguments = args
 
@@ -80,12 +75,5 @@ class FindIdeaFragment : Fragment(R.layout.fragment_findidea) {
                     .commit()
             }
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        // Clear selections whenever the fragment comes back into view
-        acBudget.text.clear()
-        acCategory.text.clear()
     }
 }
