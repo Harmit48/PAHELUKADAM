@@ -2,6 +2,8 @@ package com.pahelukadam.pahelukadam.ui.account
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -20,12 +22,30 @@ class AccountFragment : Fragment() {
     private var _binding: FragmentAccountBinding? = null
     private val binding get() = _binding!!
 
+    // Counter for logo clicks
+    private var logoClickCount = 0
+    private val clickResetHandler = Handler(Looper.getMainLooper())
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentAccountBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        // ✅ Secret Feature: Triple Click Logo -> Adminsigninpage
+        binding.root.findViewById<View>(com.pahelukadam.pahelukadam.R.id.logo)?.setOnClickListener {
+            logoClickCount++
+            clickResetHandler.removeCallbacksAndMessages(null) // reset timer
+
+            if (logoClickCount == 3) {
+                logoClickCount = 0 // reset count
+                startActivity(Intent(requireContext(), Adminsigninpage::class.java))
+            } else {
+                // reset counter if no click within 1.5 seconds
+                clickResetHandler.postDelayed({ logoClickCount = 0 }, 1500)
+            }
+        }
 
         // Edit Profile button
         binding.btnEditProfile.setOnClickListener {
@@ -37,23 +57,12 @@ class AccountFragment : Fragment() {
             startActivity(Intent(requireContext(), AddMobileActivity::class.java))
         }
 
-        // Save button
-        binding.btnSave.setOnClickListener {
-            Toast.makeText(requireContext(), "Account details saved!", Toast.LENGTH_SHORT).show()
-            // TODO: Add your save logic here (e.g., update Firestore or SharedPreferences)
-        }
-
         // Sign Out button
         binding.btnSignOut.setOnClickListener {
             Firebase.auth.signOut()
             val intent = Intent(requireContext(), MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
-        }
-
-        // Admin button
-        binding.AdminBtn.setOnClickListener {
-            startActivity(Intent(requireContext(), Adminsigninpage::class.java))
         }
 
         return view

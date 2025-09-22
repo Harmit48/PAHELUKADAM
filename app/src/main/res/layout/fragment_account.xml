@@ -14,6 +14,7 @@
 
         <!-- Logo -->
         <ImageView
+            android:id="@+id/logo"
             android:layout_width="200dp"
             android:layout_height="60dp"
             android:layout_marginBottom="20dp"
@@ -21,6 +22,7 @@
             android:contentDescription="Logo"
             android:layout_gravity="left"
             android:src="@drawable/logotext" />
+
 
         <!-- Profile Icon -->
         <ImageView
@@ -135,7 +137,7 @@
             android:textColor="@android:color/holo_red_dark"
             android:layout_marginTop="30dp" />
 
-        <Button
+    <!--    <Button
             android:id="@+id/AdminBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -148,7 +150,7 @@
             android:text="Admin"
             android:textColor="#000000"
             android:textSize="15sp"
-            android:textStyle="bold" />
+            android:textStyle="bold" /> -->
 
     </LinearLayout>
 </ScrollView>
