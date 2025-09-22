@@ -24,28 +24,28 @@
             android:src="@drawable/logotext" />
 
         <!-- Search -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:startIconDrawable="@drawable/ic_search_24"
-            app:startIconTint="@android:color/black"
-            app:boxStrokeColor="@android:color/black"
-            app:boxCornerRadiusTopStart="12dp"
-            app:boxCornerRadiusTopEnd="12dp"
-            app:boxCornerRadiusBottomStart="12dp"
-            app:boxCornerRadiusBottomEnd="12dp"
-            app:hintEnabled="false">
+        <!--   <com.google.android.material.textfield.TextInputLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+               app:startIconDrawable="@drawable/ic_search_24"
+               app:startIconTint="@android:color/black"
+               app:boxStrokeColor="@android:color/black"
+               app:boxCornerRadiusTopStart="12dp"
+               app:boxCornerRadiusTopEnd="12dp"
+               app:boxCornerRadiusBottomStart="12dp"
+               app:boxCornerRadiusBottomEnd="12dp"
+               app:hintEnabled="false">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/searchEdit"
-                android:layout_width="match_parent"
-                android:layout_height="53dp"
-                android:hint="Search business ideas, categories..."
-                android:textColor="@android:color/black"
-                android:textColorHint="@android:color/black"
-                android:inputType="text" />
-        </com.google.android.material.textfield.TextInputLayout>
+               <com.google.android.material.textfield.TextInputEditText
+                   android:id="@+id/searchEdit"
+                   android:layout_width="match_parent"
+                   android:layout_height="53dp"
+                   android:hint="Search business ideas, categories..."
+                   android:textColor="@android:color/black"
+                   android:textColorHint="@android:color/black"
+                   android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout> -->
 
         <!-- Categories -->
         <LinearLayout

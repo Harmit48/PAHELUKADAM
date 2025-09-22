@@ -11,8 +11,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PAHELUKADAM">
-
-        <!-- ✅ Only declare actual activities here -->
+        <activity
+            android:name=".ui.home.FeaturedIdeaAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.FeaturedAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.FeaturedBusinessAdapter"
+            android:exported="false" /> <!-- ✅ Only declare actual activities here -->
         <activity
             android:name=".ui.home.BusinessDetailsActivity"
             android:exported="false" />
@@ -46,6 +53,7 @@
             android:theme="@style/Theme.PAHELUKADAM.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
