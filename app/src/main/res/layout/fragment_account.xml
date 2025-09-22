@@ -122,29 +122,7 @@
             android:background="@android:color/black"
             android:layout_marginBottom="12dp" />
 
-        <!-- Save Section -->
-        <LinearLayout
-            android:id="@+id/btnSave"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="12dp"
-            android:gravity="center_vertical">
 
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_save"
-                android:contentDescription="Save" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:textColor="@color/black"
-                android:text="Save\nSave The Business Idea"
-                android:textSize="14sp" />
-        </LinearLayout>
 
         <!-- Sign Out -->
         <TextView

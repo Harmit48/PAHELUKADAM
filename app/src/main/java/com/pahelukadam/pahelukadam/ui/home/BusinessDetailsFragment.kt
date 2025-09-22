@@ -57,8 +57,8 @@ class BusinessDetailsFragment : Fragment(R.layout.activity_business_details) {
 
                         val textView = TextView(requireContext()).apply {
                             text = "${index + 1}. $itemTitle\nPrice: ₹$itemPrice"
-                            setTextColor(resources.getColor(android.R.color.black))
-                            textSize = 16f
+                            setTextColor(resources.getColor(android.R.color.white))
+                            textSize = 20f
                             setPadding(8, 8, 8, 8)
                         }
                         layoutRawMaterials.addView(textView)

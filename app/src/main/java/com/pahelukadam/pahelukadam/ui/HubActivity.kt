@@ -10,43 +10,26 @@ import com.pahelukadam.pahelukadam.ui.account.AccountFragment
 
 class HubActivity : BaseScreen<ActivityHubBinding>() {
 
-    // ✅ Keep fragments as single instances
-    private val homeFragment = HomeHubFragment()
-    private val exploreFragment = ExploreFragment()
-    private val accountFragment = AccountFragment()
-
-    private var activeFragment: Fragment = homeFragment
-
     override fun inflateBinding() = ActivityHubBinding.inflate(layoutInflater)
 
     override fun onReady() {
-        // ✅ Add all fragments once and hide the inactive ones
-        supportFragmentManager.beginTransaction()
-            .add(R.id.fragmentContainer, accountFragment, "account").hide(accountFragment)
-            .add(R.id.fragmentContainer, exploreFragment, "explore").hide(exploreFragment)
-            .add(R.id.fragmentContainer, homeFragment, "home")
-            .commit()
+        // Set default fragment to Home
+        switchTo(HomeHubFragment(), "home")
 
-        activeFragment = homeFragment
-
+        // Handle bottom navigation item clicks
         binding.bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.nav_home -> switchTo(homeFragment)
-                R.id.nav_explore -> switchTo(exploreFragment)
-                R.id.nav_account -> switchTo(accountFragment)
+                R.id.nav_home -> switchTo(HomeHubFragment(), "home")
+                R.id.nav_explore -> switchTo(ExploreFragment(), "explore")
+                R.id.nav_account -> switchTo(AccountFragment(), "account")
             }
             true
         }
     }
 
-    private fun switchTo(fragment: Fragment) {
-        if (fragment == activeFragment) return // ✅ Avoid reloading same fragment
-
+    private fun switchTo(fragment: Fragment, tag: String) {
         supportFragmentManager.beginTransaction()
-            .hide(activeFragment)
-            .show(fragment)
+            .replace(R.id.fragmentContainer, fragment, tag)
             .commit()
-
-        activeFragment = fragment
     }
 }

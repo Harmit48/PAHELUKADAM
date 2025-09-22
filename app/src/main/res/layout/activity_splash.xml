@@ -9,11 +9,11 @@
         android:id="@+id/animatedText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Innovation"
-        android:textSize="28sp"
-        android:textStyle="bold"
+        android:layout_centerInParent="true"
         android:gravity="center"
+        android:text="Innovation"
         android:textColor="#FFFFFF"
-        android:layout_centerInParent="true" />
+        android:textSize="35sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

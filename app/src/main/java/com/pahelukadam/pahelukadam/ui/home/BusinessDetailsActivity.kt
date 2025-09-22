@@ -1,12 +1,12 @@
-package com.pahelukadam.pahelukadam.ui.home  // (your activity package)
+package com.pahelukadam.pahelukadam.ui.home
 
 import android.os.Bundle
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.google.firebase.firestore.FirebaseFirestore
-import com.pahelukadam.pahelukadam.R   // ✅ This is the correct R import
-
+import com.pahelukadam.pahelukadam.R
 
 class BusinessDetailsActivity : AppCompatActivity() {
 
@@ -21,13 +21,12 @@ class BusinessDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_business_details)
 
-        // ✅ Make sure we don't import android.R at the top
         tvBusinessName = findViewById(R.id.tvBusinessName)
         tvDescription = findViewById(R.id.tvDescription)
         tvBudget = findViewById(R.id.tvBudget)
         layoutRawMaterials = findViewById(R.id.layoutRawMaterials)
 
-        // Fetch data from Firestore using the fixed document ID
+        // Fetch data from Firestore using fixed document ID
         fetchBusinessDetails("OlHfU5XuqLAdIHi1eM0q")
     }
 
@@ -54,7 +53,7 @@ class BusinessDetailsActivity : AppCompatActivity() {
 
                         val textView = TextView(this).apply {
                             text = "${index + 1}. $itemTitle\nPrice: ₹$itemPrice"
-                            setTextColor(resources.getColor(android.R.color.white))
+                            setTextColor(ContextCompat.getColor(context, android.R.color.white)) // ✅ White text
                             textSize = 20f
                             setPadding(8, 8, 8, 8)
                         }

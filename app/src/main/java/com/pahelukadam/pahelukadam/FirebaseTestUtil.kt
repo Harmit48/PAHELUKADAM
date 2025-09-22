@@ -23,7 +23,7 @@ object FirebaseTestUtil {
 
             db.collection("status_logs").document("latest_connection").set(statusData)
                 .addOnSuccessListener {
-                    Toast.makeText(context, "Successfully wrote status to Firestore!", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(context, "Successfully wrote status to Firestore!", Toast.LENGTH_SHORT).show()
                 }
                 .addOnFailureListener { e ->
                     Toast.makeText(context, "Failed to write to Firestore: ${e.message}", Toast.LENGTH_LONG).show()
