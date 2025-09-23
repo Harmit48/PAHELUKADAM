@@ -1,245 +1,231 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:fillViewport="true"
     android:background="@color/app_bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:padding="16dp"
+    <!-- Fixed Logo Row (LEFT aligned) -->
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="30dp"
+        android:clickable="true"
+        android:contentDescription="@string/app_name"
+        android:focusable="true"
+        android:src="@drawable/logotext" />
+
+    <!-- Scrollable Content -->
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_below="@id/logo"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-        <!-- Logo row -->
-
-        <ImageView
-            android:id="@+id/logo"
-            android:layout_width="200dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="12dp"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/logotext" />
-
-        <!-- Search -->
-        <!--   <com.google.android.material.textfield.TextInputLayout
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-               app:startIconDrawable="@drawable/ic_search_24"
-               app:startIconTint="@android:color/black"
-               app:boxStrokeColor="@android:color/black"
-               app:boxCornerRadiusTopStart="12dp"
-               app:boxCornerRadiusTopEnd="12dp"
-               app:boxCornerRadiusBottomStart="12dp"
-               app:boxCornerRadiusBottomEnd="12dp"
-               app:hintEnabled="false">
-
-               <com.google.android.material.textfield.TextInputEditText
-                   android:id="@+id/searchEdit"
-                   android:layout_width="match_parent"
-                   android:layout_height="53dp"
-                   android:hint="Search business ideas, categories..."
-                   android:textColor="@android:color/black"
-                   android:textColorHint="@android:color/black"
-                   android:inputType="text" />
-        </com.google.android.material.textfield.TextInputLayout> -->
-
-        <!-- Categories -->
         <LinearLayout
-            android:layout_marginTop="16dp"
-            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardManufacturing"
-                style="@style/CategoryCard"
-                app:cardBackgroundColor="#153d82">
-
-                <LinearLayout style="@style/CategoryContent">
-
-                    <ImageView
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:layout_marginTop="-10dp"
-                        android:src="@drawable/ic_factory_24" />
-
-                    <TextView
-                        style="@style/CategoryLabel"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Manufacturing"
-                        android:layout_marginTop="10dp"
-                        android:textSize="12dp" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardFood"
-                style="@style/CategoryCard"
-                android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp"
-                app:cardBackgroundColor="#153d82">
-
-                <LinearLayout style="@style/CategoryContent">
-                    <ImageView
-                        android:src="@drawable/ic_food_24"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"/>
-
-                    <TextView
-                        style="@style/CategoryLabel"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Food &amp; Beverage"
-                        android:textSize="12dp" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardTech"
-                style="@style/CategoryCard"
-                app:cardBackgroundColor="#153d82">
-
-                <LinearLayout style="@style/CategoryContent">
-
-                    <ImageView
-                        android:layout_width="118dp"
-                        android:layout_height="81dp"
-                        android:layout_marginTop="-15dp"
-                        android:src="@drawable/ic_laptop_24" />
-
-                    <TextView
-                        style="@style/CategoryLabel"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="-4dp"
-                        android:text="Tech"
-                        android:textSize="12dp" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-        </LinearLayout>
-
-        <!-- Image Slider -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_marginTop="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="220dp"
-            app:cardCornerRadius="16dp"
-            app:cardBackgroundColor="#153d82">
-
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/imageSlider"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- Smart Suggestion -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_marginTop="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardBackgroundColor="#153d82"
-            app:cardCornerRadius="16dp">
-
+            <!-- Categories -->
             <LinearLayout
-                android:orientation="vertical"
-                android:padding="16dp"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView
-                    android:text="Smart Business Suggestion"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardManufacturing"
+                    style="@style/CategoryCard"
+                    app:cardBackgroundColor="#153d82">
 
-                <TextView
-                    android:text="Get business ideas based on your budget and category"
-                    android:textColor="@color/white_70"
-                    android:layout_marginTop="6dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    <LinearLayout style="@style/CategoryContent">
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnStartNow"
-                    android:layout_marginTop="12dp"
-                    android:text="Start Now"
-                    style="@style/Widget.MaterialComponents.Button"
-                    app:cornerRadius="12dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:backgroundTint="#ffffff"
-                    android:textColor="#153d82"/>
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginTop="-10dp"
+                            android:src="@drawable/ic_factory_24" />
 
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+                        <TextView
+                            style="@style/CategoryLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Manufacturing"
+                            android:layout_marginTop="10dp"
+                            android:textSize="12dp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
 
-        <!-- Featured -->
-        <TextView
-            android:layout_marginTop="18dp"
-            android:text="Featured Business Idea"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardFood"
+                    style="@style/CategoryCard"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
+                    app:cardBackgroundColor="#153d82">
 
-        <LinearLayout
-            android:layout_marginTop="4dp"
-            android:gravity="center_vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                    <LinearLayout style="@style/CategoryContent">
+                        <ImageView
+                            android:src="@drawable/ic_food_24"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"/>
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                        <TextView
+                            style="@style/CategoryLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Food &amp; Beverage"
+                            android:textSize="12dp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
 
-                <TextView
-                    android:text="Cloud Kitchen"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardTech"
+                    style="@style/CategoryCard"
+                    app:cardBackgroundColor="#153d82">
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnViewDetails"
-                    android:layout_width="wrap_content"
-                    android:layout_height="44dp"
-                    android:layout_marginTop="10dp"
-                    android:text="View Details"
-                    android:textColor="#153d82"
-                    app:cornerRadius="12dp"
-                    app:strokeColor="@android:color/black"
-                    app:strokeWidth="2dp"
-                    app:backgroundTint="@android:color/transparent"
-                    android:elevation="0dp"
-                    android:stateListAnimator="@null"/>
+                    <LinearLayout style="@style/CategoryContent">
+
+                        <ImageView
+                            android:layout_width="118dp"
+                            android:layout_height="81dp"
+                            android:layout_marginTop="-15dp"
+                            android:src="@drawable/ic_laptop_24" />
+
+                        <TextView
+                            style="@style/CategoryLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="-4dp"
+                            android:text="Tech"
+                            android:textSize="12dp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
 
+            <!-- Image Slider -->
             <com.google.android.material.card.MaterialCardView
-                android:layout_width="150dp"
-                android:layout_height="120dp"
+                android:layout_marginTop="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
                 app:cardCornerRadius="16dp"
                 app:cardBackgroundColor="#153d82">
 
-                <ImageView
-                    android:id="@+id/featuredImage"
-                    android:contentDescription="@string/app_name"
-                    android:scaleType="centerCrop"
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/imageSlider"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
             </com.google.android.material.card.MaterialCardView>
-        </LinearLayout>
 
-        <!-- bottom spacer -->
-    </LinearLayout>
-</ScrollView>
+            <!-- Smart Suggestion -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_marginTop="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="#153d82"
+                app:cardCornerRadius="16dp">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Smart Business Suggestion"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:text="Get business ideas based on your budget and category"
+                        android:textColor="@color/white_70"
+                        android:layout_marginTop="6dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnStartNow"
+                        android:layout_marginTop="12dp"
+                        android:text="Start Now"
+                        style="@style/Widget.MaterialComponents.Button"
+                        app:cornerRadius="12dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:backgroundTint="#ffffff"
+                        android:textColor="#153d82"/>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Featured -->
+            <TextView
+                android:layout_marginTop="18dp"
+                android:text="Featured Business Idea"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:layout_marginTop="4dp"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:text="Cloud Kitchen"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnViewDetails"
+                        android:layout_width="wrap_content"
+                        android:layout_height="44dp"
+                        android:layout_marginTop="10dp"
+                        android:text="View Details"
+                        android:textColor="#153d82"
+                        app:cornerRadius="12dp"
+                        app:strokeColor="@android:color/black"
+                        app:strokeWidth="2dp"
+                        app:backgroundTint="@android:color/transparent"
+                        android:elevation="0dp"
+                        android:stateListAnimator="@null"/>
+                </LinearLayout>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="150dp"
+                    android:layout_height="120dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardBackgroundColor="#153d82">
+
+                    <ImageView
+                        android:id="@+id/featuredImage"
+                        android:contentDescription="@string/app_name"
+                        android:scaleType="centerCrop"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

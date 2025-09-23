@@ -104,12 +104,26 @@ class AdminEditActivity : AppCompatActivity() {
             val etTitle = boxLayout.findViewById<EditText>(R.id.etRawTitle)
             val etPrice = boxLayout.findViewById<EditText>(R.id.etRawPrice)
 
-            val title = etTitle.text.toString()
-            val priceStr = etPrice.text.toString()
+            val title = etTitle.text.toString().trim()
+            val priceStr = etPrice.text.toString().trim()
 
-            if (title.isNotEmpty() && priceStr.isNotEmpty()) {
-                list.add(mapOf("title" to title, "price" to (priceStr.toDoubleOrNull() ?: 0.0)))
+            // ✅ Validation for raw materials
+            if (title.isEmpty()) {
+                etTitle.error = "Material name required"
+                return emptyList()
             }
+            if (priceStr.isEmpty()) {
+                etPrice.error = "Price required"
+                return emptyList()
+            }
+
+            val price = priceStr.toDoubleOrNull()
+            if (price == null || price <= 0) {
+                etPrice.error = "Enter valid price"
+                return emptyList()
+            }
+
+            list.add(mapOf("title" to title, "price" to price))
         }
         return list
     }
@@ -118,16 +132,64 @@ class AdminEditActivity : AppCompatActivity() {
         btnAddRawMaterial.setOnClickListener { addRawMaterialBox(null, null) }
 
         btnModify.setOnClickListener {
-            val budgetMin = etBudgetMin.text.toString()
-            val budgetMax = etBudgetMax.text.toString()
-            val budgetRange = "$budgetMin - $budgetMax"
+            val name = etBusinessName.text.toString().trim()
+            val desc = etDescription.text.toString().trim()
+            val category = etCategory.text.toString().trim()
+            val minBudget = etBudgetMin.text.toString().trim()
+            val maxBudget = etBudgetMax.text.toString().trim()
+
+            // ✅ Main field validation
+            when {
+                name.isEmpty() -> {
+                    etBusinessName.error = "Business name required"
+                    return@setOnClickListener
+                }
+                desc.isEmpty() -> {
+                    etDescription.error = "Description required"
+                    return@setOnClickListener
+                }
+                category.isEmpty() -> {
+                    etCategory.error = "Category required"
+                    return@setOnClickListener
+                }
+                minBudget.isEmpty() -> {
+                    etBudgetMin.error = "Minimum budget required"
+                    return@setOnClickListener
+                }
+                maxBudget.isEmpty() -> {
+                    etBudgetMax.error = "Maximum budget required"
+                    return@setOnClickListener
+                }
+            }
+
+            // ✅ Budget validation
+            val minVal = minBudget.toDoubleOrNull()
+            val maxVal = maxBudget.toDoubleOrNull()
+            if (minVal == null || minVal <= 0) {
+                etBudgetMin.error = "Enter valid minimum budget"
+                return@setOnClickListener
+            }
+            if (maxVal == null || maxVal <= 0) {
+                etBudgetMax.error = "Enter valid maximum budget"
+                return@setOnClickListener
+            }
+            if (minVal > maxVal) {
+                etBudgetMax.error = "Max must be greater than Min"
+                return@setOnClickListener
+            }
+
+            // ✅ Raw materials validation
+            val rawMaterials = getRawMaterialsData()
+            if (rawMaterials.isEmpty()) return@setOnClickListener
+
+            val budgetRange = "$minBudget - $maxBudget"
 
             val updatedIdea = hashMapOf(
-                "businessName" to etBusinessName.text.toString(),
-                "description" to etDescription.text.toString(),
-                "category_name" to etCategory.text.toString(),
+                "businessName" to name,
+                "description" to desc,
+                "category_name" to category,
                 "budget_range" to budgetRange,
-                "rawMaterials" to getRawMaterialsData()
+                "rawMaterials" to rawMaterials
             )
 
             documentId?.let { id ->

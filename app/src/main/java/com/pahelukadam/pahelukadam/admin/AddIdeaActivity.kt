@@ -52,20 +52,56 @@ class AddIdeaActivity : AppCompatActivity() {
         val minBudget = etBudgetMin.text.toString().trim()
         val maxBudget = etBudgetMax.text.toString().trim()
 
-        if (name.isEmpty()) {
-            etName.error = "Name is required"
-            return
+        // ✅ Validate main fields
+        when {
+            name.isEmpty() -> {
+                etName.error = "Name is required"
+                return
+            }
+            desc.isEmpty() -> {
+                etDescription.error = "Description is required"
+                return
+            }
+            category.isEmpty() -> {
+                etCategory.error = "Category is required"
+                return
+            }
+            minBudget.isEmpty() -> {
+                etBudgetMin.error = "Minimum budget is required"
+                return
+            }
+            maxBudget.isEmpty() -> {
+                etBudgetMax.error = "Maximum budget is required"
+                return
+            }
         }
 
+        // ✅ Validate raw material inputs
         val materials = mutableListOf<Map<String, Any>>()
         for (i in 0 until containerRawMaterials.childCount) {
             val child = containerRawMaterials.getChildAt(i)
-            val title = child.findViewById<EditText>(R.id.etRawTitle).text.toString().trim()
-            val price = child.findViewById<EditText>(R.id.etRawPrice).text.toString().toDoubleOrNull()
+            val etTitle = child.findViewById<EditText>(R.id.etRawTitle)
+            val etPrice = child.findViewById<EditText>(R.id.etRawPrice)
 
-            if (title.isNotEmpty() && price != null) {
-                materials.add(mapOf("title" to title, "price" to price))
+            val title = etTitle.text.toString().trim()
+            val priceText = etPrice.text.toString().trim()
+
+            if (title.isEmpty()) {
+                etTitle.error = "Material name required"
+                return
             }
+            if (priceText.isEmpty()) {
+                etPrice.error = "Price required"
+                return
+            }
+
+            val price = priceText.toDoubleOrNull()
+            if (price == null || price <= 0) {
+                etPrice.error = "Enter valid price"
+                return
+            }
+
+            materials.add(mapOf("title" to title, "price" to price))
         }
 
         val ideaData = hashMapOf(
@@ -79,11 +115,11 @@ class AddIdeaActivity : AppCompatActivity() {
         firestore.collection("business_ideas")
             .add(ideaData)
             .addOnSuccessListener {
-              //  Toast.makeText(this, "Idea saved successfully", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Idea saved successfully", Toast.LENGTH_SHORT).show()
                 finish() // ✅ closes and Home auto-refreshes
             }
             .addOnFailureListener { e ->
-              //  Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
             }
     }
 }

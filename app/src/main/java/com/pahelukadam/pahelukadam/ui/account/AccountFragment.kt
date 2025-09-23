@@ -8,7 +8,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.ktx.auth
@@ -23,6 +22,7 @@ class AccountFragment : Fragment() {
     private var _binding: FragmentAccountBinding? = null
     private val binding get() = _binding!!
 
+    // Counter for logo clicks
     private var logoClickCount = 0
     private val clickResetHandler = Handler(Looper.getMainLooper())
 
@@ -33,32 +33,31 @@ class AccountFragment : Fragment() {
         _binding = FragmentAccountBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        // Hide content at first, show loader
-        binding.contentLayout.visibility = View.GONE
-        binding.logoLoader.visibility = View.VISIBLE
-        startLogoAnimation()
-
-        // Triple click secret admin login
+        // ✅ Secret Feature: Triple Click Logo -> Adminsigninpage
         binding.logo.setOnClickListener {
             logoClickCount++
-            clickResetHandler.removeCallbacksAndMessages(null)
+            clickResetHandler.removeCallbacksAndMessages(null) // reset timer
 
             if (logoClickCount == 3) {
-                logoClickCount = 0
+                logoClickCount = 0 // reset count
                 startActivity(Intent(requireContext(), Adminsigninpage::class.java))
             } else {
+                // reset counter if no click within 1.5 seconds
                 clickResetHandler.postDelayed({ logoClickCount = 0 }, 1500)
             }
         }
 
+        // Edit Profile button
         binding.btnEditProfile.setOnClickListener {
             startActivity(Intent(requireContext(), EditProfileActivity::class.java))
         }
 
+        // Add Mobile button
         binding.btnAddMobile.setOnClickListener {
             startActivity(Intent(requireContext(), AddMobileActivity::class.java))
         }
 
+        // Sign Out button
         binding.btnSignOut.setOnClickListener {
             Firebase.auth.signOut()
             val intent = Intent(requireContext(), MainActivity::class.java)
@@ -74,34 +73,20 @@ class AccountFragment : Fragment() {
         loadUserData()
     }
 
-    private fun startLogoAnimation() {
-        val logo = binding.logoLoader
-        logo.animate()
-            .alpha(0f)
-            .scaleX(1.1f)
-            .scaleY(1.1f)
-            .setDuration(600)
-            .setInterpolator(AccelerateDecelerateInterpolator())
-            .withEndAction {
-                logo.animate()
-                    .alpha(1f)
-                    .scaleX(1f)
-                    .scaleY(1f)
-                    .setDuration(600)
-                    .setInterpolator(AccelerateDecelerateInterpolator())
-                    .withEndAction {
-                        if (logo.visibility == View.VISIBLE) startLogoAnimation()
-                    }
-                    .start()
-            }
-            .start()
-    }
-
     private fun loadUserData() {
         val currentUser = Firebase.auth.currentUser
         if (currentUser != null) {
-            Firebase.firestore.collection("users").document(currentUser.uid).get()
+            // 🔄 Show loader, hide content
+            binding.logoLoader.visibility = View.VISIBLE
+            binding.contentLayout.visibility = View.GONE
+
+            val db = Firebase.firestore
+            db.collection("users").document(currentUser.uid).get()
                 .addOnSuccessListener { document ->
+                    // ✅ Hide loader, show content
+                    binding.logoLoader.visibility = View.GONE
+                    binding.contentLayout.visibility = View.VISIBLE
+
                     if (document != null && document.exists()) {
                         val firstName = document.getString("firstName") ?: ""
                         val lastName = document.getString("lastName") ?: ""
@@ -109,29 +94,24 @@ class AccountFragment : Fragment() {
 
                         binding.tvUserName.text = "$firstName $lastName"
                         binding.tvUserEmail.text = email
+                    } else {
+                        Log.d("AccountFragment", "No user profile document found")
                     }
-
-                    showContent()
                 }
-                .addOnFailureListener {
+                .addOnFailureListener { exception ->
+                    // ❌ Hide loader, show content even on failure
+                    binding.logoLoader.visibility = View.GONE
+                    binding.contentLayout.visibility = View.VISIBLE
+                    Log.e("AccountFragment", "Error fetching user data", exception)
                     Toast.makeText(requireContext(), "Failed to load user data.", Toast.LENGTH_SHORT).show()
-                    showContent()
                 }
         } else {
-            showContent()
+            // If no user is logged in, hide loader and show content with default values
+            binding.logoLoader.visibility = View.GONE
+            binding.contentLayout.visibility = View.VISIBLE
+            binding.tvUserName.text = "Guest User"
+            binding.tvUserEmail.text = "Not signed in"
         }
-    }
-
-    private fun showContent() {
-        binding.logoLoader.clearAnimation()
-        binding.logoLoader.visibility = View.GONE
-        binding.contentLayout.alpha = 0f
-        binding.contentLayout.visibility = View.VISIBLE
-        binding.contentLayout.animate()
-            .alpha(1f)
-            .setDuration(500)
-            .setInterpolator(AccelerateDecelerateInterpolator())
-            .start()
     }
 
     override fun onDestroyView() {

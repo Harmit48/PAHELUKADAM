@@ -8,18 +8,21 @@ import android.os.Bundle
 import android.util.Patterns
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.pahelukadam.pahelukadam.ui.HubActivity
-import com.pahelukadam.pahelukadam.utils.FirestoreSeeder   // ✅ Added Seeder import
+import com.pahelukadam.pahelukadam.utils.FirestoreSeeder
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
+    private lateinit var db: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +38,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         auth = Firebase.auth
+        db = FirebaseFirestore.getInstance()
 
         // ✅ First-time Firestore seeding
         FirestoreSeeder.seedDatabase(this)
@@ -73,29 +77,65 @@ class MainActivity : AppCompatActivity() {
             val email = emailField.text.toString().trim()
             val password = passwordField.text.toString().trim()
 
-            if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                // Toast.makeText(this, "Enter a valid email", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
+            // 🔹 Validation
+            when {
+                email.isEmpty() -> {
+                    emailField.error = "Email is required"
+                    return@setOnClickListener
+                }
+                !Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
+                    emailField.error = "Enter a valid email"
+                    return@setOnClickListener
+                }
+                password.isEmpty() -> {
+                    passwordField.error = "Password is required"
+                    return@setOnClickListener
+                }
+                password.length < 6 -> {
+                    passwordField.error = "Password must be at least 6 characters"
+                    return@setOnClickListener
+                }
             }
 
-            if (password.isEmpty()) {
-                // Toast.makeText(this, "Enter password", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-
+            // 🔹 Firebase authentication
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-                        // Toast.makeText(this, "Sign In Successful!", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this, HubActivity::class.java)
-                        startActivity(intent)
-                        finish()
+                        val userId = auth.currentUser?.uid ?: return@addOnCompleteListener
+
+                        // 🔍 Check Firestore user document
+                        db.collection("users").document(userId).get()
+                            .addOnSuccessListener { document ->
+                                if (document.exists()) {
+                                    // ✅ User exists → Show toast & go to HubActivity
+                                    Toast.makeText(
+                                        this,
+                                        "Login Successful",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+
+                                    val intent = Intent(this, HubActivity::class.java)
+                                    startActivity(intent)
+                                    finish()
+                                } else {
+                                    // ❌ User not found
+                                    Toast.makeText(
+                                        this,
+                                        "User not found in database",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                    auth.signOut()
+                                }
+                            }
+                            .addOnFailureListener {
+                                Toast.makeText(
+                                    this,
+                                    "Error checking user data",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
                     } else {
-                        // Toast.makeText(
-                        //     baseContext,
-                        //     "Authentication failed: ${task.exception?.message}",
-                        //     Toast.LENGTH_LONG
-                        // ).show()
+                        passwordField.error = "Authentication failed"
                     }
                 }
         }
