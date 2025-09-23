@@ -1,68 +1,83 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
-    android:fillViewport="true">
+    android:background="@android:color/white">
 
-    <LinearLayout
+    <!-- Animated Logo Loader -->
+    <ImageView
+        android:id="@+id/loaderLogo"
+        android:layout_width="230dp"
+        android:layout_height="230dp"
+        android:layout_gravity="center"
+        android:contentDescription="Loading Logo"
+        android:src="@drawable/logomain"
+        android:visibility="gone" />
+
+    <!-- Main Content -->
+    <ScrollView
+        android:id="@+id/scrollContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-        <ImageView
-            android:layout_width="200dp"
-            android:layout_height="60dp"
-            android:layout_gravity="left"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="20dp"
-            android:contentDescription="Logo"
-            android:src="@drawable/logotext" />
-
-        <TextView
-            android:id="@+id/tvBusinessName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Business Name"
-            android:textColor="@android:color/black"
-            android:textSize="28sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tvDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:padding="12dp"
-            android:background="@drawable/rounded_border"
-            android:text="Business Description"
-            android:textSize="16sp"
-            android:textColor="@android:color/black" />
-
-        <TextView
-            android:id="@+id/tvBudget"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:padding="12dp"
-            android:background="@drawable/rounded_border"
-            android:text="Budget: "
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black" />
-
-
-
-        <!-- Raw Materials Container -->
         <LinearLayout
-            android:id="@+id/layoutRawMaterials"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_raw_materials"
             android:orientation="vertical"
-            android:padding="16dp"
-            android:layout_marginTop="12dp"
-            android:clipToPadding="false"
-            android:gravity="center_horizontal"/>
-    </LinearLayout>
-</ScrollView>
+            android:padding="16dp">
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+                android:layout_gravity="left"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="20dp"
+                android:contentDescription="Logo"
+                android:src="@drawable/logotext" />
+
+            <TextView
+                android:id="@+id/tvBusinessName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Business Name"
+                android:textColor="@android:color/black"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:padding="12dp"
+                android:background="@drawable/rounded_border"
+                android:text="Business Description"
+                android:textSize="16sp"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:id="@+id/tvBudget"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:padding="12dp"
+                android:background="@drawable/rounded_border"
+                android:text="Budget: "
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black" />
+
+            <!-- Raw Materials Container -->
+            <LinearLayout
+                android:id="@+id/layoutRawMaterials"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_raw_materials"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:layout_marginTop="12dp"
+                android:clipToPadding="false"
+                android:gravity="center_horizontal"/>
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

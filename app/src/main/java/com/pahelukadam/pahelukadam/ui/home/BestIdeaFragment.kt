@@ -3,7 +3,7 @@ package com.pahelukadam.pahelukadam.ui.home
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.ProgressBar
+import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,7 +18,8 @@ class BestIdeaFragment : Fragment(R.layout.fragment_best_idea) {
 
     private val db = Firebase.firestore
     private lateinit var rvIdeas: RecyclerView
-    private lateinit var progressBar: ProgressBar
+    private lateinit var contentLayout: View
+    private lateinit var logoLoader: View
     private lateinit var bestIdeaAdapter: BestIdeaAdapter
 
     private var currentIdeas: List<BestIdea> = emptyList()
@@ -27,6 +28,14 @@ class BestIdeaFragment : Fragment(R.layout.fragment_best_idea) {
         super.onViewCreated(view, savedInstanceState)
 
         rvIdeas = view.findViewById(R.id.rvIdeas)
+        contentLayout = view.findViewById(R.id.contentLayout)
+        logoLoader = view.findViewById(R.id.logoLoader)
+
+        // 🔥 Start loader animation
+        contentLayout.visibility = View.GONE
+        logoLoader.visibility = View.VISIBLE
+        startLogoAnimation()
+
         setupRecyclerView()
 
         val selectedBudget = arguments?.getString("budget")
@@ -36,12 +45,12 @@ class BestIdeaFragment : Fragment(R.layout.fragment_best_idea) {
             fetchFilteredIdeas(selectedBudget, selectedCategory)
         } else {
             Toast.makeText(requireContext(), "Error: Budget or Category not provided", Toast.LENGTH_LONG).show()
+            showContent()
         }
     }
 
     private fun setupRecyclerView() {
         bestIdeaAdapter = BestIdeaAdapter(emptyList()) { clickedIdea ->
-            // ✅ Navigate to BusinessDetailsFragment with docId
             val fragment = BusinessDetailsFragment().apply {
                 arguments = Bundle().apply {
                     putString("documentId", clickedIdea.id)
@@ -62,12 +71,11 @@ class BestIdeaFragment : Fragment(R.layout.fragment_best_idea) {
             .whereEqualTo("category_name", category)
             .get()
             .addOnSuccessListener { documents ->
-                if (documents.isEmpty) {
+                currentIdeas = if (documents.isEmpty) {
                     Toast.makeText(requireContext(), "No ideas found for this selection.", Toast.LENGTH_LONG).show()
-                    currentIdeas = emptyList()
-                    bestIdeaAdapter.updateIdeas(currentIdeas)
+                    emptyList()
                 } else {
-                    val ideasList = documents.map { doc ->
+                    documents.map { doc ->
                         BestIdea(
                             id = doc.id,
                             businessName = doc.getString("businessName") ?: "",
@@ -75,13 +83,48 @@ class BestIdeaFragment : Fragment(R.layout.fragment_best_idea) {
                             budget_range = doc.getString("budget_range") ?: ""
                         )
                     }
-                    currentIdeas = ideasList
-                    bestIdeaAdapter.updateIdeas(ideasList)
                 }
+                bestIdeaAdapter.updateIdeas(currentIdeas)
+                showContent() // 🔥 Show content only after data is loaded
             }
             .addOnFailureListener { exception ->
                 Log.w("BestIdeaFragment", "Error getting documents: ", exception)
                 Toast.makeText(requireContext(), "Failed to load ideas. Please try again.", Toast.LENGTH_SHORT).show()
+                showContent()
             }
+    }
+
+    private fun startLogoAnimation() {
+        logoLoader.animate()
+            .alpha(0f)
+            .scaleX(1.1f)
+            .scaleY(1.1f)
+            .setDuration(600)
+            .setInterpolator(AccelerateDecelerateInterpolator())
+            .withEndAction {
+                logoLoader.animate()
+                    .alpha(1f)
+                    .scaleX(1f)
+                    .scaleY(1f)
+                    .setDuration(600)
+                    .setInterpolator(AccelerateDecelerateInterpolator())
+                    .withEndAction {
+                        if (logoLoader.visibility == View.VISIBLE) startLogoAnimation()
+                    }
+                    .start()
+            }
+            .start()
+    }
+
+    private fun showContent() {
+        logoLoader.clearAnimation()
+        logoLoader.visibility = View.GONE
+        contentLayout.alpha = 0f
+        contentLayout.visibility = View.VISIBLE
+        contentLayout.animate()
+            .alpha(1f)
+            .setDuration(500)
+            .setInterpolator(AccelerateDecelerateInterpolator())
+            .start()
     }
 }

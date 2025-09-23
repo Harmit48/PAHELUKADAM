@@ -1,156 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
     android:background="@android:color/white">
 
-    <LinearLayout
+    <!-- 🔥 Custom Logo Loader -->
+    <ImageView
+        android:id="@+id/logoLoader"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_gravity="center"
+        android:src="@drawable/logomain"
+        android:visibility="visible" />
+
+    <!-- 🔥 Main Content (Initially Hidden) -->
+    <ScrollView
+        android:id="@+id/contentLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
-        android:padding="16dp">
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:visibility="gone">
 
-        <!-- Logo -->
-        <ImageView
-            android:id="@+id/logo"
-            android:layout_width="200dp"
-            android:layout_height="60dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="30dp"
-            android:contentDescription="Logo"
-            android:layout_gravity="left"
-            android:src="@drawable/logotext" />
-
-
-        <!-- Profile Icon -->
-        <ImageView
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:src="@drawable/ic_account_24"
-            android:background="@drawable/circle_background"
-            android:padding="20dp"
-            android:layout_marginBottom="16dp"
-            android:contentDescription="Profile Icon" />
-
-        <!-- User Full Name -->
-        <TextView
-            android:id="@+id/tvUserName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="User Full Name"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:layout_marginBottom="6dp" />
-
-        <!-- User Email -->
-        <TextView
-            android:id="@+id/tvUserEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="user@email.com"
-            android:textSize="14sp"
-            android:textColor="@color/black"
-            android:layout_marginBottom="20dp" />
-
-        <!-- Divider -->
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/black"
-            android:layout_marginBottom="12dp" />
-
-        <!-- Edit Profile -->
         <LinearLayout
-            android:id="@+id/btnEditProfile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="12dp"
-            android:gravity="center_vertical">
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:padding="16dp">
 
+            <!-- Logo -->
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_edit"
-                android:contentDescription="Edit Profile" />
+                android:id="@+id/logo"
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="30dp"
+                android:contentDescription="Logo"
+                android:layout_gravity="left"
+                android:src="@drawable/logotext" />
 
+            <!-- Profile Icon -->
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@drawable/ic_account_24"
+                android:background="@drawable/circle_background"
+                android:padding="20dp"
+                android:layout_marginBottom="16dp"
+                android:contentDescription="Profile Icon" />
+
+            <!-- User Full Name -->
             <TextView
+                android:id="@+id/tvUserName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
+                android:text="User Full Name"
+                android:textSize="18sp"
+                android:textStyle="bold"
                 android:textColor="@color/black"
-                android:text="Edit Profile\nChange your name and username"
-                android:textSize="14sp" />
-        </LinearLayout>
+                android:layout_marginBottom="6dp" />
 
-        <!-- Divider -->
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/black"
-            android:layout_marginBottom="12dp" />
-
-        <!-- Add Mobile Number -->
-        <LinearLayout
-            android:id="@+id/btnAddMobile"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="12dp"
-            android:gravity="center_vertical">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_phone"
-                android:contentDescription="Add Mobile Number" />
-
+            <!-- User Email -->
             <TextView
+                android:id="@+id/tvUserEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
+                android:text="user@email.com"
+                android:textSize="14sp"
                 android:textColor="@color/black"
-                android:text="Add Mobile Number\nUpdate your account Profile"
-                android:textSize="14sp" />
+                android:layout_marginBottom="20dp" />
+
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/black"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Edit Profile -->
+            <LinearLayout
+                android:id="@+id/btnEditProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="12dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_edit"
+                    android:contentDescription="Edit Profile" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:textColor="@color/black"
+                    android:text="Edit Profile\nChange your name and username"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/black"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Add Mobile Number -->
+            <LinearLayout
+                android:id="@+id/btnAddMobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="12dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_phone"
+                    android:contentDescription="Add Mobile Number" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:textColor="@color/black"
+                    android:text="Add Mobile Number\nUpdate your account Profile"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/black"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Sign Out -->
+            <TextView
+                android:id="@+id/btnSignOut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sign Out"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/holo_red_dark"
+                android:layout_marginTop="30dp" />
+
         </LinearLayout>
-
-        <!-- Divider -->
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/black"
-            android:layout_marginBottom="12dp" />
-
-
-
-        <!-- Sign Out -->
-        <TextView
-            android:id="@+id/btnSignOut"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sign Out"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/holo_red_dark"
-            android:layout_marginTop="30dp" />
-
-    <!--    <Button
-            android:id="@+id/AdminBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:background="@android:color/transparent"
-            android:elevation="0dp"
-            android:minWidth="0dp"
-            android:minHeight="0dp"
-            android:padding="0dp"
-            android:text="Admin"
-            android:textColor="#000000"
-            android:textSize="15sp"
-            android:textStyle="bold" /> -->
-
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</FrameLayout>

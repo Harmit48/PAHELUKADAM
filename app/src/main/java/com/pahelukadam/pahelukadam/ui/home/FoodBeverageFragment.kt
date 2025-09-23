@@ -1,11 +1,11 @@
 package com.pahelukadam.pahelukadam.ui.home
 
+import android.view.animation.AccelerateDecelerateInterpolator
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.FirebaseFirestore
@@ -18,7 +18,6 @@ class FoodBeverageFragment : Fragment() {
     private var _binding: FragmentFoodBeverageBinding? = null
     private val binding get() = _binding!!
 
-    // Initialize Firestore and the list for business ideas
     private val db = FirebaseFirestore.getInstance()
     private val ideaList = mutableListOf<BusinessIdea>()
     private lateinit var businessAdapter: BusinessAdapter
@@ -29,17 +28,18 @@ class FoodBeverageFragment : Fragment() {
     ): View {
         _binding = FragmentFoodBeverageBinding.inflate(inflater, container, false)
 
-        // Setup RecyclerView
-        setupRecyclerView()
+        // 🔥 Hide content initially and start logo animation (same as Manufacturing)
+        binding.contentLayout.visibility = View.GONE
+        binding.logoLoader.visibility = View.VISIBLE
+        startLogoAnimation()
 
-        // Fetch data from Firestore
+        setupRecyclerView()
         fetchFoodAndBeverageIdeas()
 
         return binding.root
     }
 
     private fun setupRecyclerView() {
-        // Initialize the adapter (reusing the same one from ExploreFragment)
         businessAdapter = BusinessAdapter(ideaList)
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
@@ -48,39 +48,66 @@ class FoodBeverageFragment : Fragment() {
     }
 
     private fun fetchFoodAndBeverageIdeas() {
-        // Show loading indicator
-        binding.progressBar.visibility = View.VISIBLE
-        binding.recyclerView.visibility = View.GONE
-
         db.collection("explore")
             .whereEqualTo("category", "Food and Beverage")
             .get()
             .addOnSuccessListener { result ->
-                // Hide loading indicator
-                binding.progressBar.visibility = View.GONE
-                binding.recyclerView.visibility = View.VISIBLE
-
-                ideaList.clear() // Clear the list to avoid duplicates
+                ideaList.clear()
                 for (document in result) {
-                    // Convert each document into a BusinessIdea object
                     val idea = document.toObject(BusinessIdea::class.java)
                     ideaList.add(idea)
                 }
-                // Notify the adapter that the data has changed
                 businessAdapter.notifyDataSetChanged()
+                showContent()
             }
             .addOnFailureListener { exception ->
-                // Hide loading indicator on failure
-                binding.progressBar.visibility = View.GONE
-
-                // Log the error and show a message to the user
-               // Log.e("FoodBeverageFragment", "Error getting documents: ", exception)
-               // Toast.makeText(context, "Error fetching ideas.", Toast.LENGTH_SHORT).show()
+                Log.e("FoodBeverageFragment", "Error getting documents: ", exception)
+                // Show content anyway so the loader doesn't get stuck
+                showContent()
             }
+    }
+
+    // 🔁 Same pulsing logo animation used on the Manufacturing page
+    private fun startLogoAnimation() {
+        val logo = binding.logoLoader
+        logo.animate()
+            .alpha(0f)
+            .scaleX(1.1f)
+            .scaleY(1.1f)
+            .setDuration(600)
+            .setInterpolator(AccelerateDecelerateInterpolator())
+            .withEndAction {
+                logo.animate()
+                    .alpha(1f)
+                    .scaleX(1f)
+                    .scaleY(1f)
+                    .setDuration(600)
+                    .setInterpolator(AccelerateDecelerateInterpolator())
+                    .withEndAction {
+                        if (logo.visibility == View.VISIBLE) startLogoAnimation()
+                    }
+                    .start()
+            }
+            .start()
+    }
+
+    // ✅ Fade in the main content and stop/clear the loader animation
+    private fun showContent() {
+        binding.logoLoader.clearAnimation()
+        binding.logoLoader.visibility = View.GONE
+        binding.contentLayout.alpha = 0f
+        binding.contentLayout.visibility = View.VISIBLE
+        binding.contentLayout.animate()
+            .alpha(1f)
+            .setDuration(500)
+            .setInterpolator(AccelerateDecelerateInterpolator())
+            .start()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+        // Ensure animations are cleared to avoid leaks / ghost animations
+        binding.logoLoader.clearAnimation()
         _binding = null
     }
 }
