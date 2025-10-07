@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.ktx.auth
@@ -36,13 +37,12 @@ class AccountFragment : Fragment() {
         // ✅ Secret Feature: Triple Click Logo -> Adminsigninpage
         binding.logo.setOnClickListener {
             logoClickCount++
-            clickResetHandler.removeCallbacksAndMessages(null) // reset timer
+            clickResetHandler.removeCallbacksAndMessages(null)
 
             if (logoClickCount == 3) {
-                logoClickCount = 0 // reset count
+                logoClickCount = 0
                 startActivity(Intent(requireContext(), Adminsigninpage::class.java))
             } else {
-                // reset counter if no click within 1.5 seconds
                 clickResetHandler.postDelayed({ logoClickCount = 0 }, 1500)
             }
         }
@@ -73,20 +73,58 @@ class AccountFragment : Fragment() {
         loadUserData()
     }
 
+    /**
+     * 🔄 Animate logo loader with smooth fade in/out loop
+     */
+    private fun startLogoAnimation() {
+        val logo = binding.logoLoader
+        logo.animate()
+            .alpha(0f)
+            .scaleX(1.1f)
+            .scaleY(1.1f)
+            .setDuration(600)
+            .setInterpolator(AccelerateDecelerateInterpolator())
+            .withEndAction {
+                logo.animate()
+                    .alpha(1f)
+                    .scaleX(1f)
+                    .scaleY(1f)
+                    .setDuration(600)
+                    .setInterpolator(AccelerateDecelerateInterpolator())
+                    .withEndAction {
+                        if (logo.visibility == View.VISIBLE) startLogoAnimation()
+                    }
+                    .start()
+            }
+            .start()
+    }
+
+    /**
+     * ✨ Smoothly show content after data load
+     */
+    private fun showContent() {
+        binding.logoLoader.clearAnimation()
+        binding.logoLoader.visibility = View.GONE
+        binding.contentLayout.alpha = 0f
+        binding.contentLayout.visibility = View.VISIBLE
+        binding.contentLayout.animate()
+            .alpha(1f)
+            .setDuration(500)
+            .setInterpolator(AccelerateDecelerateInterpolator())
+            .start()
+    }
+
     private fun loadUserData() {
         val currentUser = Firebase.auth.currentUser
         if (currentUser != null) {
-            // 🔄 Show loader, hide content
+            // 🔄 Show loader animation, hide content
             binding.logoLoader.visibility = View.VISIBLE
             binding.contentLayout.visibility = View.GONE
+            startLogoAnimation()
 
             val db = Firebase.firestore
             db.collection("users").document(currentUser.uid).get()
                 .addOnSuccessListener { document ->
-                    // ✅ Hide loader, show content
-                    binding.logoLoader.visibility = View.GONE
-                    binding.contentLayout.visibility = View.VISIBLE
-
                     if (document != null && document.exists()) {
                         val firstName = document.getString("firstName") ?: ""
                         val lastName = document.getString("lastName") ?: ""
@@ -97,16 +135,15 @@ class AccountFragment : Fragment() {
                     } else {
                         Log.d("AccountFragment", "No user profile document found")
                     }
+                    showContent() // ✅ smooth transition after loading
                 }
                 .addOnFailureListener { exception ->
-                    // ❌ Hide loader, show content even on failure
-                    binding.logoLoader.visibility = View.GONE
-                    binding.contentLayout.visibility = View.VISIBLE
                     Log.e("AccountFragment", "Error fetching user data", exception)
                     Toast.makeText(requireContext(), "Failed to load user data.", Toast.LENGTH_SHORT).show()
+                    showContent() // show content even on failure
                 }
         } else {
-            // If no user is logged in, hide loader and show content with default values
+            // If no user is logged in
             binding.logoLoader.visibility = View.GONE
             binding.contentLayout.visibility = View.VISIBLE
             binding.tvUserName.text = "Guest User"
