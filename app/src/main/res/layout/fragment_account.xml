@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/white">
 
-    <!-- 🔥 Custom Logo Loader -->
+    <!-- Loader -->
     <ImageView
         android:id="@+id/logoLoader"
         android:layout_width="180dp"
@@ -14,7 +14,7 @@
         android:src="@drawable/logomain"
         android:visibility="visible" />
 
-    <!-- 🔥 Main Content (Initially Hidden) -->
+    <!-- Scrollable Main Content -->
     <ScrollView
         android:id="@+id/contentLayout"
         android:layout_width="match_parent"
@@ -36,39 +36,39 @@
                 android:layout_height="60dp"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="30dp"
-                android:layout_gravity="left"
                 android:contentDescription="Logo"
+                android:layout_gravity="left"
                 android:src="@drawable/logotext" />
 
-            <!-- Profile Icon Container -->
+            <!-- Profile Image Container -->
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp">
 
-                <!-- Profile Image -->
-                <ImageView
+                <!-- Circular Profile Image -->
+                <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/profileImage"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
-                    android:src="@drawable/ic_edit_white"
-                    android:background="@drawable/circle_background"
-                    android:padding="20dp"
-                    android:contentDescription="Profile Icon"
-                    android:clickable="true"
-                    android:focusable="true" />
+                    android:scaleType="centerCrop"
+                    android:contentDescription="Profile Image"
+                    app:shapeAppearanceOverlay="@style/CircleImageView"
+                    android:src="@drawable/ic_account_24" />
 
-                <!-- Camera Icon Overlay -->
+                <!-- Edit Icon -->
                 <ImageView
+                    android:id="@+id/editProfileIcon"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
-                    android:src="@drawable/ic_edit_white"
-                    android:background="@drawable/circle_background"
-                    android:padding="6dp"
                     android:layout_alignBottom="@id/profileImage"
                     android:layout_alignEnd="@id/profileImage"
-                    android:contentDescription="Change Photo" />
-
+                    android:background="@drawable/circle_background"
+                    android:padding="6dp"
+                    android:src="@drawable/ic_edit_white"
+                    android:contentDescription="Change Photo"
+                    android:clickable="true"
+                    android:focusable="true" />
             </RelativeLayout>
 
             <!-- User Full Name -->
@@ -131,7 +131,7 @@
                 android:background="@android:color/darker_gray"
                 android:layout_marginBottom="12dp" />
 
-            <!-- Add Mobile Number -->
+            <!-- Add Mobile -->
             <LinearLayout
                 android:id="@+id/btnAddMobile"
                 android:layout_width="match_parent"
@@ -145,14 +145,14 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_phone"
-                    android:contentDescription="Add Mobile Number" />
+                    android:contentDescription="Add Mobile" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
                     android:textColor="@color/black"
-                    android:text="Add Mobile Number\nUpdate your account Profile"
+                    android:text="Add Mobile Number\nUpdate your account profile"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -175,7 +175,6 @@
                 android:layout_marginTop="30dp"
                 android:padding="12dp"
                 android:background="?android:attr/selectableItemBackground" />
-
         </LinearLayout>
     </ScrollView>
 </FrameLayout>

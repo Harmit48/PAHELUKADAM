@@ -39,17 +39,14 @@ class AccountFragment : Fragment() {
     private var _binding: FragmentAccountBinding? = null
     private val binding get() = _binding!!
 
-    // Counter for logo clicks
     private var logoClickCount = 0
     private val clickResetHandler = Handler(Looper.getMainLooper())
 
-    // Camera and gallery request codes
     private val REQUEST_IMAGE_CAPTURE = 1
     private val REQUEST_IMAGE_PICK = 2
     private val PERMISSION_REQUEST_CAMERA = 100
     private val PERMISSION_REQUEST_GALLERY = 101
 
-    // Current photo path for camera
     private var currentPhotoPath: String? = null
 
     override fun onCreateView(
@@ -58,13 +55,12 @@ class AccountFragment : Fragment() {
     ): View {
         _binding = FragmentAccountBinding.inflate(inflater, container, false)
         val view = binding.root
-
         setupClickListeners()
         return view
     }
 
     private fun setupClickListeners() {
-        // ✅ Secret Feature: Triple Click Logo -> Adminsigninpage
+        // Secret triple-click to open Admin Sign-in
         binding.logo.setOnClickListener {
             logoClickCount++
             clickResetHandler.removeCallbacksAndMessages(null)
@@ -77,22 +73,22 @@ class AccountFragment : Fragment() {
             }
         }
 
-        // Profile Image click listener
+        // Profile image click
         binding.profileImage.setOnClickListener {
             showImagePickerDialog()
         }
 
-        // Edit Profile button
+        // Edit Profile
         binding.btnEditProfile.setOnClickListener {
             startActivity(Intent(requireContext(), EditProfileActivity::class.java))
         }
 
-        // Add Mobile button
+        // Add Mobile
         binding.btnAddMobile.setOnClickListener {
             startActivity(Intent(requireContext(), AddMobileActivity::class.java))
         }
 
-        // Sign Out button
+        // Sign Out
         binding.btnSignOut.setOnClickListener {
             Firebase.auth.signOut()
             val intent = Intent(requireContext(), MainActivity::class.java)
@@ -107,9 +103,6 @@ class AccountFragment : Fragment() {
         loadProfileImage()
     }
 
-    /**
-     * Show dialog to choose camera or gallery
-     */
     private fun showImagePickerDialog() {
         val options = arrayOf("Take Photo", "Choose from Gallery", "Cancel")
         val builder = android.app.AlertDialog.Builder(requireContext())
@@ -124,27 +117,16 @@ class AccountFragment : Fragment() {
         builder.show()
     }
 
-    /**
-     * Check camera permission
-     */
     private fun checkCameraPermission() {
-        if (ContextCompat.checkSelfPermission(
-                requireContext(),
-                android.Manifest.permission.CAMERA
-            ) != PackageManager.PERMISSION_GRANTED
+        if (ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.CAMERA)
+            != PackageManager.PERMISSION_GRANTED
         ) {
-            requestPermissions(
-                arrayOf(android.Manifest.permission.CAMERA),
-                PERMISSION_REQUEST_CAMERA
-            )
+            requestPermissions(arrayOf(android.Manifest.permission.CAMERA), PERMISSION_REQUEST_CAMERA)
         } else {
             openCamera()
         }
     }
 
-    /**
-     * Check gallery permission
-     */
     private fun checkGalleryPermission() {
         val permission = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             android.Manifest.permission.READ_MEDIA_IMAGES
@@ -152,48 +134,36 @@ class AccountFragment : Fragment() {
             android.Manifest.permission.READ_EXTERNAL_STORAGE
         }
 
-        if (ContextCompat.checkSelfPermission(requireContext(), permission) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(requireContext(), permission)
+            != PackageManager.PERMISSION_GRANTED
+        ) {
             requestPermissions(arrayOf(permission), PERMISSION_REQUEST_GALLERY)
         } else {
             openGallery()
         }
     }
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
             PERMISSION_REQUEST_CAMERA -> {
-                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    openCamera()
-                } else {
-                    Toast.makeText(requireContext(), "Camera permission is required to take photos", Toast.LENGTH_LONG).show()
-                }
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) openCamera()
+                else Toast.makeText(requireContext(), "Camera permission required", Toast.LENGTH_SHORT).show()
             }
             PERMISSION_REQUEST_GALLERY -> {
-                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    openGallery()
-                } else {
-                    Toast.makeText(requireContext(), "Storage permission is required to choose photos", Toast.LENGTH_LONG).show()
-                }
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) openGallery()
+                else Toast.makeText(requireContext(), "Gallery permission required", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    /**
-     * Open camera to take photo
-     */
     private fun openCamera() {
         val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         if (takePictureIntent.resolveActivity(requireActivity().packageManager) != null) {
             val photoFile: File? = try {
                 createImageFile()
             } catch (ex: IOException) {
-                Log.e("AccountFragment", "Error creating image file", ex)
-                Toast.makeText(requireContext(), "Error creating file for photo", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Error creating image file", Toast.LENGTH_SHORT).show()
                 null
             }
             photoFile?.also {
@@ -207,36 +177,22 @@ class AccountFragment : Fragment() {
                 startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
             }
         } else {
-            Toast.makeText(requireContext(), "No camera app available", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "No camera app found", Toast.LENGTH_SHORT).show()
         }
     }
 
-    /**
-     * Open gallery to choose photo
-     */
     private fun openGallery() {
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         intent.type = "image/*"
         startActivityForResult(intent, REQUEST_IMAGE_PICK)
     }
 
-    /**
-     * Create temporary file for camera photo
-     */
     @Throws(IOException::class)
     private fun createImageFile(): File {
         val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
         val storageDir: File? = requireContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-
-        if (storageDir != null && !storageDir.exists()) {
-            storageDir.mkdirs()
-        }
-
-        return File.createTempFile(
-            "JPEG_${timeStamp}_",
-            ".jpg",
-            storageDir
-        ).apply {
+        if (storageDir != null && !storageDir.exists()) storageDir.mkdirs()
+        return File.createTempFile("JPEG_${timeStamp}_", ".jpg", storageDir).apply {
             currentPhotoPath = absolutePath
         }
     }
@@ -247,75 +203,51 @@ class AccountFragment : Fragment() {
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
                 REQUEST_IMAGE_CAPTURE -> {
-                    // Handle camera result
                     currentPhotoPath?.let { path ->
                         val bitmap = decodeSampledBitmapFromFile(path, 400, 400)
                         bitmap?.let {
                             saveProfileImage(it)
                             binding.profileImage.setImageBitmap(it)
-                            Toast.makeText(requireContext(), "Profile picture updated from camera", Toast.LENGTH_SHORT).show()
-                        } ?: run {
-                            Toast.makeText(requireContext(), "Failed to capture image", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(requireContext(), "Profile picture updated", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
                 REQUEST_IMAGE_PICK -> {
-                    // Handle gallery result
                     data?.data?.let { uri ->
                         try {
                             val inputStream = requireContext().contentResolver.openInputStream(uri)
                             val bitmap = BitmapFactory.decodeStream(inputStream)
                             inputStream?.close()
                             bitmap?.let {
-                                val resizedBitmap = resizeBitmap(it, 400, 400)
-                                saveProfileImage(resizedBitmap)
-                                binding.profileImage.setImageBitmap(resizedBitmap)
-                                Toast.makeText(requireContext(), "Profile picture updated from gallery", Toast.LENGTH_SHORT).show()
+                                val resized = resizeBitmap(it, 400, 400)
+                                saveProfileImage(resized)
+                                binding.profileImage.setImageBitmap(resized)
+                                Toast.makeText(requireContext(), "Profile picture updated", Toast.LENGTH_SHORT).show()
                             }
                         } catch (e: Exception) {
-                            Log.e("AccountFragment", "Error loading image from gallery", e)
                             Toast.makeText(requireContext(), "Error loading image", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
             }
-        } else if (resultCode == Activity.RESULT_CANCELED) {
-            // User cancelled the operation
-            Log.d("AccountFragment", "User cancelled image selection")
         }
     }
 
-    /**
-     * Decode sampled bitmap from file to avoid memory issues
-     */
     private fun decodeSampledBitmapFromFile(path: String, reqWidth: Int, reqHeight: Int): Bitmap? {
-        return try {
-            // First decode with inJustDecodeBounds=true to check dimensions
-            val options = BitmapFactory.Options()
-            options.inJustDecodeBounds = true
-            BitmapFactory.decodeFile(path, options)
-
-            // Calculate inSampleSize
-            options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight)
-
-            // Decode bitmap with inSampleSize set
-            options.inJustDecodeBounds = false
-            BitmapFactory.decodeFile(path, options)
-        } catch (e: Exception) {
-            Log.e("AccountFragment", "Error decoding bitmap from file", e)
-            null
-        }
+        val options = BitmapFactory.Options()
+        options.inJustDecodeBounds = true
+        BitmapFactory.decodeFile(path, options)
+        options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight)
+        options.inJustDecodeBounds = false
+        return BitmapFactory.decodeFile(path, options)
     }
 
     private fun calculateInSampleSize(options: BitmapFactory.Options, reqWidth: Int, reqHeight: Int): Int {
-        val height = options.outHeight
-        val width = options.outWidth
+        val (height, width) = options.run { outHeight to outWidth }
         var inSampleSize = 1
-
         if (height > reqHeight || width > reqWidth) {
             val halfHeight = height / 2
             val halfWidth = width / 2
-
             while (halfHeight / inSampleSize >= reqHeight && halfWidth / inSampleSize >= reqWidth) {
                 inSampleSize *= 2
             }
@@ -323,13 +255,9 @@ class AccountFragment : Fragment() {
         return inSampleSize
     }
 
-    /**
-     * Resize bitmap to required dimensions
-     */
     private fun resizeBitmap(bitmap: Bitmap, maxWidth: Int, maxHeight: Int): Bitmap {
         var width = bitmap.width
         var height = bitmap.height
-
         if (width > maxWidth || height > maxHeight) {
             val ratio = width.toFloat() / height.toFloat()
             if (ratio > 1) {
@@ -340,50 +268,38 @@ class AccountFragment : Fragment() {
                 width = (maxHeight * ratio).toInt()
             }
         }
-
         return Bitmap.createScaledBitmap(bitmap, width, height, true)
     }
 
-    /**
-     * Save profile image to app's internal storage
-     */
     private fun saveProfileImage(bitmap: Bitmap) {
         try {
             val file = File(requireContext().filesDir, "profile_image.jpg")
-            val outputStream = FileOutputStream(file)
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 80, outputStream)
-            outputStream.flush()
-            outputStream.close()
-            Log.d("AccountFragment", "Profile image saved successfully")
+            FileOutputStream(file).use { out ->
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 80, out)
+            }
         } catch (e: Exception) {
-            Log.e("AccountFragment", "Error saving profile image", e)
-            Toast.makeText(requireContext(), "Error saving profile picture", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Error saving image", Toast.LENGTH_SHORT).show()
         }
     }
 
-    /**
-     * Load profile image from internal storage
-     */
     private fun loadProfileImage() {
         try {
             val file = File(requireContext().filesDir, "profile_image.jpg")
             if (file.exists()) {
                 val bitmap = BitmapFactory.decodeFile(file.absolutePath)
-                bitmap?.let {
-                    binding.profileImage.setImageBitmap(it)
-                }
-                Log.d("AccountFragment", "Profile image loaded successfully")
+                binding.profileImage.setImageBitmap(bitmap)
+                Log.d("AccountFragment", "Profile image loaded")
             } else {
-                Log.d("AccountFragment", "No saved profile image found")
+                // ✅ Show default icon if no saved image
+                binding.profileImage.setImageResource(com.pahelukadam.pahelukadam.R.drawable.ic_account_24)
+                Log.d("AccountFragment", "No saved image found, showing default")
             }
         } catch (e: Exception) {
+            binding.profileImage.setImageResource(com.pahelukadam.pahelukadam.R.drawable.ic_account_24)
             Log.e("AccountFragment", "Error loading profile image", e)
         }
     }
 
-    /**
-     * 🔄 Animate logo loader with smooth fade in/out loop
-     */
     private fun startLogoAnimation() {
         val logo = binding.logoLoader
         logo.animate()
@@ -403,29 +319,21 @@ class AccountFragment : Fragment() {
                         if (logo.visibility == View.VISIBLE) startLogoAnimation()
                     }
                     .start()
-            }
-            .start()
+            }.start()
     }
 
-    /**
-     * ✨ Smoothly show content after data load
-     */
     private fun showContent() {
         binding.logoLoader.clearAnimation()
         binding.logoLoader.visibility = View.GONE
         binding.contentLayout.alpha = 0f
         binding.contentLayout.visibility = View.VISIBLE
-        binding.contentLayout.animate()
-            .alpha(1f)
-            .setDuration(500)
-            .setInterpolator(AccelerateDecelerateInterpolator())
-            .start()
+        binding.contentLayout.animate().alpha(1f).setDuration(500)
+            .setInterpolator(AccelerateDecelerateInterpolator()).start()
     }
 
     private fun loadUserData() {
         val currentUser = Firebase.auth.currentUser
         if (currentUser != null) {
-            // 🔄 Show loader animation, hide content
             binding.logoLoader.visibility = View.VISIBLE
             binding.contentLayout.visibility = View.GONE
             startLogoAnimation()
@@ -437,23 +345,16 @@ class AccountFragment : Fragment() {
                         val firstName = document.getString("firstName") ?: ""
                         val lastName = document.getString("lastName") ?: ""
                         val email = document.getString("email") ?: ""
-
                         binding.tvUserName.text = "$firstName $lastName"
                         binding.tvUserEmail.text = email
-                    } else {
-                        Log.d("AccountFragment", "No user profile document found")
                     }
-                    showContent() // ✅ smooth transition after loading
+                    showContent()
                 }
-                .addOnFailureListener { exception ->
-                    Log.e("AccountFragment", "Error fetching user data", exception)
-                    Toast.makeText(requireContext(), "Failed to load user data.", Toast.LENGTH_SHORT).show()
-                    showContent() // show content even on failure
+                .addOnFailureListener {
+                    showContent()
+                    Toast.makeText(requireContext(), "Failed to load data", Toast.LENGTH_SHORT).show()
                 }
         } else {
-            // If no user is logged in
-            binding.logoLoader.visibility = View.GONE
-            binding.contentLayout.visibility = View.VISIBLE
             binding.tvUserName.text = "Guest User"
             binding.tvUserEmail.text = "Not signed in"
         }
